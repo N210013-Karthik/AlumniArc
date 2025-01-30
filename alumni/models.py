@@ -23,3 +23,26 @@ class NewsPage(models.Model):
 
     def __str__(self):
         return self.title
+
+class Achievement(models.Model):
+    CATEGORY_CHOICES = [
+        ('Academics', 'Academics'),
+        ('Sports', 'Sports'),
+        ('Research', 'Research'),
+        ('Entrepreneurship', 'Entrepreneurship'),
+        ('Others', 'Others'),
+    ]
+
+    title = models.CharField(max_length=255, unique=True)  
+    description = models.TextField()  
+    achiever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  
+    date_achieved = models.DateField(default=now)  
+    image = models.ImageField(upload_to='achievements/', blank=True, null=True)  
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='Others')  
+    is_approved = models.BooleanField(default=True)  
+
+    class Meta:
+        ordering = ['-date_achieved']  
+
+    def __str__(self):
+        return self.title
