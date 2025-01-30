@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import NewsPage, Achievement
+from .models import NewsPage, Achievement, Alumni
 from django.db.models import Q  # For searching
 
 def login_view(request):
@@ -50,3 +50,29 @@ def achievements_list(request):
     categories = ['All', 'Academics', 'Sports', 'Research', 'Entrepreneurship', 'Others']
 
     return render(request, 'Achievements.html', {'achievements': achievements, 'categories': categories})
+
+def alumni_list(request):
+    query = request.GET.get('q')  # Search query
+    department_filter = request.GET.get('department')  # Filter by department
+    batch_filter = request.GET.get('batch')  # Filter by batch
+
+    alumni = Alumni.objects.all()
+
+    if query:
+        alumni = alumni.filter(
+            Q(name__icontains=query) | 
+            Q(current_position__icontains=query) | 
+            Q(company__icontains=query) |
+            Q(location__icontains=query)
+        )
+
+    if department_filter and department_filter != 'All':
+        alumni = alumni.filter(department=department_filter)
+
+    if batch_filter and batch_filter != 'All':
+        alumni = alumni.filter(batch=batch_filter)
+
+    departments = ['All', 'CSE', 'ECE', 'EEE', 'ME', 'CE', 'CHEM', 'MME', 'Others']
+    batches = sorted(set(Alumni.objects.values_list('batch', flat=True)), reverse=True)  # Get unique batch years
+
+    return render(request, 'AlumniDirectory.html', {'alumni': alumni, 'departments': departments, 'batches': batches})

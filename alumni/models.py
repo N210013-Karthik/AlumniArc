@@ -46,3 +46,35 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.title
+
+from django.db import models
+
+class Alumni(models.Model):
+    DEPARTMENT_CHOICES = [
+        ('CSE', 'Computer Science'),
+        ('ECE', 'Electronics & Communication'),
+        ('EEE', 'Electrical Engineering'),
+        ('ME', 'Mechanical Engineering'),
+        ('CE', 'Civil Engineering'),
+        ('CHE', 'Chemical Engineering'),
+        ('MME', 'Metallurgical & Materials Engineering'),
+        ('Others', 'Others'),
+    ]
+
+    name = models.CharField(max_length=255)
+    email = models.EmailField(unique=True)  
+    phone = models.CharField(max_length=15, blank=True, null=True)  
+    batch = models.IntegerField()  
+    department = models.CharField(max_length=100, choices=DEPARTMENT_CHOICES)  
+    current_position = models.CharField(max_length=255, blank=True, null=True)  
+    company = models.CharField(max_length=255, blank=True, null=True)  
+    location = models.CharField(max_length=255, blank=True, null=True)  
+    linkedin = models.URLField(blank=True, null=True)  
+    twitter = models.URLField(blank=True, null=True)  
+    profile_picture = models.ImageField(upload_to='alumni_photos/', blank=True, null=True)  
+
+    class Meta:
+        ordering = ['-batch', 'name']  
+
+    def __str__(self):
+        return f"{self.name} ({self.batch})"
