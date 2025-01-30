@@ -52,8 +52,6 @@ class Achievement(models.Model):
         """Return True if the achievement is less than a year old, False otherwise."""
         return self.date_achieved >= now().date() - timedelta(days=365)
 
-from django.db import models
-
 class Alumni(models.Model):
     DEPARTMENT_CHOICES = [
         ('CSE', 'Computer Science'),
