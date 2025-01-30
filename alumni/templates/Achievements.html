@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Achievements</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#1e40af',
+                        secondary: '#1d4ed8',
+                        accent: '#3b82f6',
+                        background: '#f8fafc'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .achievement-card {
+            transition: all 0.3s ease;
+        }
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+        .scroll-top {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .hero-pattern {
+            background-color: #1e40af;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%233b82f6' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-background">
+    <!-- Hero Section -->
+    <div class="hero-pattern text-white py-20 px-4 mb-12">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h1 class="text-5xl font-bold mb-6">Achievements of the University</h1>
+            <p class="text-xl opacity-90 max-w-2xl mx-auto">
+                Celebrating our legacy of excellence and innovation in education, research, and community impact through the years.
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto max-w-6xl px-4 pb-20">
+        <!-- Toggle Buttons -->
+        <div class="flex justify-center gap-4 mb-12">
+            <button id="pastBtn" class="px-6 py-3 rounded-lg font-semibold text-white bg-primary hover:bg-secondary transition-colors">
+                Past Achievements
+            </button>
+            <button id="presentBtn" class="px-6 py-3 rounded-lg font-semibold text-primary bg-white border-2 border-primary hover:bg-primary hover:text-white transition-colors">
+                Present Achievements
+            </button>
+        </div>
+
+        <!-- Achievements Sections -->
+        <div id="achievementsContainer">
+            <!-- Past Achievements -->
+            <div id="pastAchievements" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Present Achievements -->
+            <div id="presentAchievements" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Cards will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" class="scroll-top fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg hover:bg-secondary">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="achievements-data.js"></script>
+    <script src="achievements.js"></script>
+</body>
+</html>
