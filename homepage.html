@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGUKT Alumni Portal</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: #fdf9ff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(to right, #ffecd2, #fcb69f);
+            padding: 1.5rem 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header img {
+            width: 70px;
+            height: 70px;
+            margin-right: 1rem;
+            border-radius: 50%;
+        }
+        header h1 {
+            font-size: 2.5rem;
+            color: #333;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            padding: 0.8rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        nav a:hover {
+            background: #ff9a9e;
+            transform: scale(1.1);
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #cfd9df, #e2ebf0);
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #4b6584;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        .hero .cta-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: white;
+            font-size: 1rem;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 2rem 1rem;
+            background: linear-gradient(120deg, #d4fc79, #96e6a1);
+        }
+        .feature {
+            flex: 0 1 30%;
+            background: linear-gradient(to right, #84fab0, #8fd3f4);
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            color: #2d98da;
+            margin-bottom: 1rem;
+        }
+        .feature p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .about {
+            background: linear-gradient(to right, #cfd9df, #e2ebf0);
+            color: #333;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .info-sections {
+      display: flex;
+      justify-content: space-around;
+      padding: 2rem 1rem;
+      background: linear-gradient(145deg, #f3d5ff, #ffcfdf);
+  }
+
+  .news-section,
+  .events-section {
+      flex: 0 1 40%;
+      background: linear-gradient(to right, #e4cfff, #fcc2ff);
+      padding: 1.5rem;
+      margin: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .news-section:hover,
+  .events-section:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .info-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background: linear-gradient(90deg, #ff616d, #ffcb8e);
+      padding: 0.8rem 1.5rem;
+      color: white;
+      text-decoration: none;
+      border-radius: 24px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .info-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+  }
+        footer {
+            text-align: center;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .feature {
+                flex: 0 1 100%;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Logo">
+        <h1>RGUKT Alumni Portal</h1>
+    </header>
+    
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="homepage.html">Home</a>
+        <a href="events page.html">Events</a>
+        <a href="donation.html">Donation</a>
+        <a href="about page.html">About</a>
+        <a href="login.html">Login/Signin</a>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>Welcome to the RGUKT Alumni Portal</h2>
+        <p>Reconnect, engage, and stay connected with fellow alumni from RGUKT. Join events and contribute to the growing network.</p>
+        <a href="login.html" class="cta-btn">Join Us Today</a>
+    </div>
+    <!-- News and Events Section -->
+    <section class="info-sections">
+     <div class="news-section">
+      <h3>Girl hackthon</h3>
+      <p>the campus conducted a hackthon for the girls on the theme about the girls .the winner of the hackthon is.....</p>
+      <a href="newspage.html" class="info-btn">Latest News & Updates</a>
+      </div></section>
+      <section class="info_section">
+  <div class="events-section">
+      <h3>Ongoing Events</h3>
+      <p>Explore current alumni events and networking opportunities happening at RGUKT.</p>
+      <a href="events page.html" class="info-btn">Explore Events</a>
+  </div>
+</section>
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <h3>Networking Opportunities</h3>
+            <p>Connect with fellow alumni and grow your professional network.</p>
+        </div>
+        <div class="feature">
+            <h3>Exciting Events</h3>
+            <p>Participate in reunions, webinars, and other events organized by RGUKT alumni.</p>
+        </div>
+        <div class="feature">
+            <h3>Give Back</h3>
+            <p>Support current students by sharing knowledge and experience.</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about">
+        <h2>About RGUKT Alumni Portal</h2>
+        <p>
+            Our mission is to foster a vibrant community of RGUKT graduates who collaborate, support, and grow together. 
+            We aim to bridge the gap between past and present students, fostering a sense of belonging and pride.
+        </p>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 RGUKT Alumni Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
