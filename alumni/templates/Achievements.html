@@ -69,13 +69,57 @@
         <div id="achievementsContainer">
             <!-- Past Achievements -->
             <div id="pastAchievements" class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Cards will be dynamically inserted here -->
+                {% for achievement in past_achievements %}
+                    <div class="achievement-card bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            {% if achievement.image %}
+                                <img src="{{ achievement.image.url }}" alt="{{ achievement.title }}" class="w-full h-full object-cover">
+                            {% endif %}
+                            <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                {{ achievement.date_achieved|date:"Y" }}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                    <i class="fas fa-trophy text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold ml-3 text-gray-800">{{ achievement.title }}</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                {{ achievement.description }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
-
+            
             <!-- Present Achievements -->
             <div id="presentAchievements" class="hidden grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Cards will be dynamically inserted here -->
-            </div>
+                {% for achievement in present_achievements %}
+                    <div class="achievement-card bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="relative h-48 overflow-hidden">
+                            {% if achievement.image %}
+                                <img src="{{ achievement.image.url }}" alt="{{ achievement.title }}" class="w-full h-full object-cover">
+                            {% endif %}
+                            <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm font-semibold">
+                                {{ achievement.date_achieved|date:"Y" }}
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center text-primary">
+                                    <i class="fas fa-trophy text-xl"></i>
+                                </div>
+                                <h3 class="text-xl font-bold ml-3 text-gray-800">{{ achievement.title }}</h3>
+                            </div>
+                            <p class="text-gray-600 leading-relaxed">
+                                {{ achievement.description }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>            
         </div>
     </div>
 
@@ -84,7 +128,6 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="/static/js/achievements-data.js"></script>
     <script src="/static/js/achievements.js"></script>
 </body>
 </html>

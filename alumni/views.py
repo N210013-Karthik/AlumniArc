@@ -35,6 +35,10 @@ def news_list(request):
 
     return render(request, 'newspage.html', {'news': news, 'categories': categories})
 
+from django.shortcuts import render
+from django.db.models import Q
+from .models import Achievement
+
 def achievements_list(request):
     query = request.GET.get('q')  # Search query
     category_filter = request.GET.get('category')  # Category filter
@@ -47,9 +51,18 @@ def achievements_list(request):
     if category_filter and category_filter != 'All':
         achievements = achievements.filter(category=category_filter)
 
+    # Separate achievements into past and present based on the is_present method
+    present_achievements = [ach for ach in achievements if ach.is_present()]
+    past_achievements = [ach for ach in achievements if not ach.is_present()]
+
     categories = ['All', 'Academics', 'Sports', 'Research', 'Entrepreneurship', 'Others']
 
-    return render(request, 'Achievements.html', {'achievements': achievements, 'categories': categories})
+    return render(request, 'Achievements.html', {
+        'present_achievements': present_achievements, 
+        'past_achievements': past_achievements, 
+        'categories': categories
+    })
+
 
 def alumni_list(request):
     query = request.GET.get('q')  # Search query

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+from datetime import timedelta
 
 class NewsPage(models.Model):
     CATEGORY_CHOICES = [
@@ -46,6 +47,10 @@ class Achievement(models.Model):
 
     def __str__(self):
         return self.title
+
+    def is_present(self):
+        """Return True if the achievement is less than a year old, False otherwise."""
+        return self.date_achieved >= now().date() - timedelta(days=365)
 
 from django.db import models
 
