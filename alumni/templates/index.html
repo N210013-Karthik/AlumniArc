@@ -1,11 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Homepage</title>
-</head>
-<body>
-    <h1>Basic homepage</h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Alumni Website</title>
+        <style>
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+            }
+            .navbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #004080;
+                padding: 0.5rem 2rem;
+                color: white;
+            }
+            .navbar .logo {
+                font-size: 1.5rem;
+                font-weight: bold;
+            }
+            .navbar ul {
+                list-style: none;
+                display: flex;
+                margin: 0;
+                padding: 0;
+            }
+            .navbar ul li {
+                margin: 0 1rem;
+            }
+            .navbar ul li a {
+                text-decoration: none;
+                color: white;
+                font-size: 1rem;
+                transition: color 0.3s ease;
+            }
+            .navbar ul li a:hover {
+                color: #ffcc00;
+            }
+            .navbar .cta {
+                background-color: #ffcc00;
+                color: #004080;
+                padding: 0.5rem 1rem;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+                transition: background-color 0.3s ease;
+            }
+            .navbar .cta:hover {
+                background-color: #ffdd33;
+            }
+
+            @media (max-width: 768px) {
+                .navbar ul {
+                    flex-direction: column;
+                    display: none;
+                    position: absolute;
+                    top: 3.5rem;
+                    right: 2rem;
+                    background-color: #004080;
+                    padding: 1rem;
+                    border-radius: 5px;
+                }
+                .navbar ul.show {
+                    display: flex;
+                }
+                .navbar .menu-toggle {
+                    display: block;
+                    cursor: pointer;
+                }
+                .navbar .menu-toggle span {
+                    display: block;
+                    width: 25px;
+                    height: 3px;
+                    background-color: white;
+                    margin: 5px 0;
+                    transition: transform 0.3s;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="logo">Alumni Connect</div>
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul id="nav-links">
+                <li><a href="#news">News</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#alumni">Alumni Directory</a></li>
+                <li><a href="#opportunities">Opportunities</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#donate" class="cta">Donate</a></li>
+            </ul>
+        </nav>
+
+        <script>
+            function toggleMenu() {
+                const navLinks = document.getElementById('nav-links');
+                navLinks.classList.toggle('show');
+            }
+        </script>
+    </body>
 </html>
