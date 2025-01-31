@@ -35,10 +35,6 @@ def news_list(request):
 
     return render(request, 'newspage.html', {'news': news, 'categories': categories})
 
-from django.shortcuts import render
-from django.db.models import Q
-from .models import Achievement
-
 def achievements_list(request):
     query = request.GET.get('q')  # Search query
     category_filter = request.GET.get('category')  # Category filter
@@ -63,29 +59,38 @@ def achievements_list(request):
         'categories': categories
     })
 
-
 def alumni_list(request):
     query = request.GET.get('q')  # Search query
     department_filter = request.GET.get('department')  # Filter by department
-    batch_filter = request.GET.get('batch')  # Filter by batch
+    graduation_year_filter = request.GET.get('graduation_year')  # Filter by graduation year
 
     alumni = Alumni.objects.all()
 
+    # Search query (matches name, position, company, location, skills, achievements)
     if query:
         alumni = alumni.filter(
             Q(name__icontains=query) | 
             Q(current_position__icontains=query) | 
             Q(company__icontains=query) |
-            Q(location__icontains=query)
+            Q(location__icontains=query) |
+            Q(skills__icontains=query) |  # Searches inside JSON skills array
+            Q(achievements__icontains=query)  # Searches inside JSON achievements array
         )
 
+    # Filter by department
     if department_filter and department_filter != 'All':
         alumni = alumni.filter(department=department_filter)
 
-    if batch_filter and batch_filter != 'All':
-        alumni = alumni.filter(batch=batch_filter)
+    # Filter by graduation year
+    if graduation_year_filter and graduation_year_filter != 'All':
+        alumni = alumni.filter(graduation_year=graduation_year_filter)
 
+    # Unique departments and graduation years
     departments = ['All', 'CSE', 'ECE', 'EEE', 'ME', 'CE', 'CHEM', 'MME', 'Others']
-    batches = sorted(set(Alumni.objects.values_list('batch', flat=True)), reverse=True)  # Get unique batch years
+    graduation_years = sorted(set(Alumni.objects.values_list('graduation_year', flat=True)), reverse=True)
 
-    return render(request, 'AlumniDirectory.html', {'alumni': alumni, 'departments': departments, 'batches': batches})
+    return render(request, 'AlumniDirectory.html', {
+        'alumni': alumni,
+        'departments': departments,
+        'graduation_years': graduation_years
+    })

@@ -36,9 +36,8 @@ class Achievement(models.Model):
 
     title = models.CharField(max_length=255, unique=True)  
     description = models.TextField()  
-    achiever = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  
     date_achieved = models.DateField(default=now)  
-    image = models.ImageField(upload_to='achievements/', blank=True, null=True)  
+    image = models.ImageField(upload_to='static/images/achievements/', blank=True, null=True)  
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='Others')  
     is_approved = models.BooleanField(default=True)  
 
@@ -65,19 +64,32 @@ class Alumni(models.Model):
     ]
 
     name = models.CharField(max_length=255)
-    email = models.EmailField(unique=True)  
-    phone = models.CharField(max_length=15, blank=True, null=True)  
-    batch = models.IntegerField()  
-    department = models.CharField(max_length=100, choices=DEPARTMENT_CHOICES)  
-    current_position = models.CharField(max_length=255, blank=True, null=True)  
-    company = models.CharField(max_length=255, blank=True, null=True)  
-    location = models.CharField(max_length=255, blank=True, null=True)  
-    linkedin = models.URLField(blank=True, null=True)  
-    twitter = models.URLField(blank=True, null=True)  
-    profile_picture = models.ImageField(upload_to='alumni_photos/', blank=True, null=True)  
+    email = models.EmailField(unique=True)
+    mobile = models.CharField(max_length=15, blank=True, null=True)  
+    graduation_year = models.IntegerField()  
+    department = models.CharField(max_length=100, choices=DEPARTMENT_CHOICES)
+    domain = models.CharField(max_length=255, blank=True, null=True)  # Field for domain (e.g., Software Development)
+    current_position = models.CharField(max_length=255, blank=True, null=True)
+    company = models.CharField(max_length=255, blank=True, null=True)
+    
+    # Location stored as JSON (latitude, longitude, and address)
+    location = models.JSONField(blank=True, null=True, default=dict)
+
+    # List of skills (stored as JSON)
+    skills = models.JSONField(blank=True, null=True, default=list)
+
+    # Achievements stored as JSON (title, description, year)
+    achievements = models.JSONField(blank=True, null=True, default=list)
+
+    # Social Media Links
+    linkedin = models.URLField(blank=True, null=True)
+    twitter = models.URLField(blank=True, null=True)
+
+    # Profile Picture
+    profile_picture = models.ImageField(upload_to='static/images/alumni/', blank=True, null=True)  # Using URL instead of ImageField
 
     class Meta:
-        ordering = ['-batch', 'name']  
+        ordering = ['-graduation_year', 'name']
 
     def __str__(self):
-        return f"{self.name} ({self.batch})"
+        return f"{self.name} ({self.graduation_year})"

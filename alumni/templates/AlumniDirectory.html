@@ -4,9 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alumni Directory</title>
+    
+    <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Maps API -->
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+    
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Tailwind Customization -->
     <script>
         tailwind.config = {
             theme: {
@@ -22,6 +30,7 @@
             }
         }
     </script>
+
     <style>
         .gradient-bg {
             background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
@@ -33,118 +42,143 @@
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
-        .achievement-item {
-            transition: all 0.3s ease;
-        }
-        .achievement-item:hover {
-            background-color: rgba(129, 140, 248, 0.1);
-        }
     </style>
 </head>
 <body class="bg-background min-h-screen">
+    
+    <!-- Header -->
     <div class="gradient-bg text-white py-12 mb-8">
         <div class="container mx-auto px-4">
             <h1 class="text-4xl font-bold text-center mb-4">Alumni Directory</h1>
             <p class="text-center text-lg opacity-90">Connecting accomplished graduates worldwide</p>
         </div>
     </div>
-    
+
     <div class="container mx-auto px-4 pb-12">
-        <!-- Search and Filter Section -->
-        <div class="mb-8">
-            <div class="bg-white rounded-xl shadow-lg p-4 max-w-2xl mx-auto">
-                <div class="relative">
-                    <input type="text" 
-                           id="searchInput" 
-                           placeholder="Search alumni by name, company, skills, or achievements..." 
-                           class="w-full p-4 pl-12 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
-                    >
-                    <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                </div>
-            </div>
-        </div>
-
+        
         <!-- Alumni Grid -->
-        <div id="alumniGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Alumni cards will be dynamically inserted here -->
-        </div>
-    </div>
-
-    <!-- Alumni Card Template -->
-    <template id="alumniCardTemplate">
-        <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover">
-            <div class="p-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for alumni in alumni %}
+            <div class="bg-card rounded-lg shadow-lg overflow-hidden card-hover p-4">
+                
+                <!-- Profile Image & Name -->
                 <div class="flex items-center mb-4">
-                    <img class="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-md" src="" alt="Alumni Photo">
+                    <!-- Check if the alumni has a profile picture -->
+                    {% if alumni.profile_picture %}
+                    <img class="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-md" 
+                         src="{{ alumni.profile_picture.url }}" 
+                         alt="{{ alumni.name }}">
+                    {% else %}
+                    <img class="w-16 h-16 rounded-full object-cover border-2 border-primary shadow-md" 
+                         src="/path/to/default-image.jpg" 
+                         alt="Default image">
+                    {% endif %}
                     <div class="ml-3">
-                        <h2 class="text-xl font-bold text-gray-800"></h2>
-                        <p class="text-primary text-sm font-medium"></p>
+                        <h2 class="text-xl font-bold text-gray-800">{{ alumni.name }}</h2>
+                        <p class="text-primary text-sm font-medium">{{ alumni.current_position }} at {{ alumni.company }}</p>
                     </div>
                 </div>
-                
+
+                <!-- Alumni Details -->
                 <div class="space-y-2 text-sm">
                     <div class="flex items-center text-gray-700">
                         <i class="fas fa-graduation-cap w-5 text-sm"></i>
-                        <span class="ml-2 degree"></span>
-                    </div>
-                    <div class="flex items-center text-gray-700">
-                        <i class="fas fa-briefcase w-5 text-sm"></i>
-                        <span class="ml-2 company font-medium"></span>
+                        <span class="ml-2">{{ alumni.graduation_year }} | {{ alumni.department }}</span>
                     </div>
                     <div class="flex items-center text-gray-700">
                         <i class="fas fa-code w-5 text-sm"></i>
-                        <span class="ml-2 domain"></span>
-                    </div>
-                    
-                    <div class="skills-container mt-2">
-                        <p class="text-gray-700 mb-1 font-medium text-sm">Skills</p>
-                        <div class="skills flex flex-wrap gap-1">
-                            <!-- Skills will be inserted here -->
-                        </div>
+                        <span class="ml-2">{{ alumni.domain }}</span>
                     </div>
 
-                    <!-- Achievements Section -->
-                    <div class="achievements-container mt-3 border-t border-gray-100 pt-3">
+                    <!-- Skills -->
+                    {% if alumni.skills %}
+                    <div class="mt-2">
+                        <p class="text-gray-700 mb-1 font-medium text-sm">Skills</p>
+                        <div class="flex flex-wrap gap-1">
+                            {% for skill in alumni.skills %}
+                            <span class="px-2 py-1 bg-gray-200 text-xs rounded">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Achievements -->
+                    {% if alumni.achievements %}
+                    <div class="mt-3 border-t border-gray-100 pt-3">
                         <div class="flex items-center mb-2">
                             <i class="fas fa-trophy text-primary text-sm"></i>
                             <p class="text-gray-700 font-medium ml-2 text-sm">Achievements</p>
                         </div>
-                        <div class="achievements space-y-2">
-                            <!-- Achievements will be inserted here -->
-                        </div>
+                        <ul class="text-sm text-gray-700 space-y-2">
+                            {% for achievement in alumni.achievements %}
+                            <li class="border p-2 rounded-md">
+                                <strong>{{ achievement.title }}</strong> ({{ achievement.year }})<br>
+                                <span class="text-xs">{{ achievement.description }}</span>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
-                    
-                    <div class="map-container h-32 rounded-lg overflow-hidden shadow-inner mt-3"></div>
-                    
+                    {% endif %}
+
+                    <!-- Map -->
+                    {% if alumni.location %}
+                    <div class="h-32 rounded-lg overflow-hidden shadow-inner mt-3" 
+                         data-lat="{{ alumni.location.lat }}" 
+                         data-lng="{{ alumni.location.lng }}">
+                    </div>
+                    {% endif %}
+
+                    <!-- Contact & Social Media -->
                     <div class="border-t border-gray-100 pt-3 mt-3">
                         <div class="flex justify-between items-center">
-                            <div class="social-links flex space-x-3">
-                                <a href="" class="linkedin text-primary hover:text-secondary transition-colors">
+                            <div class="flex space-x-3">
+                                {% if alumni.linkedin %}
+                                <a href="{{ alumni.linkedin }}" class="text-primary hover:text-secondary transition-colors">
                                     <i class="fab fa-linkedin text-lg"></i>
                                 </a>
-                                <a href="" class="twitter text-primary hover:text-secondary transition-colors">
+                                {% endif %}
+                                {% if alumni.twitter %}
+                                <a href="{{ alumni.twitter }}" class="text-primary hover:text-secondary transition-colors">
                                     <i class="fab fa-twitter text-lg"></i>
                                 </a>
-                                <a href="" class="email text-primary hover:text-secondary transition-colors">
+                                {% endif %}
+                                <a href="mailto:{{ alumni.email }}" class="text-primary hover:text-secondary transition-colors">
                                     <i class="fas fa-envelope text-lg"></i>
                                 </a>
-                                <a href="" class="phone text-primary hover:text-secondary transition-colors">
+                                <a href="tel:{{ alumni.mobile }}" class="text-primary hover:text-secondary transition-colors">
                                     <i class="fas fa-phone text-lg"></i>
                                 </a>
                             </div>
-                            
-                            <button class="message-btn bg-primary hover:bg-secondary text-white py-1.5 px-3 rounded text-sm transition-colors duration-300 flex items-center">
+
+                            <button class="bg-primary hover:bg-secondary text-white py-1.5 px-3 rounded text-sm transition-colors duration-300 flex items-center">
                                 <i class="fas fa-paper-plane mr-1 text-sm"></i>
                                 Message
                             </button>
                         </div>
                     </div>
+
                 </div>
             </div>
+            {% endfor %}
         </div>
-    </template>
+    </div>
 
-    <script src="/static/js/data.js"></script>
-    <script src="/static/js/script.js"></script>
+    <script>
+        function initMaps() {
+            document.querySelectorAll('.h-32').forEach(mapContainer => {
+                const lat = mapContainer.getAttribute('data-lat');
+                const lng = mapContainer.getAttribute('data-lng');
+                if (lat && lng) {
+                    const map = new google.maps.Map(mapContainer, {
+                        center: { lat: parseFloat(lat), lng: parseFloat(lng) },
+                        zoom: 10,
+                    });
+                    new google.maps.Marker({ position: { lat: parseFloat(lat), lng: parseFloat(lng) }, map });
+                }
+            });
+        }
+        window.onload = initMaps;
+    </script>
+
 </body>
 </html>
