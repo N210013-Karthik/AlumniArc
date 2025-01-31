@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About RGUKT</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff; /* Light blue background */
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+            animation: fadeIn 1s ease-out; /* Fade-in animation for the whole page */
+        }
+
+        /* Header Animation */
+        header {
+            background-color: #0044cc; /* Dark blue header */
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInHeader 1s forwards; /* Header fade-in effect */
+        }
+
+        /* Smooth Scroll for anchor tags */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-image {
+            width: 45px;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        /* Navigation bar hover effect */
+        nav {
+            background-color: #003366;
+            padding: 10px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInNav 1s 0.5s forwards; /* Navigation fade-in effect */
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #ffcc00; /* Yellow hover effect for nav links */
+        }
+
+        /* Content Section Animations */
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h2 {
+            color: #003366;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px); /* Start from below */
+            animation: fadeInText 1s forwards, slideInFromLeft 1s forwards; /* Text fade-in with slide */
+        }
+
+        .content-section {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px); /* Start from below */
+            animation: fadeInSection 1s forwards; /* Section fade-in effect */
+            transition: transform 0.3s ease-out, opacity 0.3s ease;
+        }
+
+        /* Animations for scrolling into view */
+        @keyframes fadeInHeader {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInNav {
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInText {
+            to {
+                opacity: 1;
+                transform: translateY(0); /* Text comes to original position */
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInSection {
+            to {
+                opacity: 1;
+                transform: translateY(0); /* Move up to the original position */
+            }
+        }
+
+        /* Animation when clicking on a section */
+        .content-section.clicked {
+            transform: scale(1.05); /* Slight zoom-in effect */
+            opacity: 0.9;
+        }
+
+        footer {
+            background-color: #0044cc;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="rguktlogo.jpg" alt="RGUKTN Logo" class="header-image">
+            <h1>About Rajiv Gandhi University of Knowledge and Technologies(RGUKT)</h1>
+        </div>
+    </header>
+    <nav>
+        <a href="#mission">Mission</a>
+        <a href="#vision">Vision</a>
+        <a href="#history">History</a>
+        <a href="#campus">Campus</a>
+    </nav>
+    <div class="container">
+        <section id="mission" class="content-section">
+            <h2>Our Mission</h2>
+            <p>"To provide world-class education and training in the fields of engineering, technology, and sciences to the students of rural India, especially from underserved areas, through innovative teaching methodologies. The university is committed to fostering academic excellence, research, and holistic development that will empower its students to make meaningful contributions to the nation and the global community."</p>
+        </section>
+        <section id="vision" class="content-section">
+            <h2>Our Vision</h2>
+            <p>"To be a premier institution of higher education dedicated to the pursuit of excellence in teaching, research, and innovation. RGUKT envisions empowering students from rural and underprivileged backgrounds with the knowledge and skills required to excel in global technological advancements, fostering creativity, leadership, and social responsibility to meet the evolving needs of society."</p>
+        </section>
+        <section id="history" class="content-section">
+            <h2>Our History</h2>
+            <p>Rajiv Gandhi University of Knowledge and Technologies (RGUKT), Nuzvidu, was established in 2008 by the Government of Andhra Pradesh with a vision to provide quality education to the talented youth from rural and underserved areas. The university was created with the aim of bridging the educational divide by offering cutting-edge programs in the fields of engineering, technology, and sciences.</p>
+        </section>
+        <section id="campus" class="content-section">
+            <h2>Our Campus</h2>
+            <p>Located in Nuzvidu, Andhra Pradesh, the RGUKT campus provides state-of-the-art facilities for students. With modern classrooms, laboratories, and recreational spaces, the campus offers a conducive environment for learning and personal development.</p>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2025 Rajiv Gandhi University of Knowledge and Technologies, All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Add click event listener to all sections for scale and fade effect
+        const sections = document.querySelectorAll('.content-section');
+        
+        sections.forEach(section => {
+            section.addEventListener('click', () => {
+                section.classList.toggle('clicked');
+            });
+        });
+
+        // Add animation when sections come into view while scrolling
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fadeInSection');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });  // Trigger when 50% of the element is in view
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
