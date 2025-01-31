@@ -20,8 +20,8 @@ def homepage_view(request):
     return render(request, 'homepage.html')
 
 def news_list(request):
-    query = request.GET.get('q')  # Search query
-    category_filter = request.GET.get('category')  # Category filter
+    query = request.GET.get('q', '')  # Search query
+    category_filter = request.GET.get('category', 'All')  # Category filter
 
     news = NewsPage.objects.filter(is_published=True)
 
@@ -33,7 +33,7 @@ def news_list(request):
 
     categories = ['All', 'Event', 'Achievement', 'General']  # Available categories
 
-    return render(request, 'newspage.html', {'news': news, 'categories': categories})
+    return render(request, 'newspage.html', {'news': news, 'categories': categories, 'query': query, 'category_filter': category_filter})
 
 def achievements_list(request):
     query = request.GET.get('q')  # Search query

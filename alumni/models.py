@@ -14,7 +14,7 @@ class NewsPage(models.Model):
     content = models.TextField()  
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  
     published_date = models.DateTimeField(default=now)  
-    image = models.ImageField(upload_to='news_images/', blank=True, null=True)  
+    image = models.ImageField(upload_to='static/images/news_images/', blank=True, null=True)  
     category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='General')  
     is_published = models.BooleanField(default=True)
     views = models.PositiveIntegerField(default=0)  

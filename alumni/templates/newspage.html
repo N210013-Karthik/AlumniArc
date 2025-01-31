@@ -120,6 +120,22 @@
             color: white;
             margin-top: 3rem;
         }
+        .search-filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem auto;
+        }
+        .search-filter-container input, select, button {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .search-filter-container button {
+            background: #2d98da;
+            color: white;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -135,34 +151,30 @@
         <p>Catch up on the latest news and updates from our thriving RGUKT alumni community.</p>
     </section>
 
+    <form method="GET" class="search-filter-container">
+        <input type="text" name="q" placeholder="Search news..." value="{{ query }}">
+        <select name="category">
+            {% for category in categories %}
+                <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
     <!-- News Section -->
     <section class="news-container">
-        <div class="news-item">
-            <img src="https://media.istockphoto.com/id/1175031702/photo/speaker-giving-presentation-on-scientific-business-conference.jpg?s=1024x1024&w=is&k=20&c=-ARI_2vVvs9ZtGkEtRYlNsWrIj5lsnQQ-ELDQbgDliA=" alt="Event 1" class="news-img">
-            <div class="news-content">
-                <h2>RGUKT Alumni Meet 2025</h2>
-                <p>The highly anticipated RGUKT Alumni Meet 2025 was a grand success, bringing together former students for an inspiring and memorable gathering.</p>
-                <a href="#">Read More</a>
+        {% for news_item in news %}
+            <div class="news-item">
+                {% if news_item.image %}
+                    <img src="{{ news_item.image.url }}" alt="{{ news_item.title }}" class="news-img">
+                {% endif %}
+                <div class="news-content">
+                    <h2>{{ news_item.title }}</h2>
+                    <p>{{ news_item.content }}</p>
+                    <a href="#">Read More</a>
+                </div>
             </div>
-        </div>
-
-        <div class="news-item">
-            <img src="https://media.istockphoto.com/id/1205339069/photo/close-up-of-hands-on-a-computer-keyboard-coding-programming-software-development-cyber.jpg?s=1024x1024&w=is&k=20&c=5GFiMOJ8RQNs_dm-cNPnBZPzvbNUPLJ31_h3-mZ_ELU=" alt="Event 2" class="news-img">
-            <div class="news-content">
-                <h2>RGUKT Students Shine in Hackathon</h2>
-                <p>Our alumni and current students demonstrated technical prowess by winning first place at the prestigious National Hackathon 2025.</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
-
-        <div class="news-item">
-            <img src="https://media.istockphoto.com/id/493958679/photo/audience-at-the-conference-hall.jpg?s=1024x1024&w=is&k=20&c=H4hpCM-eqeF-7Rhbds8JpwRdcnXB3s4rMtYFEh0Xvkw=" alt="Event 3" class="news-img">
-            <div class="news-content">
-                <h2>Alumni Mentorship Program Launch</h2>
-                <p>The new mentorship program aims to connect current students with experienced alumni for career guidance and professional development.</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
+        {% endfor %}
     </section>
 
     <!-- Footer -->
