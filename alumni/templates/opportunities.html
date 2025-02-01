@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alumni Network</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        body {
+            background: #0a1a3c;
+            background-image: url('op6.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px 20px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel-container {
+            margin: 0 auto 20px auto;
+            border-radius: 0 0 15px 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-item {
+            height: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
+        }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+            bottom: 50px;
+        }
+
+        .carousel-caption h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .carousel-caption p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        .welcome-section {
+            padding: 40px 20px;
+            max-width: 1200px;
+            margin: 40px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .welcome-text {
+            font-size: 1.5rem;
+            line-height: 1.8;
+            color: #333;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome-heading {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 2rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+            background: rgba(10, 26, 60, 0.7);
+            border-radius: 15px;
+        }
+
+        .feature-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: rgba(10, 26, 60, 0.9);
+            color: white;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffffff;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .feature-image-container {
+            height: 250px;
+            overflow: hidden;
+            border-radius: 13px;
+            margin-bottom: 20px;
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .feature-content {
+            padding: 0 10px;
+            color: white;
+        }
+
+        .feature-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: white;
+        }
+
+        .feature-content p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            opacity: 0.9;
+            color: #e0e0e0;
+            font-family: monospace;
+        }
+
+        .feedback-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .feedback-heading {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .feedback-container {
+            position: relative;
+            overflow: hidden;
+            background: #1a1a2e;
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .feedback-carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .feedback-box {
+            min-width: 100%;
+            background: #1a1a2e;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: white;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 0.5px;
+        }
+
+        .feedback-author {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-family: 'Courier New', monospace;
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .feedback-nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .feedback-nav-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feedback-nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-section {
+            max-width: 1400px;
+            margin: 40px auto;
+            padding: 20px 40px;
+            position: relative;
+            background: #0a0a1a;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 60px;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: 'Courier New', monospace;
+            font-size: 1.4rem;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .new-page {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            color: #a0a0a0;
+        }
+
+        .demo-button-top {
+            background: white;
+            color: #0a0a1a;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .demo-button-top:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 550px;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-text {
+            padding: 20px 0;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 40px;
+            line-height: 1.2;
+            font-family: 'Courier New', monospace;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
+            max-width: 90%;
+        }
+
+        @media (max-width: 1200px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-image {
+                height: 400px;
+            }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+                max-width: 100%;
+            }
+
+            .hero-section {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-section {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .feature-image-container {
+                height: 200px;
+            }
+
+            .feature-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-content p {
+                font-size: 1rem;
+            }
+
+            .carousel-item {
+                height: 400px;
+            }
+
+            .carousel-caption h1 {
+                font-size: 2rem;
+            }
+
+            .carousel-caption p {
+                font-size: 1.1rem;
+            }
+
+            .welcome-text {
+                padding: 2rem;
+                font-size: 1.2rem;
+            }
+
+            .welcome-heading {
+                font-size: 2.2rem;
+            }
+
+            .feedback-heading {
+                font-size: 2.2rem;
+            }
+
+            .feedback-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feedback-box {
+                padding: 20px;
+            }
+
+            .feedback-text {
+                font-size: 1.1rem;
+            }
+
+            .feedback-author {
+                font-size: 1rem;
+            }
+        }
+
+        .faq-section {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .faq-heading {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 0;
+            background: transparent;
+        }
+
+        .faq-question {
+            color: white;
+            padding: 20px 0;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.2rem;
+            background: transparent;
+            border: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .faq-question:hover {
+            color: #e0e0e0;
+            background: transparent;
+        }
+
+        .faq-answer {
+            color: #e0e0e0;
+            padding: 0 0 20px 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            background: transparent;
+        }
+
+        .faq-question .icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .faq-question[aria-expanded="true"] .icon {
+            transform: rotate(45deg);
+        }
+
+        /* Join section styles */
+        .join-section {
+            background: rgba(75, 75, 90, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            margin: 40px auto;
+            max-width: 800px;
+        }
+
+        .join-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .join-section p {
+            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .join-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #4B44F0;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .join-button:hover {
+            background: #3632d9;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        /* Add new styles for the rediscover section */
+        .rediscover-section {
+            color: white;
+            padding: 60px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .rediscover-heading {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
+            line-height: 1.2;
+        }
+
+        .rediscover-text {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main-container">
+        <div class="carousel-container">
+            <div id="imageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000"
+                data-bs-wrap="true">
+                <!-- Indicators -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="2"></button>
+                    <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="3"></button>
+                    <button type="button" data-bs-target="#imageCarousel" data-bs-slide-to="4"></button>
+                </div>
+
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="op1.jpg" class="d-block w-100" alt="Image 1">
+                        <div class="carousel-caption">
+                            <h1>Empower Your Future Through Learning</h1>
+                            <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
+                                academic excellence in Nuzvid.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="op2.jpg" class="d-block w-100" alt="Image 2">
+                        <div class="carousel-caption">
+                            <h1>Empower Your Future Through Learning</h1>
+                            <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
+                                academic excellence in Nuzvid.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="op3.jpg" class="d-block w-100" alt="Image 3">
+                        <div class="carousel-caption">
+                            <h1>Empower Your Future Through Learning</h1>
+                            <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
+                                academic excellence in Nuzvid.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="op4.jpg" class="d-block w-100" alt="Image 4">
+                        <div class="carousel-caption">
+                            <h1>Empower Your Future Through Learning</h1>
+                            <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
+                                academic excellence in Nuzvid.</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img src="op5.jpg" class="d-block w-100" alt="Image 5">
+                        <div class="carousel-caption">
+                            <h1>Empower Your Future Through Learning</h1>
+                            <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
+                                academic excellence in Nuzvid.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="welcome-section">
+            <div class="welcome-text">
+                <h2 class="welcome-heading">Welcome to the Alumni Network</h2>
+                <p>Welcome to the Alumni Network of our esteemed Higher Education Institution, a hub for lifelong
+                    connections and professional growth. Nestled in the vibrant city of Nuzvid, Andhra Pradesh, we take
+                    pride in fostering a community that celebrates achievements and cultivates future opportunities.
+                    This platform is dedicated to keeping our alumni engaged, providing access to exclusive events,
+                    career development resources, and collaborative projects. Join us in strengthening the legacy of
+                    excellence and shared success.</p>
+            </div>
+        </div>
+
+        
+
+        <div class="features-section">
+            <div class="feature-card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
+                <div class="feature-image-container">
+                    <img src="op8.jpg" alt="Comprehensive Alumni Network">
+                </div>
+                <div class="feature-content">
+                    <h3>Comprehensive Alumni Network</h3>
+                    <p>Connect with peers and professionals through our extensive alumni network, fostering lifelong
+                        relationships.</p>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="feature-image-container">
+                    <img src="op7.jpg" alt="Career Development Resources">
+                </div>
+                <div class="feature-content">
+                    <h3>Career Development Resources</h3>
+                    <p>Access a wealth of resources to advance your career, including workshops and personal counseling.
+                    </p>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
+                <div class="feature-image-container">
+                    <img src="op9.jpg" alt="Exclusive Alumni Events">
+                </div>
+                <div class="feature-content">
+                    <h3>Exclusive Alumni Events</h3>
+                    <p>Participate in special events tailored for alumni, offering networking and learning
+                        opportunities.</p>
+                </div>
+            </div>
+            <div class="feature-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
+                <div class="feature-image-container">
+                    <img src="op10.jpg" alt="Continuous Learning Opportunities">
+                </div>
+                <div class="feature-content">
+                    <h3>Continuous Learning Opportunities</h3>
+                    <p>Engage in lifelong education with access to seminars, courses, and expert lectures
+                        post-graduation.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="top-bar">
+            </div>
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="op11.jpg" alt="Alumni Network">
+                </div>
+                <div class="hero-text">
+                    <h1 class="hero-title">Reconnect,<br>Rediscover,<br>Reignite</h1>
+                    <p class="hero-description">Unlock new opportunities with alumni. Strengthen your professional
+                        network and rediscover your academic roots. Join a thriving community of graduates who are
+                        making an impact worldwide. Reignite your passion for learning and growth with exclusive events,
+                        resources, and connections tailored just for you.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <h2 class="feedback-heading">Feedback from Users</h2>
+            <div class="feedback-container">
+                <div class="feedback-carousel">
+                    <div class="feedback-box">
+                        <p class="feedback-text">Alumni has truly transformed my educational journey. The dedicated
+                            faculty and comprehensive curriculum have equipped me with invaluable skills. The campus
+                            environment fosters growth, and the community is incredibly supportive. I am grateful for
+                            the unforgettable experiences at Alumni.</p>
+                        <p class="feedback-author">- Sneha Reddy</p>
+                    </div>
+                    <div class="feedback-box">
+                        <p class="feedback-text">Studying at Alumni in Tādepalle has been a life-changing experience.
+                            The faculty's expertise and the dynamic curriculum have thoroughly prepared me for the
+                            future. The vibrant campus atmosphere and supportive community make learning exciting and
+                            fulfilling. I'm proud to be an alumnus of this esteemed institution.</p>
+                        <p class="feedback-author">- Rajesh Kumar</p>
+                    </div>
+                    <div class="feedback-box">
+                        <p class="feedback-text">Attending Alumni in Tādepalle has been a remarkable experience. The
+                            faculty's dedication and the innovative curriculum have not only enhanced my knowledge but
+                            also boosted my confidence. The supportive campus community truly makes learning a joy.</p>
+                        <p class="feedback-author">- Aditi Sharma</p>
+                    </div>
+                </div>
+            </div>
+            <div class="feedback-nav">
+                <button class="feedback-nav-button" onclick="moveFeedback(-1)">←</button>
+                <button class="feedback-nav-button" onclick="moveFeedback(1)">→</button>
+            </div>
+        </div>
+
+        <div class="join-section" data-aos="fade-up" data-aos-duration="1000">
+            <h2>Join Our Vibrant Alumni Network</h2>
+            <p>Connect with fellow graduates, access exclusive career resources, and participate in events to enrich your professional journey.</p>
+            <a href="#" class="join-button">Join Now</a>
+        </div>
+
+        <div class="faq-section">
+            <h2 class="faq-heading">Common Questions Answered</h2>
+
+            <div class="accordion" id="faqAccordion">
+                <!-- Question 1 -->
+                <div class="faq-item">
+                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="false" aria-controls="faq1">
+                        Are there scholarship opportunities available at alumni?
+                        <span class="icon">+</span>
+                    </button>
+                    <div id="faq1" class="collapse faq-answer" data-bs-parent="#faqAccordion">
+                        Yes, alumni offers various scholarship opportunities based on merit and need to assist students in financing their education.
+                    </div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="faq-item">
+                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                        What networking opportunities are available?
+                        <span class="icon">+</span>
+                    </button>
+                    <div id="faq2" class="collapse faq-answer" data-bs-parent="#faqAccordion">
+                        Alumni can participate in regular networking events, mentorship programs, industry meetups, and exclusive online forums to connect with fellow graduates and industry professionals.
+                    </div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="faq-item">
+                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                        How can I access career services?
+                        <span class="icon">+</span>
+                    </button>
+                    <div id="faq3" class="collapse faq-answer" data-bs-parent="#faqAccordion">
+                        Alumni have lifetime access to career services including job boards, resume reviews, career counseling, and professional development workshops through our online portal.
+                    </div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="faq-item">
+                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                        Are there continuing education opportunities?
+                        <span class="icon">+</span>
+                    </button>
+                    <div id="faq4" class="collapse faq-answer" data-bs-parent="#faqAccordion">
+                        Yes, we offer various continuing education programs, online courses, and professional certifications at special rates for our alumni members.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Initialize carousel with custom settings -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var carousel = new bootstrap.Carousel(document.getElementById('imageCarousel'), {
+                interval: 3000,  // Change slide every 3 seconds
+                wrap: true,      // Continuous loop
+                pause: false     // Don't pause on hover
+            });
+        });
+    </script>
+
+    <script>
+        let currentFeedback = 0;
+        const feedbackBoxes = document.querySelectorAll('.feedback-box');
+        const totalFeedbacks = feedbackBoxes.length;
+
+        function moveFeedback(direction) {
+            currentFeedback = (currentFeedback + direction + totalFeedbacks) % totalFeedbacks;
+            document.querySelector('.feedback-carousel').style.transform = `translateX(-${currentFeedback * 100}%)`;
+        }
+    </script>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 200
+        });
+    </script>
+</body>
+
+</html>
