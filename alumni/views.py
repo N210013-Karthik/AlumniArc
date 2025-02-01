@@ -94,3 +94,7 @@ def alumni_list(request):
         'departments': departments,
         'graduation_years': graduation_years
     })
+
+
+def about_view(request):
+    return render(request, 'aboutPage.html')
