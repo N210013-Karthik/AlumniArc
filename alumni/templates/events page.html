@@ -9,29 +9,17 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9; /* Light grey background */
+            background-color: #f9f9f9;
             color: #1a1a1a;
         }
         header {
-            background-color: #0056b3; /* Blue header */
+            background-color: #0056b3;
             color: whitesmoke;
             padding: 20px;
-            display: flex; /* Use flexbox for positioning */
-            justify-content: center; /* Center the content */
-            align-items: center; /* Vertically center */
-        }
-        .header-content {
-            display: flex;
-            align-items: center; /* Vertically center text and image */
-            gap: 20px; /* Add space between the image and the text */
-        }
-        .header-image {
-            width: 50px; /* Adjust size of the image */
-            height: auto;
-            border-radius: 50%; /* Make the image circular (optional) */
+            text-align: center;
         }
         nav {
-            background-color: #003d7a; /* Darker blue navigation */
+            background-color: #003d7a;
             padding: 10px;
             text-align: center;
         }
@@ -43,273 +31,127 @@
             transition: color 0.3s ease;
         }
         nav a:hover {
-            color: #4C9FFF; /* Lighter blue on hover */
+            color: #4C9FFF;
         }
         .container {
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto;
         }
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
         .event {
-            background-color: #ffffff; /* White background for events */
+            background-color: #ffffff;
             border: 1px solid #ddd;
             border-radius: 8px;
-            margin: 20px 0;
             padding: 20px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 20px;
+            text-align: center;
         }
         .event:hover {
             transform: scale(1.05);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
+        .event img {
+            width: 100%;
+            height: fit-content;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
         .event h3 {
-            margin-top: 0;
-            color: #003d7a; /* Dark blue event titles */
+            color: #003d7a;
+            margin: 10px 0;
         }
         .event p {
             color: #666666;
             line-height: 1.6;
         }
-        .eventp {
-            background-color: #ffffff; /* White background for events */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin: 20px 0;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 20px;
+        button {
+            background-color: blue;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
-        .eventp:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        .eventp h3 {
-            margin-top: 0;
-            color: #003d7a; /* Dark blue event titles */
-        }
-        .eventp p {
-            color: #666666;
-            line-height: 1.6;
+        button:hover {
+            background-color: burlywood;
         }
         footer {
-            background-color: #0056b3; /* Blue footer */
+            background-color: #0056b3;
             color: whitesmoke;
             text-align: center;
             padding: 15px 0;
             position: relative;
-            bottom: 0;
             width: 100%;
+            margin-top: 20px;
         }
-        .slider {
-            width: 80%;
-            max-width: 600px;
-            overflow: hidden;
-            border: 2px solid #ccc;
-            border-radius: 10px;
-            margin: 20px auto;
-            position: relative;
-        }
-        .slides {
-            display: flex;
-            transition: transform 0.9s ;
-        }
-        .slides img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .event-title {
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-        .event-title:hover {
-            color: #4C9FFF; /* Lighter blue for hover effect */
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            position: relative;
-        }
-        iframe {
-            width: 100%;
-            height: 400px;
-            border: none;
-            border-radius: 10px;
-        }
-        .close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: #aaa;
-            font-size: 30px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
-        }
-
-        /* Styles for Event Image and Text */
-        .event-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .event-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 10px;
-            object-fit: cover;
-            transition: transform 0.3s ease; /* Add transition for smooth zoom effect */
-        }
-
-        .event-image:hover {
-            transform: scale(1.1); /* Zoom in the image when hovered */
-        }
-
-        .event-text {
-            max-width: 600px;
-        }
-        button {
-    background-color: blue;  
-    color: white;               
-    border: none;             
-    padding: 10px 20px;        
-    text-align: center;         
-    text-decoration: none;      
-    display: inline-block;     
-    font-size: 16px;           
-    cursor: pointer;          
-    border-radius: 5px;        
-    transition: background-color 0.3s;  
-}
-
-button:hover {
-    background-color: burlywood; 
-}
-
     </style>
 </head>
 <body>
     <header>
-        <div class="header-content">
-            <img src="rguktlogo.jpg" alt="RGUKTN Logo" class="header-image">
-            <h1>WELCOME TO RGUKTN EVENTS</h1>
-        </div>
+        <h1>WELCOME TO RGUKTN EVENTS</h1>
     </header>
     <nav>
         <a href="#upcoming">Future Events</a>
         <a href="#past">Past Events</a>
         <a href="#contact">Contact Us</a>
     </nav>
-    <div class="slider">
-        <div class="slides">
-            <img src="https://i.ytimg.com/vi/Pq3tQ2f010Y/maxresdefault.jpg" alt="image1">
-            <img src="https://th.bing.com/th/id/OIP.7yCH3L75UXODtsn0t_KOSQHaD4?rs=1&pid=ImgDetMain" alt="image2">
-            <img src="https://images.shiksha.com/mediadata/images/1587471913php47MK0A_1280x960.jpg" alt="image3">
-        </div>
-    </div>
     <div class="container">
         <section id="upcoming">
-            <div class="event">
-                <h3 class="event-title">TECKZITE #2K25</h3>
-                <div class="event-content">
-                    <img src="teckzite.jpg" alt="Teckzite Image" class="event-image">
-                    <div class="event-text">
-                        <p>Date: February 25-27</p>
-                        <p>Venue: Rgukt, Nuzvidu</p>
-                        <p>Description: Explore innovative ideas and projects by our students.</p>
-                    </div>
-                    <button onclick="window.location.href='texlink.html';">Open</button> <!-- Corrected onclick -->
+            <h2>Upcoming Events</h2>
+            <div class="events-grid">
+                <div class="event">
+                    <img src="/static/images/events/teckzite.jpg" alt="Teckzite Image">
+                    <h3>TECKZITE #2K25</h3>
+                    <p>Date: February 25-27</p>
+                    <p>Venue: RGUKT, Nuzvidu</p>
+                    <button onclick="window.location.href='texlink.html';">Open</button>
                 </div>
-            </div>
-            <div class="event">
-                <h3 class="event-title">CYGNUS #2K25</h3>
-                <div class="event-content">
-                    <img src="cygnus.jpg" alt="Cygnus Image" class="event-image">
-                    <div class="event-text">
-                        <p>Date: March 1 & 2</p>
-                        <p>Venue: Rgukt, Nuzvidu</p>
-                    </div>
-                    <button onclick="window.location.href='cygnus.html';">Open</button> <!-- Corrected onclick -->
+                <div class="event">
+                    <img src="/static/images/events/cygnus.jpg" alt="Cygnus Image">
+                    <h3>CYGNUS #2K25</h3>
+                    <p>Date: March 1 & 2</p>
+                    <p>Venue: RGUKT, Nuzvidu</p>
+                    <button onclick="window.location.href='cygnus.html';">Open</button>
                 </div>
-            </div>
-            <div class="event">
-                <h3>Girl Hackthon 2025</h3>
-                <div class="event-content">
-                    <img src="girl hackthon.jpg" alt="Girl Hackthon Image" class="event-image">
-                    <div class="event-text">
-                        <p>Date: Jan 20 - Feb 5, 2025</p>
-                        <p>Registration Link:</p>
-                        <a href="https://rsvp.withgoogle.com/events/girl-hackathon-2025/home">https://rsvp.withgoogle.com/events/girl-hackathon-2025/home</a>
-                        <p>Description: Don't miss this opportunity to challenge your problem-solving skills, showcase your creativity, and join the movement of women empowering tech!</p>
-                    </div>
-                    <button onclick="window.location.href='girlhackthonlink.html';">Open</button> <!-- Corrected onclick -->
+                <div class="event">
+                    <img src="/static/images/events/girl hackthon.jpg" alt="Girl Hackathon Image">
+                    <h3>Girl Hackathon 2025</h3>
+                    <p>Date: Jan 20 - Feb 5, 2025</p>
+                    <a href="https://rsvp.withgoogle.com/events/girl-hackathon-2025/home">Register Here</a>
+                    <button onclick="window.location.href='girlhackthonlink.html';">Open</button>
                 </div>
             </div>
         </section>
         <section id="past">
-            <div class="eventp">
             <h2>Past Events</h2>
-            <h3 class="event-title" id="igniter-event">IGNITER #2K24</h3>
-            <p>Date: October 31</p>
-            <p>Venue: At AB3</p>
-            <p>Description: A celebration of diverse cultures with music, dance.</p> <br>
-            <h3 class="event-title" id="zest 2k24">zest #2K24</h3>
-            <p>Date: september 22</p>
-            <p>Venue: At SAC</p>
-            <p>Description:An electrifying day of interaction event peaked with culture performance.Zest is our stage to shine make ungorgatebble memory</p> 
+            <div class="events-grid">
+                <div class="event">
+                    <h3>IGNITER #2K24</h3>
+                    <p>Date: October 31</p>
+                    <p>Venue: AB3</p>
+                    <p>Description: A celebration of diverse cultures with music and dance.</p>
+                </div>
+                <div class="event">
+                    <h3>ZEST #2K24</h3>
+                    <p>Date: September 22</p>
+                    <p>Venue: SAC</p>
+                    <p>Description: An electrifying day of interaction event peaked with cultural performances.</p>
+                </div>
             </div>
-            
         </section>
-
     </div>
-
     <footer>
-        <p>&copy; 2025 [RGUKTN], All Rights Reserved</p>
+        <p>&copy; 2025 RGUKTN, All Rights Reserved</p>
     </footer>
-
-    <script>
-        let index = 1;
-
-        function moveSlide(direction) {
-            const slides = document.querySelector('.slides');
-            const slideCount = document.querySelectorAll('.slides img').length;
-
-            index = (index + direction + slideCount) % slideCount;
-            slides.style.transform = `translateX(-${index * 100}%)`;
-        }
-
-        // Set up automatic slide movement every 0.2 seconds (200ms)
-        setInterval(() => {
-            moveSlide(1);
-        }, 900); // Slide moves every 200ms
-    </script>
 </body>
 </html>
