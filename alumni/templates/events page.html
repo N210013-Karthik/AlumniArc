@@ -5,153 +5,295 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RAGIV GANDHI UNIVERSITY OF KNOWLEDGE AND TECHNOLOGIES (NUZVIDU) EVENTS</title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
+        /* General Reset */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
-            color: #1a1a1a;
+            box-sizing: border-box;
         }
+
+        /* Body and Global Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            padding-top: 60px; /* Space for sticky navbar */
+        }
+
+        /* Header */
         header {
             background-color: #0056b3;
-            color: whitesmoke;
-            padding: 20px;
-            text-align: center;
+            color: #fff;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
-        nav {
-            background-color: #003d7a;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: whitesmoke;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 15px;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #4C9FFF;
-        }
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        .header-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             gap: 20px;
         }
-        .event {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .header-image {
+            width: 60px;
+            border-radius: 50%;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #003d7a;
+            padding: 12px 0;
             text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
         }
-        .event:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 20px;
+            margin: 0 10px;
+            transition: background-color 0.3s;
         }
-        .event img {
+        nav a:hover {
+            background-color: #4c9fff;
+            border-radius: 5px;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* Slider */
+        .slider {
             width: 100%;
-            height: fit-content;
-            object-fit: cover;
+            max-width: 1000px;
+            margin: 0 auto 40px;
+            overflow: hidden;
             border-radius: 10px;
+            position: relative;
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slides img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Event Section */
+        section {
+            margin-bottom: 40px;
+        }
+
+        .event, .eventp {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .event:hover, .eventp:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Event Grid */
+        .event-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .event h3, .eventp h3 {
+            color: #003d7a;
+            font-size: 1.5rem;
             margin-bottom: 10px;
         }
-        .event h3 {
-            color: #003d7a;
-            margin: 10px 0;
+
+        .event img, .eventp img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            object-fit: cover;
         }
-        .event p {
-            color: #666666;
-            line-height: 1.6;
+
+        .event .event-text {
+            margin-top: 10px;
         }
+
+        /* Button */
         button {
-            background-color: blue;
-            color: white;
-            border: none;
+            background-color: #0056b3;
+            color: #fff;
             padding: 10px 20px;
-            text-align: center;
-            font-size: 16px;
+            border: none;
             cursor: pointer;
+            font-size: 16px;
             border-radius: 5px;
             transition: background-color 0.3s;
         }
+
         button:hover {
-            background-color: burlywood;
+            background-color: #4c9fff;
         }
+
+        /* Footer */
         footer {
-            background-color: #0056b3;
-            color: whitesmoke;
+            background-color: #003d7a;
+            color: #fff;
             text-align: center;
-            padding: 15px 0;
-            position: relative;
+            padding: 20px;
+        }
+
+        /* Social Media Icons */
+        .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 24px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #4c9fff;
+        }
+
+        /* Modal Styles (Optional) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
             width: 100%;
-            margin-top: 20px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #aaa;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
         }
     </style>
 </head>
 <body>
+
     <header>
-        <h1>WELCOME TO RGUKTN EVENTS</h1>
+        <div class="header-content">
+            <img src="rguktlogo.jpg" alt="RGUKTN Logo" class="header-image">
+            <h1>WELCOME TO RGUKTN EVENTS</h1>
+        </div>
     </header>
+
     <nav>
         <a href="#upcoming">Future Events</a>
         <a href="#past">Past Events</a>
         <a href="#contact">Contact Us</a>
     </nav>
+
+    <div class="slider">
+        <div class="slides">
+            <img src="https://i.ytimg.com/vi/Pq3tQ2f010Y/maxresdefault.jpg" alt="image1">
+            <img src="https://th.bing.com/th/id/OIP.7yCH3L75UXODtsn0t_KOSQHaD4?rs=1&pid=ImgDetMain" alt="image2">
+            <img src="https://images.shiksha.com/mediadata/images/1587471913php47MK0A_1280x960.jpg" alt="image3">
+        </div>
+    </div>
+
     <div class="container">
         <section id="upcoming">
             <h2>Upcoming Events</h2>
-            <div class="events-grid">
+            <div class="event-grid">
                 <div class="event">
-                    <img src="/static/images/events/teckzite.jpg" alt="Teckzite Image">
-                    <h3>TECKZITE #2K25</h3>
-                    <p>Date: February 25-27</p>
-                    <p>Venue: RGUKT, Nuzvidu</p>
+                    <h3 class="event-title">TECKZITE #2K25</h3>
+                    <img src="teckzite.jpg" alt="Teckzite Image">
+                    <div class="event-text">
+                        <p>Date: February 25-27</p>
+                        <p>Venue: RGUKT, Nuzvidu</p>
+                        <p>Description: Explore innovative ideas and projects by our students.</p>
+                    </div>
                     <button onclick="window.location.href='texlink.html';">Open</button>
                 </div>
                 <div class="event">
-                    <img src="/static/images/events/cygnus.jpg" alt="Cygnus Image">
-                    <h3>CYGNUS #2K25</h3>
-                    <p>Date: March 1 & 2</p>
-                    <p>Venue: RGUKT, Nuzvidu</p>
+                    <h3 class="event-title">CYGNUS #2K25</h3>
+                    <img src="cygnus.jpg" alt="Cygnus Image">
+                    <div class="event-text">
+                        <p>Date: March 1 & 2</p>
+                        <p>Venue: RGUKT, Nuzvidu</p>
+                    </div>
                     <button onclick="window.location.href='cygnus.html';">Open</button>
                 </div>
                 <div class="event">
-                    <img src="/static/images/events/girl hackthon.jpg" alt="Girl Hackathon Image">
-                    <h3>Girl Hackathon 2025</h3>
-                    <p>Date: Jan 20 - Feb 5, 2025</p>
-                    <a href="https://rsvp.withgoogle.com/events/girl-hackathon-2025/home">Register Here</a>
+                    <h3>Girl Hackthon 2025</h3>
+                    <img src="girl hackthon.jpg" alt="Girl Hackthon Image">
+                    <div class="event-text">
+                        <p>Date: Jan 20 - Feb 5, 2025</p>
+                        <p>Registration Link: <a href="https://rsvp.withgoogle.com/events/girl-hackathon-2025/home" target="_blank">Register here</a></p>
+                        <p>Description: Don't miss this opportunity to challenge your problem-solving skills, showcase your creativity, and join the movement of women empowering tech!</p>
+                    </div>
                     <button onclick="window.location.href='girlhackthonlink.html';">Open</button>
                 </div>
             </div>
         </section>
+
         <section id="past">
             <h2>Past Events</h2>
-            <div class="events-grid">
-                <div class="event">
-                    <h3>IGNITER #2K24</h3>
-                    <p>Date: October 31</p>
-                    <p>Venue: AB3</p>
-                    <p>Description: A celebration of diverse cultures with music and dance.</p>
-                </div>
-                <div class="event">
-                    <h3>ZEST #2K24</h3>
-                    <p>Date: September 22</p>
-                    <p>Venue: SAC</p>
-                    <p>Description: An electrifying day of interaction event peaked with cultural performances.</p>
-                </div>
+            <div class="eventp">
+                <h3>IGNITER #2K24</h3>
+                <p>Date: October 31</p>
+                <p>Venue: At AB3</p>
+                <p>Description: A celebration of diverse cultures with music, dance.</p>
+            </div>
+            <div class="eventp">
+                <h3>Zest #2K24</h3>
+                <p>Date: September 22</p>
+                <p>Venue: At SAC</p>
+                <p>Description: An electrifying day of interaction, with cultural performances. Zest is our stage to shine and make unforgettable memories.</p>
             </div>
         </section>
+
     </div>
+
     <footer>
         <p>&copy; 2025 RGUKTN, All Rights Reserved</p>
+        <div class="social-icons">
+            <a href="#" target="_blank">FB</a>
+            <a href="#" target="_blank">Twitter</a>
+            <a href="#" target="_blank">LinkedIn</a>
+        </div>
     </footer>
+
+    <script>
+        let index = 0;
+        const slides = document.querySelector('.slides');
+        const slideCount = document.querySelectorAll('.slides img').length;
+
+        function moveSlide() {
+            index = (index + 1) % slideCount;
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        setInterval(moveSlide, 3000); // Change slides every 3 seconds
+    </script>
 </body>
 </html>
