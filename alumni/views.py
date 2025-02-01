@@ -17,7 +17,9 @@ def login_view(request):
     return render(request, 'login.html')
 
 def homepage_view(request):
-    return render(request, 'homepage.html')
+    news = NewsPage.objects.filter(is_published=True)
+    
+    return render(request, 'homepage.html', {'news': news})
 
 def news_list(request):
     query = request.GET.get('q', '')  # Search query

@@ -91,41 +91,8 @@
         }
         #welcome{
             background: url('https://images.unsplash.com/photo-1455849318743-b2233052fcff?q=80&w=1469&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+        }
 
-}
-        #news-section{
-            background: linear-gradient(145deg, #7fbae4, #6cbb84);}
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 2rem 1rem;
-            background: #e3f2fd;
-        }
-        .feature {
-            flex: 0 1 30%;
-            background: #bbdefb;
-            margin: 1rem;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .feature:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-        }
-        .feature h3 {
-            font-size: 1.5rem;
-            color: #1976d2;
-            margin-bottom: 1rem;
-        }
-        .feature p {
-            color: #444;
-            font-size: 1rem;
-            line-height: 1.5;
-        }
         .about {
             background: #e3f2fd;
             color: #333;
@@ -142,26 +109,44 @@
             max-width: 800px;
             margin: 0 auto;
         }
-        .info-sections {
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        .news-cards, .events-cards, .features {
             display: flex;
             justify-content: space-around;
+            flex-wrap: wrap;
             padding: 2rem 1rem;
-            background: #e1f5fe;
+            background: #f3f4f6;
         }
-        .events-section {
-            flex: 0 1 40%;
-            background: #bbdefb;
-            padding: 1.5rem;
+        .news-card, .event-card, .feature {
+            flex: 0 1 30%;
+            background: #ffffff;
             margin: 1rem;
-            border-radius: 12px;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .events-section:hover {
-            transform: translateY(-8px);
+        .news-card:hover, .event-card:hover, .feature:hover {
+            transform: translateY(-10px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
+        .news-card h3, .event-card h3, .feature h3 {
+            font-size: 1.5rem;
+            color: #1976d2;
+            margin-bottom: 1rem;
+        }
+        .news-card p, .event-card p, .feature p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
         .info-btn {
             display: inline-block;
             margin-top: 1rem;
@@ -223,31 +208,59 @@
         <a href="login.html" class="cta-btn">Join Us Today</a>
     </div>
     <!-- News and Events Section -->
-    <div class="hero"id="news-section" >
-        <h2>Girl hackthon</h3>
-      <p>The campus conducted a hackathon for the girls on the theme about girls. The winner of the hackathon is...</p>
-      <a href="newspage.html" class="info-btn">Latest News & Updates</a>
-    </div>
-    <section class="info_section">
-     <div class="events-section">
-      <h3>Ongoing Events</h3>
-      <p>Explore current alumni events and networking opportunities happening at RGUKT.</p>
-      <a href="events page.html" class="info-btn">Explore Events</a>
-     </div>
+    <section id="news-section">
+        <h2 class="section-title">Latest News</h2>
+        <div class="news-cards">
+            {% for new in news|slice:":3" %}
+            <div class="news-card" style="animation: fadeInUp 0.5s ease-in-out;">
+                <img src="{{ new.image }}" alt="Alumni Meet 2025" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>{{ new.title }}</h3>
+                <p>{{ new.content }}</p>
+                <a href="alumni-meet.html" class="info-btn">Read More</a>
+            </div>
+            {% endfor %}
+        </div>
     </section>
+    <section id="events-section">
+        <h2 class="section-title">Ongoing Events</h2>
+        <div class="events-cards">
+            <div class="event-card" style="animation: fadeInUp 0.5s ease-in-out;">
+                <img src="https://via.placeholder.com/150" alt="Networking Meetup" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>Networking Meetup</h3>
+                <p>Engage with fellow alumni at our networking meetup and build valuable connections within the RGUKT community.</p>
+                <a href="networking-meetup.html" class="info-btn">Learn More</a>
+            </div>
+            <div class="event-card">
+                <img src="https://via.placeholder.com/150" alt="Career Workshop" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>Career Workshop</h3>
+                <p>Enhance your career prospects with expert-led workshops covering resume building, interview skills, and career growth.</p>
+                <a href="career-workshop.html" class="info-btn">Register Now</a>
+            </div>
+            <div class="event-card">
+                <img src="https://via.placeholder.com/150" alt="Tech Webinar" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>Tech Webinar</h3>
+                <p>Join an exclusive webinar on emerging technologies and industry insights from top professionals.</p>
+                <a href="tech-webinar.html" class="info-btn">Join Now</a>
+            </div>
+        </div>
+    </section>
+    
     <!-- Features Section -->
-    <section class="features">
-        <div class="feature">
-            <h3>Networking Opportunities</h3>
-            <p>Connect with fellow alumni and grow your professional network.</p>
-        </div>
-        <div class="feature">
-            <h3>Exciting Events</h3>
-            <p>Participate in reunions, webinars, and other events organized by RGUKT alumni.</p>
-        </div>
-        <div class="feature">
-            <h3>Give Back</h3>
-            <p>Support current students by sharing knowledge and experience.</p>
+    <section class="features-section">
+        <h2 class="section-title">Features</h2>
+        <div class="features">
+            <div class="feature">
+                <h3>Networking Opportunities</h3>
+                <p>Connect with fellow alumni and grow your professional network.</p>
+            </div>
+            <div class="feature">
+                <h3>Exciting Events</h3>
+                <p>Participate in reunions, webinars, and other events organized by RGUKT alumni.</p>
+            </div>
+            <div class="feature">
+                <h3>Give Back</h3>
+                <p>Support current students by sharing knowledge and experience.</p>
+            </div>
         </div>
     </section>
 
