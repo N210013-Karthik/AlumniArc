@@ -94,9 +94,6 @@ class Alumni(models.Model):
     def __str__(self):
         return f"{self.name} ({self.graduation_year})"
 
-from django.db import models
-from django.utils.timezone import now
-
 class Event(models.Model):
     CATEGORY_CHOICES = [
         ('Conference', 'Conference'),
@@ -129,3 +126,30 @@ class Event(models.Model):
         """Returns True if the event is upcoming (today or in the future)."""
         return self.start_date >= now()
 
+class Opportunity(models.Model):
+    OPPORTUNITY_TYPES = [
+        ('Job', 'Job'),
+        ('Internship', 'Internship'),
+        ('Scholarship', 'Scholarship'),
+        ('Fellowship', 'Fellowship'),
+        ('Research', 'Research'),
+        ('Other', 'Other'),
+    ]
+
+    title = models.CharField(max_length=255)
+    company = models.CharField(max_length=255)
+    location = models.CharField(max_length=100, choices=[
+        ('Remote', 'Remote'),
+        ('On-Site', 'On-Site'),
+        ('Hybrid', 'Hybrid')
+    ], default='On-Site')
+    opportunity_type = models.CharField(max_length=50, choices=OPPORTUNITY_TYPES, default='Job')
+    image = models.ImageField(upload_to='static/images/opportunities/', blank=True, null=True)
+    description = models.TextField()
+    application_link = models.URLField(blank=True, null=True)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    deadline = models.DateField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.title} at {self.company}"

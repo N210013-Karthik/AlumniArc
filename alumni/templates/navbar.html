@@ -12,7 +12,6 @@
                 font-family: 'Arial', sans-serif;
             }
             body {
-                background: #f9f9fc;
                 color: #333;
                 overflow-x: hidden;
             }
@@ -38,6 +37,10 @@
                 justify-content: center;
                 background: linear-gradient(145deg, #e3f2fd, #fce4ec);
                 padding: 0.8rem;
+                position: sticky;
+                top: 0;
+                z-index: 5;
+                box-shadow: 2px 2px 5px gray;
             }
             nav a {
                 color: #333;
@@ -70,8 +73,8 @@
             <a href="{% url 'alumni_list' %}" class="{% if request.path == '/alumni/' %}active{% endif %}">Alumni</a>
             <a href="{% url 'news_list' %}" class="{% if request.path == '/news/' %}active{% endif %}">News</a>
             <a href="{% url 'achievements_list' %}" class="{% if request.path == '/achievements/' %}active{% endif %}">Achievements</a>
-            <a href="opportunities.html" class="{% if request.path == '/opportunities/' %}active{% endif %}">Opportunities</a>
-            <a href="donation.html" class="{% if request.path == '/donation/' %}active{% endif %}">Donation</a>
+            <a href="{% url 'opportunities' %}" class="{% if request.path == '/opportunities/' %}active{% endif %}">Opportunities</a>
+            <a href="{% url 'donations' %}" class="{% if request.path == '/donations/' %}active{% endif %}">Donation</a>
             <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a>
         </nav>
     </body>

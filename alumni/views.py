@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import NewsPage, Achievement, Alumni, Event
+from .models import NewsPage, Achievement, Alumni, Event, Opportunity
 from django.db.models import Q  # For searching
 from django.utils.timezone import now
 
@@ -144,6 +144,31 @@ def event_list(request):
         'past_events': past_events,
         'ongoing_events': ongoing_events
     })
+
+def opportunity_list(request):
+    query = request.GET.get('q', '')
+    opportunity_type = request.GET.get('opportunity_type', '')
+
+    opportunities = Opportunity.objects.all()
+
+    if query:
+        opportunities = opportunities.filter(
+            Q(title__icontains=query) | 
+            Q(company__icontains=query) |
+            Q(description__icontains=query)
+        )
+
+    if opportunity_type:
+        opportunities = opportunities.filter(opportunity_type=opportunity_type)
+
+    return render(request, 'opportunities.html', {
+        'opportunities': opportunities,
+        'query': query,
+        'opportunity_type': opportunity_type
+    })
+
+def donation_view(request):
+    return render(request, 'donation.html')
 
 def about_view(request):
     return render(request, 'aboutPage.html')

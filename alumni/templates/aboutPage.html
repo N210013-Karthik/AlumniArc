@@ -4,28 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About RGUKT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #f0f4ff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .section {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .section:hover {
+            transform: scale(1.05);
+        }
+        h2 {
+            color: #004080;
+        }
+        p {
+            color: #333;
+        }
+    </style>
 </head>
-<body class="bg-blue-50 flex flex-col justify-between min-h-screen">
+<body>
     {% include 'navbar.html' %}
-    <div class="container mx-auto p-6 flex flex-col items-center">
-        <section id="mission" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Mission</h2>
-            <p class="text-gray-700">"To provide world-class education and training in the fields of engineering, technology, and sciences to the students of rural India, especially from underserved areas, through innovative teaching methodologies..."</p>
+    <div class="container">
+        <section class="section">
+            <h2>Our Mission</h2>
+            <p>"To provide world-class education and training in the fields of engineering, technology, and sciences to the students of rural India, especially from underserved areas, through innovative teaching methodologies..."</p>
         </section>
-        <section id="vision" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Vision</h2>
-            <p class="text-gray-700">"To be a premier institution of higher education dedicated to the pursuit of excellence in teaching, research, and innovation..."</p>
+        <section class="section">
+            <h2>Our Vision</h2>
+            <p>"To be a premier institution of higher education dedicated to the pursuit of excellence in teaching, research, and innovation..."</p>
         </section>
-        <section id="history" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our History</h2>
-            <p class="text-gray-700">Rajiv Gandhi University of Knowledge and Technologies (RGUKT), Nuzvidu, was established in 2008 by the Government of Andhra Pradesh with a vision to provide quality education...</p>
+        <section class="section">
+            <h2>Our History</h2>
+            <p>Rajiv Gandhi University of Knowledge and Technologies (RGUKT), Nuzvidu, was established in 2008 by the Government of Andhra Pradesh with a vision to provide quality education...</p>
         </section>
-        <section id="campus" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Campus</h2>
-            <p class="text-gray-700">Located in Nuzvidu, Andhra Pradesh, the RGUKT campus provides state-of-the-art facilities for students...</p>
+        <section class="section">
+            <h2>Our Campus</h2>
+            <p>Located in Nuzvidu, Andhra Pradesh, the RGUKT campus provides state-of-the-art facilities for students...</p>
         </section>
     </div>
-    <{% include 'footer.html' %}>
+    {% include 'footer.html' %}
 </body>
 </html>

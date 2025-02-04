@@ -54,8 +54,8 @@
         });
     </script>
 
-    <style>
-        body {
+    <style>        
+        .body {
             background-color: #0a1a3c;
             font-family: Arial, sans-serif;
             margin: 0;
@@ -64,33 +64,7 @@
             box-sizing: border-box;
         }
 
-        header {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(120deg, #89f7fe, #66a6ff);
-            padding: 1.5rem 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        header img {
-            width: 70px;
-            height: 70px;
-            margin-right: 1rem;
-            border-radius: 50%;
-            filter: blur(0px);  /* Adding slight blur effect */
-            transition: filter 0.3s ease;
-        }
-
-        header img:hover {
-            filter: blur(0);  /* Remove blur on hover */
-        }
-
-        header h1 {
-            font-size: 2.5rem;
-            color: #2a2a72;
-        }
-
-        .container {
+        .donate-container {
             width: 80%;
             margin: 30px auto;
             padding: 30px;
@@ -659,17 +633,6 @@
             color: blue;
         }
 
-
-
-        .footer {
-            background-color: crimson;
-            text-align: center;
-            text-overflow: clip;
-            color: #f4f4f4;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
         /* Add custom slide from left animation */
         @keyframes slideFromLeft {
             0% {
@@ -700,176 +663,176 @@
 </head>
 
 <body>
-    <header>
-        <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Logo">
-        <h1 style="text-align: center;
-            color: #ff6347;">RGUKT Alumni Portal</h1>
-    </header>
-    <div class="scrolling-container">
-        <div class="image-container">
-            <img src="/static/images/donations/premium_photo.avif" class="image-item" alt="Image">
-            <div class="overlay-text">DONATE HERE</div>
-        </div>
-    </div>
-
-    <h1 class="heading-center wow animate__animated animate__slideInLeft">Support Our Cause</h1>
-
-    <!-- Quote Section -->
-    <div class="quote" id="donationQuote">
-        "The best way to find yourself is to lose yourself in the service of others." – Mahatma Gandhi
-    </div>
-
-    <div class="quote-btn">
-        <button onclick="toggleQuote()">View Quote</button>
-    </div>
-
-    <!-- New Features Section -->
-    <div class="new-feature">
-        <h3>Exciting New Feature:</h3>
-        <p>We've added recurring donation options! You can now set up monthly donations to continue supporting our
-            cause.</p>
-    </div>
-
-    <!-- Donation Form -->
-    <div class="container">
-        <div class="donation-form">
-            <h2>Make a Donation</h2>
-            <form id="donationForm">
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="amount">Donation Amount:</label>
-                    <input type="number" id="amount" name="amount" placeholder="Enter amount" required min="1">
-                </div>
-
-                <div class="form-group">
-                    <label for="fund">Select Fund:</label>
-                    <select id="fund" name="fund" required>
-                        <option value="">Choose a fund...</option>
-                        <option value="scholarship">Scholarship Fund</option>
-                        <option value="infrastructure">Infrastructure Development</option>
-                        <option value="research">Research Fund</option>
-                        <option value="sports">Sports Development</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Personal Message:</label>
-                    <textarea id="message" name="message" placeholder="Share your thoughts..."></textarea>
-                </div>
-
-                <div class="payment-options">
-                    <button type="button" class="payment-option" onclick="selectPaymentMethod('credit-card')">Credit
-                        Card</button>
-                    <button type="button" class="payment-option" onclick="selectPaymentMethod('paypal')">PayPal</button>
-                    <button type="button" class="payment-option" onclick="selectPaymentMethod('bank-transfer')">Bank
-                        Transfer</button>
-                </div>
-
-                <input type="hidden" id="paymentMethod" name="paymentMethod">
-                <input type="submit" value="Donate Now" required>
-
-            </form>
-            <div id="thankYouMessage" style="display: none;">
-                <p>Thank you for your donation! 🎉</p>
-                <img src="/static/images/donations/giphy.webp" alt="Celebration GIF" />
-            </div>
-
-            <div class="confetti-container" style="display:none;">
-                <div class="confetti"></div>
-                <div class="confetti"></div>
-                <div class="confetti"></div>
-                <div class="confetti"></div>
-                <div class="confetti"></div>
-            </div>
-
-        </div>
-        <!-- Receipt Message -->
-        <div id="receiptMessage" style="display: none;">
-            <p>Receipt has been sent to your email. Please check your inbox.</p>
-            <button id="downloadReceiptBtn">Download Receipt</button>
-        </div>
-        <div id="receiptContent" style="display: none;">
-            <h3>Donation Receipt</h3>
-            <p><strong>Name:</strong> <span id="receiptName"></span></p>
-            <p><strong>Email:</strong> <span id="receiptEmail"></span></p>
-            <p><strong>Fund Selected:</strong> <span id="receiptFund"></span></p>
-            <p><strong>Donation Amount:</strong> <span id="receiptAmount"></span></p>
-            <p><strong>Institution:</strong> <span id="receiptInstitution">RGUKT Nuzvid</span></p>
-        </div>
-
-    </div>
-    <h1 class="heading-center wow animate__animated animate__slideInLeft">Comments</h1>
-
-    <div class="feedback-container">
-        <div class="feedback-box-wrapper">
-            <div class="feedback-box" id="feedback1">
-                <br>
-                <p>"Great cause! Happy to contribute!"</p>
-                <br><br>
-                <p>-Neelam ketham Babu </p>
-            </div>
-            <div class="feedback-box" id="feedback2">
-                <br>
-                <p>"Very impactful, I’ll donate again!"</p>
-                <br><br>
-                <p>- Daniel</p>
-            </div>
-            <div class="feedback-box" id="feedback3">
-                <br>
-                <p>"I’m glad to support your mission!"</p>
-                <br>
-                <br>
-                <p>- Sofia</p>
-            </div>
-            <div class="feedback-box" id="feedback4">
-                <br>
-                <p>"Your organization is doing incredible work, and I am happy to contribute to your continued success.
-                    Please keep me posted on new opportunities to help!"</p>
-                <br>
-                <p>- Shah</p>
-            </div>
-            <div class="feedback-box" id="feedback4">
-                <br>
-                <p>"Amazing work, keep it up!
-                    The cause you support truly resonates with me. I'm grateful for the opportunity to contribute. Keep
-                    up the great work!""</p>
-                <br>
-                <p>- Emily P</p>
-            </div>
-            <div class="feedback-box" id="feedback4">
-                <br>
-                <p>"Amazing work, and it's inspiring to see how every donation goes directly toward making a difference.
-                    I'll continue to share your cause with my network!"</p>
-                <br>
-
-                <p>- Jain</p>
-            </div>
-            <div class="feedback-box" id="feedback4">
-                <br>
-                <p>"I’m really proud to be a part of your efforts. It's an honor to help fund such important
-                    initiatives."
-
-                </p>
-                <br>
-                <p>- Varshini</p>
+    {% include 'navbar.html' %}
+    
+    <div class="body">
+        <div class="scrolling-container">
+            <div class="image-container">
+                <img src="/static/images/donations/premium_photo.avif" class="image-item" alt="Image">
+                <div class="overlay-text">DONATE HERE</div>
             </div>
         </div>
-
-        <div class="arrows">
-            <button class="arrow left" onclick="moveFeedback(-1)">&#8592;</button>
-            <button class="arrow right" onclick="moveFeedback(1)">&#8594;</button>
+    
+        <h1 class="heading-center wow animate__animated animate__slideInLeft">Support Our Cause</h1>
+    
+        <!-- Quote Section -->
+        <div class="quote" id="donationQuote">
+            "The best way to find yourself is to lose yourself in the service of others." – Mahatma Gandhi
+        </div>
+    
+        <div class="quote-btn">
+            <button onclick="toggleQuote()">View Quote</button>
+        </div>
+    
+        <!-- New Features Section -->
+        <div class="new-feature">
+            <h3>Exciting New Feature:</h3>
+            <p>We've added recurring donation options! You can now set up monthly donations to continue supporting our
+                cause.</p>
+        </div>
+    
+        <!-- Donation Form -->
+        <div class="donation-container">
+            <div class="donation-form">
+                <h2>Make a Donation</h2>
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="amount">Donation Amount:</label>
+                        <input type="number" id="amount" name="amount" placeholder="Enter amount" required min="1">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="fund">Select Fund:</label>
+                        <select id="fund" name="fund" required>
+                            <option value="">Choose a fund...</option>
+                            <option value="scholarship">Scholarship Fund</option>
+                            <option value="infrastructure">Infrastructure Development</option>
+                            <option value="research">Research Fund</option>
+                            <option value="sports">Sports Development</option>
+                        </select>
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="message">Personal Message:</label>
+                        <textarea id="message" name="message" placeholder="Share your thoughts..."></textarea>
+                    </div>
+    
+                    <div class="payment-options">
+                        <button type="button" class="payment-option" onclick="selectPaymentMethod('credit-card')">Credit
+                            Card</button>
+                        <button type="button" class="payment-option" onclick="selectPaymentMethod('paypal')">PayPal</button>
+                        <button type="button" class="payment-option" onclick="selectPaymentMethod('bank-transfer')">Bank
+                            Transfer</button>
+                    </div>
+    
+                    <input type="hidden" id="paymentMethod" name="paymentMethod">
+                    <input type="submit" value="Donate Now" required>
+    
+                </form>
+                <div id="thankYouMessage" style="display: none;">
+                    <p>Thank you for your donation! 🎉</p>
+                    <img src="/static/images/donations/giphy.webp" alt="Celebration GIF" />
+                </div>
+    
+                <div class="confetti-container" style="display:none;">
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                </div>
+    
+            </div>
+            <!-- Receipt Message -->
+            <div id="receiptMessage" style="display: none;">
+                <p>Receipt has been sent to your email. Please check your inbox.</p>
+                <button id="downloadReceiptBtn">Download Receipt</button>
+            </div>
+            <div id="receiptContent" style="display: none;">
+                <h3>Donation Receipt</h3>
+                <p><strong>Name:</strong> <span id="receiptName"></span></p>
+                <p><strong>Email:</strong> <span id="receiptEmail"></span></p>
+                <p><strong>Fund Selected:</strong> <span id="receiptFund"></span></p>
+                <p><strong>Donation Amount:</strong> <span id="receiptAmount"></span></p>
+                <p><strong>Institution:</strong> <span id="receiptInstitution">RGUKT Nuzvid</span></p>
+            </div>
+    
+        </div>
+        <h1 class="heading-center wow animate__animated animate__slideInLeft">Comments</h1>
+    
+        <div class="feedback-container">
+            <div class="feedback-box-wrapper">
+                <div class="feedback-box" id="feedback1">
+                    <br>
+                    <p>"Great cause! Happy to contribute!"</p>
+                    <br><br>
+                    <p>-Neelam ketham Babu </p>
+                </div>
+                <div class="feedback-box" id="feedback2">
+                    <br>
+                    <p>"Very impactful, I’ll donate again!"</p>
+                    <br><br>
+                    <p>- Daniel</p>
+                </div>
+                <div class="feedback-box" id="feedback3">
+                    <br>
+                    <p>"I’m glad to support your mission!"</p>
+                    <br>
+                    <br>
+                    <p>- Sofia</p>
+                </div>
+                <div class="feedback-box" id="feedback4">
+                    <br>
+                    <p>"Your organization is doing incredible work, and I am happy to contribute to your continued success.
+                        Please keep me posted on new opportunities to help!"</p>
+                    <br>
+                    <p>- Shah</p>
+                </div>
+                <div class="feedback-box" id="feedback4">
+                    <br>
+                    <p>"Amazing work, keep it up!
+                        The cause you support truly resonates with me. I'm grateful for the opportunity to contribute. Keep
+                        up the great work!""</p>
+                    <br>
+                    <p>- Emily P</p>
+                </div>
+                <div class="feedback-box" id="feedback4">
+                    <br>
+                    <p>"Amazing work, and it's inspiring to see how every donation goes directly toward making a difference.
+                        I'll continue to share your cause with my network!"</p>
+                    <br>
+    
+                    <p>- Jain</p>
+                </div>
+                <div class="feedback-box" id="feedback4">
+                    <br>
+                    <p>"I’m really proud to be a part of your efforts. It's an honor to help fund such important
+                        initiatives."
+    
+                    </p>
+                    <br>
+                    <p>- Varshini</p>
+                </div>
+            </div>
+    
+            <div class="arrows">
+                <button class="arrow left" onclick="moveFeedback(-1)">&#8592;</button>
+                <button class="arrow right" onclick="moveFeedback(1)">&#8594;</button>
+            </div>
         </div>
     </div>
-
+    {% include 'footer.html' %}
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPDF/2.5.1/jspdf.umd.min.js"></script>
     <script src="receipt.js"></script>
     <script src="Node.js"></script>
@@ -928,11 +891,7 @@
 
 
     </script>
-    <div class="footer">
-        <footer>
-            <p>&copy;2025 RGUKT University.All rights reserved.</p>
-        </footer>
-    </div>
+
 </body>
 
 </html>
