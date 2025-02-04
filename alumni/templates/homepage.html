@@ -213,7 +213,7 @@
         <div class="news-cards">
             {% for new in news|slice:":3" %}
             <div class="news-card" style="animation: fadeInUp 0.5s ease-in-out;">
-                <img src="{{ new.image }}" alt="Alumni Meet 2025" style="width:100%; border-radius: 10px 10px 0 0;">
+                <img src="{{ new.image }}" alt="{{ new.title }}" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>{{ new.title }}</h3>
                 <p>{{ new.content }}</p>
                 <a href="alumni-meet.html" class="info-btn">Read More</a>
@@ -224,24 +224,14 @@
     <section id="events-section">
         <h2 class="section-title">Ongoing Events</h2>
         <div class="events-cards">
+            {% for event in events %}
             <div class="event-card" style="animation: fadeInUp 0.5s ease-in-out;">
-                <img src="https://via.placeholder.com/150" alt="Networking Meetup" style="width:100%; border-radius: 10px 10px 0 0;">
-                <h3>Networking Meetup</h3>
-                <p>Engage with fellow alumni at our networking meetup and build valuable connections within the RGUKT community.</p>
+                <img src="{{ event.image }}" alt="{{ event.title }}" style="width:100%; border-radius: 10px 10px 0 0;">
+                <h3>{{ event.title }}</h3>
+                <p>{{ event.description }}</p>
                 <a href="networking-meetup.html" class="info-btn">Learn More</a>
             </div>
-            <div class="event-card">
-                <img src="https://via.placeholder.com/150" alt="Career Workshop" style="width:100%; border-radius: 10px 10px 0 0;">
-                <h3>Career Workshop</h3>
-                <p>Enhance your career prospects with expert-led workshops covering resume building, interview skills, and career growth.</p>
-                <a href="career-workshop.html" class="info-btn">Register Now</a>
-            </div>
-            <div class="event-card">
-                <img src="https://via.placeholder.com/150" alt="Tech Webinar" style="width:100%; border-radius: 10px 10px 0 0;">
-                <h3>Tech Webinar</h3>
-                <p>Join an exclusive webinar on emerging technologies and industry insights from top professionals.</p>
-                <a href="tech-webinar.html" class="info-btn">Join Now</a>
-            </div>
+            {% endfor %}
         </div>
     </section>
     

@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import NewsPage, Achievement, Alumni
+from . import models
 
 # Register your models here.
 
-admin.site.register(NewsPage)
-admin.site.register(Achievement)
-admin.site.register(Alumni)
+admin.site.register(models.NewsPage)
+admin.site.register(models.Achievement)
+admin.site.register(models.Alumni)
+admin.site.register(models.Event)

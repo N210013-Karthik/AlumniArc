@@ -1,157 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RAGIV GANDHI UNIVERSITY OF KNOWLEDGE AND TECHNOLOGIES (NUZVIDU) EVENTS</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      RAGIV GANDHI UNIVERSITY OF KNOWLEDGE AND TECHNOLOGIES (NUZVIDU) EVENTS
+    </title>
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-            color: #1a1a1a;
-        }
-        header {
-            background-color: #0056b3;
-            color: whitesmoke;
-            padding: 20px;
-            text-align: center;
-        }
-        nav {
-            background-color: #003d7a;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: whitesmoke;
-            text-decoration: none;
-            font-weight: bold;
-            margin: 15px;
-            transition: color 0.3s ease;
-        }
-        nav a:hover {
-            color: #4C9FFF;
-        }
-        .container {
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .event {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            text-align: center;
-        }
-        .event:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-        .event img {
-            width: 100%;
-            height: fit-content;
-            object-fit: cover;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .event h3 {
-            color: #003d7a;
-            margin: 10px 0;
-        }
-        .event p {
-            color: #666666;
-            line-height: 1.6;
-        }
-        button {
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: burlywood;
-        }
-        footer {
-            background-color: #0056b3;
-            color: whitesmoke;
-            text-align: center;
-            padding: 15px 0;
-            position: relative;
-            width: 100%;
-            margin-top: 20px;
-        }
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #1a1a1a;
+      }
+      header {
+        background-color: #0056b3;
+        color: whitesmoke;
+        padding: 20px;
+        text-align: center;
+      }
+      form{
+        padding-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+      }
+      nav {
+        background-color: #003d7a;
+        padding: 10px;
+        text-align: center;
+      }
+      nav a {
+        color: whitesmoke;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 15px;
+        transition: color 0.3s ease;
+      }
+      nav a:hover {
+        color: #4c9fff;
+      }
+      .container {
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .events-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .event {
+        height: fit-content;
+        width: fit-content;
+        background-color: #ffffff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        text-align: center;
+      }
+      .event:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+      .event img {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .event h3 {
+        color: #003d7a;
+        margin: 10px 0;
+      }
+      .event p {
+        color: #666666;
+        line-height: 1.6;
+      }
+      button {
+        background-color: blue;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+      }
+      button:hover {
+        background-color: burlywood;
+      }
+      footer {
+        background-color: #0056b3;
+        color: whitesmoke;
+        text-align: center;
+        padding: 15px 0;
+        position: relative;
+        width: 100%;
+        margin-top: 20px;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <h1>WELCOME TO RGUKTN EVENTS</h1>
+      <h1>WELCOME TO RGUKTN EVENTS</h1>
     </header>
-    <nav>
-        <a href="#upcoming">Future Events</a>
-        <a href="#past">Past Events</a>
-        <a href="#contact">Contact Us</a>
-    </nav>
+    <form method="GET" action="{% url 'event_list' %}">
+      <input type="text" name="q" placeholder="Search Events" value="{{ request.GET.q }}">
+      
+      <select name="category">
+          <option value="">All Categories</option>
+          <option value="Cultural" {% if request.GET.category == "Cultural" %}selected{% endif %}>Cultural</option>
+          <option value="Technical" {% if request.GET.category == "Technical" %}selected{% endif %}>Technical</option>
+          <option value="Sports" {% if request.GET.category == "Sports" %}selected{% endif %}>Sports</option>
+      </select>
+      
+      <input type="date" name="start_date" value="{{ request.GET.start_date }}">
+      <input type="date" name="end_date" value="{{ request.GET.end_date }}">
+  
+      <select name="event_status">
+          <option value="">All Events</option>
+          <option value="upcoming" {% if request.GET.event_status == "upcoming" %}selected{% endif %}>Upcoming</option>
+          <option value="ongoing" {% if request.GET.event_status == "ongoing" %}selected{% endif %}>Ongoing</option>
+          <option value="past" {% if request.GET.event_status == "past" %}selected{% endif %}>Past</option>
+      </select>
+  
+      <button type="submit">Search</button>
+    </form>  
     <div class="container">
+      <div class="container">
+        <!-- Upcoming Events -->
         <section id="upcoming">
-            <h2>Upcoming Events</h2>
-            <div class="events-grid">
-                <div class="event">
-                    <img src="/static/images/events/teckzite.jpg" alt="Teckzite Image">
-                    <h3>TECKZITE #2K25</h3>
-                    <p>Date: February 25-27</p>
-                    <p>Venue: RGUKT, Nuzvidu</p>
-                    <button onclick="window.location.href='texlink.html';">Open</button>
-                </div>
-                <div class="event">
-                    <img src="/static/images/events/cygnus.jpg" alt="Cygnus Image">
-                    <h3>CYGNUS #2K25</h3>
-                    <p>Date: March 1 & 2</p>
-                    <p>Venue: RGUKT, Nuzvidu</p>
-                    <button onclick="window.location.href='cygnus.html';">Open</button>
-                </div>
-                <div class="event">
-                    <img src="/static/images/events/girl hackthon.jpg" alt="Girl Hackathon Image">
-                    <h3>Girl Hackathon 2025</h3>
-                    <p>Date: Jan 20 - Feb 5, 2025</p>
-                    <a href="https://rsvp.withgoogle.com/events/girl-hackathon-2025/home">Register Here</a>
-                    <button onclick="window.location.href='girlhackthonlink.html';">Open</button>
-                </div>
+          <h2>Upcoming Events</h2>
+          <div class="events-grid">
+            {% for event in upcoming_events %}
+            <div class="event">
+              {% if event.image %}
+              <img src="{{ event.image.url }}" alt="{{ event.title }} Image" />
+              {% else %}
+              <img src="/static/images/default-event.jpg" alt="{{ event.title }} Image" />
+              {% endif %}
+              <h3>{{ event.title }}</h3>
+              <p>Date: {{ event.start_date|date:"F j, Y" }}</p>
+              <p>Venue: {{ event.location }}</p>
+              <p>Category: {{ event.category }}</p>
+              <button>Open</button>
             </div>
+            {% empty %}
+            <p>No upcoming events found.</p>
+            {% endfor %}
+          </div>
         </section>
+      
+        <!-- Ongoing Events -->
+        <section id="ongoing">
+          <h2>Ongoing Events</h2>
+          <div class="events-grid">
+            {% for event in ongoing_events %}
+            <div class="event">
+              {% if event.image %}
+              <img src="{{ event.image.url }}" alt="{{ event.title }} Image" />
+              {% else %}
+              <img src="/static/images/default-event.jpg" alt="{{ event.title }} Image" />
+              {% endif %}
+              <h3>{{ event.title }}</h3>
+              <p>Date: {{ event.start_date|date:"F j, Y" }} - {{ event.end_date|date:"F j, Y" }}</p>
+              <p>Venue: {{ event.location }}</p>
+              <p>Category: {{ event.category }}</p>
+              <button>Join Now</button>
+            </div>
+            {% empty %}
+            <p>No ongoing events at the moment.</p>
+            {% endfor %}
+          </div>
+        </section>
+      
+        <!-- Past Events -->
         <section id="past">
-            <h2>Past Events</h2>
-            <div class="events-grid">
-                <div class="event">
-                    <h3>IGNITER #2K24</h3>
-                    <p>Date: October 31</p>
-                    <p>Venue: AB3</p>
-                    <p>Description: A celebration of diverse cultures with music and dance.</p>
-                </div>
-                <div class="event">
-                    <h3>ZEST #2K24</h3>
-                    <p>Date: September 22</p>
-                    <p>Venue: SAC</p>
-                    <p>Description: An electrifying day of interaction event peaked with cultural performances.</p>
-                </div>
+          <h2>Past Events</h2>
+          <div class="events-grid">
+            {% for event in past_events %}
+            <div class="event">
+              {% if event.image %}
+              <img src="{{ event.image.url }}" alt="{{ event.title }} Image" />
+              {% else %}
+              <img src="/static/images/default-event.jpg" alt="{{ event.title }} Image" />
+              {% endif %}
+              <h3>{{ event.title }}</h3>
+              <p>Date: {{ event.start_date|date:"F j, Y" }}</p>
+              <p>Venue: {{ event.location }}</p>
+              <p>Category: {{ event.category }}</p>
+              <button disabled>Event Ended</button>
             </div>
+            {% empty %}
+            <p>No past events found.</p>
+            {% endfor %}
+          </div>
         </section>
+      </div>      
     </div>
     <footer>
-        <p>&copy; 2025 RGUKTN, All Rights Reserved</p>
+      <p>&copy; 2025 RGUKTN, All Rights Reserved</p>
     </footer>
-</body>
+  </body>
 </html>

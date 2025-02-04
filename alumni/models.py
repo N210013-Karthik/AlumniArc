@@ -93,3 +93,39 @@ class Alumni(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.graduation_year})"
+
+from django.db import models
+from django.utils.timezone import now
+
+class Event(models.Model):
+    CATEGORY_CHOICES = [
+        ('Conference', 'Conference'),
+        ('Workshop', 'Workshop'),
+        ('Seminar', 'Seminar'),
+        ('Meetup', 'Meetup'),
+        ('Others', 'Others'),
+    ]
+
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    location = models.CharField(max_length=200)
+    start_date = models.DateTimeField()
+    image = models.ImageField(upload_to='static/images/events/', null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    category = models.CharField(max_length=100, choices=CATEGORY_CHOICES, default='Others')
+
+    class Meta:
+        ordering = ['start_date', 'title']
+
+    def __str__(self):
+        return self.title
+
+    def is_past(self):
+        """Returns True if the event is in the past."""
+        return self.start_date < now()
+
+    def is_upcoming(self):
+        """Returns True if the event is upcoming (today or in the future)."""
+        return self.start_date >= now()
+

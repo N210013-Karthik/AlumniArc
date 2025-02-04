@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import NewsPage, Achievement, Alumni
+from .models import NewsPage, Achievement, Alumni, Event
 from django.db.models import Q  # For searching
+from django.utils.timezone import now
 
 def login_view(request):
     if request.method == 'POST':
@@ -18,8 +19,11 @@ def login_view(request):
 
 def homepage_view(request):
     news = NewsPage.objects.filter(is_published=True)
+    events = Event.objects.all()
     
-    return render(request, 'homepage.html', {'news': news})
+    upcoming_events = [event for event in events if event.is_upcoming()]
+    
+    return render(request, 'homepage.html', {'news': news, 'events':upcoming_events})
 
 def news_list(request):
     query = request.GET.get('q', '')  # Search query
@@ -97,6 +101,49 @@ def alumni_list(request):
         'graduation_years': graduation_years
     })
 
+def event_list(request):
+    """
+    This view will display the list of events with optional search and filter functionality.
+    """
+
+    query = request.GET.get('q', '')
+    category = request.GET.get('category', '')
+    start_date = request.GET.get('start_date', None)
+    end_date = request.GET.get('end_date', None)
+
+    # Get all events
+    events = Event.objects.all()
+
+    # Apply search filter
+    if query:
+        events = events.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(location__icontains=query) |
+            Q(category__icontains=query)
+        )
+
+    # Apply category filter
+    if category:
+        events = events.filter(category=category)
+
+    # Apply date range filter
+    if start_date:
+        events = events.filter(start_date__gte=start_date)
+    if end_date:
+        events = events.filter(start_date__lte=end_date)
+
+    # Separate events into upcoming, past, and ongoing
+    current_time = now()
+    upcoming_events = events.filter(start_date__gt=current_time)
+    past_events = events.filter(start_date__lt=current_time)
+    ongoing_events = events.filter(start_date__lte=current_time, updated_at__gte=current_time)  # Assuming updated_at is used as event end time
+
+    return render(request, 'events page.html', {
+        'upcoming_events': upcoming_events,
+        'past_events': past_events,
+        'ongoing_events': ongoing_events
+    })
 
 def about_view(request):
     return render(request, 'aboutPage.html')
