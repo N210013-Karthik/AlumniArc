@@ -8,17 +8,11 @@
     </title>
     <style>
       body {
-        font-family: "Roboto", sans-serif;
+        font-family: 'Arial', sans-serif;
         margin: 0;
         padding: 0;
         background-color: #f9f9f9;
         color: #1a1a1a;
-      }
-      header {
-        background-color: #0056b3;
-        color: whitesmoke;
-        padding: 20px;
-        text-align: center;
       }
       form{
         padding-top: 20px;
@@ -27,21 +21,6 @@
         justify-content: center;
         align-items: center;
         gap: 20px;
-      }
-      nav {
-        background-color: #003d7a;
-        padding: 10px;
-        text-align: center;
-      }
-      nav a {
-        color: whitesmoke;
-        text-decoration: none;
-        font-weight: bold;
-        margin: 15px;
-        transition: color 0.3s ease;
-      }
-      nav a:hover {
-        color: #4c9fff;
       }
       .container {
         padding: 20px;
@@ -109,9 +88,8 @@
     </style>
   </head>
   <body>
-    <header>
-      <h1>WELCOME TO RGUKTN EVENTS</h1>
-    </header>
+    {% include 'navbar.html' %}
+
     <form method="GET" action="{% url 'event_list' %}">
       <input type="text" name="q" placeholder="Search Events" value="{{ request.GET.q }}">
       
@@ -207,8 +185,6 @@
       </div>      
     </div>
 
-    <footer>
-      <p>&copy; 2025 RGUKTN, All Rights Reserved</p>
-    </footer>
+    {% include 'footer.html' %}
   </body>
 </html>

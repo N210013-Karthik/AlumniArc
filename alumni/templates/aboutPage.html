@@ -7,12 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-blue-50 flex flex-col justify-between min-h-screen">
-    <header class="bg-blue-700 text-white py-5 flex justify-center items-center animate-fadeIn">
-        <div class="flex items-center gap-4">
-            <img src="/static/images/events/rguktlogo.jpg" alt="RGUKTN Logo" class="w-12 h-12 rounded-full">
-            <h1 class="text-2xl font-bold text-center">About Rajiv Gandhi University of Knowledge and Technologies (RGUKT)</h1>
-        </div>
-    </header>
+    {% include 'navbar.html' %}
     <div class="container mx-auto p-6 flex flex-col items-center">
         <section id="mission" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105">
             <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Mission</h2>
@@ -31,8 +26,6 @@
             <p class="text-gray-700">Located in Nuzvidu, Andhra Pradesh, the RGUKT campus provides state-of-the-art facilities for students...</p>
         </section>
     </div>
-    <footer class="bg-blue-700 text-white text-center py-3 mt-6">
-        <p>&copy; 2025 Rajiv Gandhi University of Knowledge and Technologies, All Rights Reserved</p>
-    </footer>
+    <{% include 'footer.html' %}>
 </body>
 </html>

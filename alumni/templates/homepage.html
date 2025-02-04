@@ -17,42 +17,6 @@
             color: #333;
             overflow-x: hidden;
         }
-        header {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(120deg, #89f7fe, #66a6ff);
-            padding: 1.5rem 1rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        header img {
-            width: 70px;
-            height: 70px;
-            margin-right: 1rem;
-            border-radius: 50%;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            color: #2a2a72;
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background: linear-gradient(145deg, #e3f2fd, #fce4ec);
-            padding: 0.8rem;
-        }
-        nav a {
-            color:#333;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background 0.3s ease, transform 0.3s ease;
-        }
-        nav a:hover {
-            background: #64b5f6;
-            transform: scale(1.1);
-        }
         .hero {
             text-align: center;
             color: white;
@@ -185,21 +149,7 @@
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header>
-        <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Logo">
-        <h1>RGUKT Alumni Portal</h1>
-    </header>
-    
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="homepage.html">Home</a>
-        <a href="events page.html">Events</a>
-        <a href="donation.html">Donation</a>
-        <a href="Achivements.html">Achivements</a>
-        <a href="about page.html">About</a>
-        <a href="login.html">Login/Signin</a>
-    </nav>
+    {% include 'navbar.html' %}
     
     <!-- Hero Section -->
     <div class="hero" id="welcome">
@@ -216,7 +166,7 @@
                 <img src="{{ new.image }}" alt="{{ new.title }}" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>{{ new.title }}</h3>
                 <p>{{ new.content }}</p>
-                <a href="alumni-meet.html" class="info-btn">Read More</a>
+                <a href="{% url 'news_list' %}" class="info-btn">Read More</a>
             </div>
             {% endfor %}
         </div>
@@ -229,7 +179,7 @@
                 <img src="{{ event.image }}" alt="{{ event.title }}" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>{{ event.title }}</h3>
                 <p>{{ event.description }}</p>
-                <a href="networking-meetup.html" class="info-btn">Learn More</a>
+                <a href="{% url 'event_list' %}" class="info-btn">Learn More</a>
             </div>
             {% endfor %}
         </div>
@@ -263,9 +213,6 @@
         </p>
     </section>
     
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2025 RGUKT Alumni Portal. All rights reserved.</p>
-    </footer>
+    {% include 'footer.html' %}
 </body>
 </html>

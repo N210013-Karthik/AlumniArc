@@ -43,15 +43,7 @@
     </style>
 </head>
 <body class="bg-background">
-    <!-- Hero Section -->
-    <div class="hero-pattern text-white py-20 px-4 mb-12">
-        <div class="container mx-auto max-w-4xl text-center">
-            <h1 class="text-5xl font-bold mb-6">Achievements of the University</h1>
-            <p class="text-xl opacity-90 max-w-2xl mx-auto">
-                Celebrating our legacy of excellence and innovation in education, research, and community impact through the years.
-            </p>
-        </div>
-    </div>
+    {% include 'navbar.html' %}
 
     <!-- Search and Filter -->
     <div class="container mx-auto max-w-6xl px-4 pb-8">
@@ -114,5 +106,7 @@
             {% endfor %}
         </div>
     </div>
+
+    {% include 'footer.html' %}
 </body>
 </html>

@@ -139,17 +139,7 @@
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="RGUKT Logo">
-        <h1>RGUKT Alumni News</h1>
-    </header>
-
-    <!-- News Hero Section -->
-    <section class="news-hero">
-        <h2>Stay Updated with Alumni Achievements</h2>
-        <p>Catch up on the latest news and updates from our thriving RGUKT alumni community.</p>
-    </section>
+    {% include 'navbar.html' %}
 
     <form method="GET" class="search-filter-container">
         <input type="text" name="q" placeholder="Search news..." value="{{ query }}">
@@ -177,9 +167,6 @@
         {% endfor %}
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 RGUKT Alumni Network. All rights reserved.</p>
-    </footer>
+    {% include 'footer.html' %}
 </body>
 </html>
