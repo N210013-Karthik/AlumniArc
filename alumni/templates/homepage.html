@@ -156,8 +156,8 @@
     <div class="hero" id="welcome">
         <h2>Welcome to the RGUKT Alumni Portal</h2>
         <p>Reconnect, engage, and stay connected with fellow alumni from RGUKT. Join events and contribute to the growing network.</p>
-        <a href="login.html" class="cta-btn">Join Us Today</a>
-    </div>
+<!--         <a href="login.html" class="cta-btn">Join Us Today</a>
+    </div> -->
     <!-- News and Events Section -->
     <section id="news-section">
         <h2 class="section-title">Latest News</h2>
@@ -167,8 +167,8 @@
                 <img src="{{ new.image }}" alt="{{ new.title }}" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>{{ new.title }}</h3>
                 <p>{{ new.content }}</p>
-<!--                 <a href="{% url 'news_list' %}" class="info-btn">Read More</a> -->
-            </div>
+                <a href="{% url 'news_list' %}" class="info-btn">Read More</a>
+            </div> -->
             {% endfor %}
         </div>
     </section>
