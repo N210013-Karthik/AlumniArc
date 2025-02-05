@@ -171,4 +171,4 @@ def donation_view(request):
     return render(request, 'donation.html')
 
 def about_view(request):
-    return render(request, 'aboutPage.html')
+    return render(request, 'about page.html')
