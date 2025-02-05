@@ -175,7 +175,7 @@
     <section id="events-section">
         <h2 class="section-title">Ongoing Events</h2>
         <div class="events-cards">
-            {% for event in events %}
+            {% for event in events|slice:":3" %}
             <div class="event-card" style="animation: fadeInUp 0.5s ease-in-out;">
                 <img src="{{ event.image }}" alt="{{ event.title }}" style="width:100%; border-radius: 10px 10px 0 0;">
                 <h3>{{ event.title }}</h3>

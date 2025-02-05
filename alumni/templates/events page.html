@@ -170,7 +170,6 @@
       <select name="event_status">
           <option value="">All Events</option>
           <option value="upcoming" {% if request.GET.event_status == "upcoming" %}selected{% endif %}>Upcoming</option>
-          <option value="ongoing" {% if request.GET.event_status == "ongoing" %}selected{% endif %}>Ongoing</option>
           <option value="past" {% if request.GET.event_status == "past" %}selected{% endif %}>Past</option>
       </select>
   
@@ -197,29 +196,6 @@
             </div>
             {% empty %}
             <p>No upcoming events found.</p>
-            {% endfor %}
-          </div>
-        </section>
-      
-        <!-- Ongoing Events -->
-        <section id="ongoing">
-          <h2>Ongoing Events</h2>
-          <div class="events-grid">
-            {% for event in ongoing_events %}
-            <div class="event">
-              {% if event.image %}
-              <img src="{{ event.image.url }}" alt="{{ event.title }} Image" />
-              {% else %}
-              <img src="/static/images/default-event.jpg" alt="{{ event.title }} Image" />
-              {% endif %}
-              <h3>{{ event.title }}</h3>
-              <p>Date: {{ event.start_date|date:"F j, Y" }} - {{ event.end_date|date:"F j, Y" }}</p>
-              <p>Venue: {{ event.location }}</p>
-              <p>Category: {{ event.category }}</p>
-              <button>Join Now</button>
-            </div>
-            {% empty %}
-            <p>No ongoing events at the moment.</p>
             {% endfor %}
           </div>
         </section>

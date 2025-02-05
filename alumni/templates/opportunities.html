@@ -105,7 +105,7 @@
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto 40px auto;
-            background: rgba(10, 26, 60, 0.7);
+            background: #f1f1f1;
             border-radius: 15px;
         }
         
@@ -703,7 +703,7 @@
             <div class="feature-card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                 <div class="feature-image-container">
                     {% if opp.image %}
-                        <img src="{{ opp.image }}" alt="{{ opp.title }}">
+                        <img src="{{ opp.image.url }}" alt="{{ opp.title }}">
                     {% else %}
                         <img src="/static/images/default-placeholder.png" alt="Default Image">
                     {% endif %}
