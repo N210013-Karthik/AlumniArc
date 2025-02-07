@@ -124,7 +124,6 @@
 </head>
 <body>
     {% include 'navbar.html' %}
-
     <form method="GET" class="search-filter-container">
         <input type="text" name="q" placeholder="Search news..." value="{{ query }}">
         <select name="category">
@@ -145,7 +144,6 @@
                 <div class="news-content">
                     <h2>{{ news_item.title }}</h2>
                     <p>{{ news_item.content }}</p>
-<!--                     <a href="#">Read More</a> -->
                 </div>
             </div>
         {% endfor %}
