@@ -4,6 +4,11 @@ from django.contrib import messages
 from .models import NewsPage, Achievement, Alumni, Event, Opportunity
 from django.db.models import Q  # For searching
 from django.utils.timezone import now
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import logout
+from django.shortcuts import redirect
+
+@csrf_exempt
 
 def login_view(request):
     if request.method == 'POST':
@@ -17,6 +22,13 @@ def login_view(request):
             messages.error(request, 'Invalid username or password.')
     return render(request, 'login.html')
 
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')  # Redirect to home after logout
+
+
 def homepage_view(request):
     news = NewsPage.objects.filter(is_published=True)
     events = Event.objects.all()
@@ -24,6 +36,7 @@ def homepage_view(request):
     upcoming_events = [event for event in events if event.is_upcoming()]
     
     return render(request, 'homepage.html', {'news': news, 'events':upcoming_events})
+
 
 def news_list(request):
     query = request.GET.get('q', '')  # Search query
