@@ -308,6 +308,17 @@
         <br><br>
         <div class="container">
             <h1 style="text-align: center;">{% if opportunity %}Edit Opportunity{% else %}Posting New Opportunity{% endif %}</h1>
+            
+            {% if errors %}
+                    <div class="error-messages">
+                        <ul>
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+            
             <form action="{% if opportunity %}{% url 'edit_opportunity' opportunity.id %}{% else %}{% url 'add_opportunity' %}{% endif %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <!-- Title -->

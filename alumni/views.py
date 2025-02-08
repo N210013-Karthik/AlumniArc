@@ -225,7 +225,7 @@ def create_or_edit_achievement(request, achievement_id=None):
                 return redirect('/dashboard/achievements/')
         else:
             form = forms.AchievementForm(instance=achievement)
-        return render(request, 'admin/achievementsform.html', {'form': form, 'achievement': achievement, 'current_user': current_user})   
+        return render(request, 'admin/achievementsform.html', {'form': form, 'achievement': achievement, 'current_user': current_user, 'errors': form.errors})   
     else:
         if request.method == 'POST':
             form = forms.AchievementForm(request.POST, request.FILES)
@@ -236,7 +236,7 @@ def create_or_edit_achievement(request, achievement_id=None):
         else:
             form = forms.AchievementForm()
 
-    return render(request, 'admin/achievementsform.html', {'form': form, 'current_user': current_user})
+    return render(request, 'admin/achievementsform.html', {'form': form, 'current_user': current_user, 'errors': form.errors})
 
 @login_required(login_url='/login/')
 def delete_achievement(request, achievement_id):
@@ -264,7 +264,7 @@ def create_or_edit_opportunity(request, opportunity_id=None):
                 return redirect('/dashboard/opportunities/')
         else:
             form = forms.OpportunityForm(instance=opportunity)
-        return render(request, 'admin/opportunities_dashboard.html', {'form': form, 'opportunity': opportunity, 'current_user': current_user})   
+        return render(request, 'admin/opportunities_dashboard.html', {'form': form, 'opportunity': opportunity, 'current_user': current_user, 'errors': form.errors})   
     else:
         if request.method == 'POST':
             form = forms.OpportunityForm(request.POST, request.FILES)
@@ -276,7 +276,7 @@ def create_or_edit_opportunity(request, opportunity_id=None):
         else:
             form = forms.OpportunityForm()
 
-    return render(request, 'admin/opportunities_dashboard.html', {'form': form, 'current_user': current_user})
+    return render(request, 'admin/opportunities_dashboard.html', {'form': form, 'current_user': current_user, 'errors': form.errors})
 
 @login_required(login_url='/login/')
 def delete_opportunity(request, opportunity_id):
@@ -297,14 +297,13 @@ def create_or_edit_alumni(request, alumni_id=None):
         alumni = models.Alumni.objects.get(id=alumni_id)
         if request.method == 'POST':
             form = forms.AlumniForm(request.POST, request.FILES, instance=alumni)
-            print(form.errors)
             if form.is_valid():
                 alumni = form.save(commit=False)
                 alumni.save()
                 return redirect('/dashboard/alumni/')
         else:
             form = forms.AlumniForm(instance=alumni)
-        return render(request, 'admin/alumni_dashboard.html', {'form': form, 'alumni': alumni, 'current_user': current_user})   
+        return render(request, 'admin/alumni_dashboard.html', {'form': form, 'alumni': alumni, 'current_user': current_user, 'errors': form.errors})   
     else:
         if request.method == 'POST':
             form = forms.AlumniForm(request.POST, request.FILES)
@@ -315,7 +314,7 @@ def create_or_edit_alumni(request, alumni_id=None):
         else:
             form = forms.AlumniForm()
 
-    return render(request, 'admin/alumni_dashboard.html', {'form': form, 'current_user': current_user})
+    return render(request, 'admin/alumni_dashboard.html', {'form': form, 'current_user': current_user, 'errors': form.errors})
 
 @login_required(login_url='/login/')
 def delete_alumni(request, alumni_id):
