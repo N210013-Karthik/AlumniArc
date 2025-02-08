@@ -7,6 +7,7 @@ from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 @csrf_exempt
 
@@ -17,7 +18,7 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('/')
+            return redirect('/dashboard/')
         else:
             messages.error(request, 'Invalid username or password.')
     return render(request, 'login.html')
@@ -185,3 +186,22 @@ def donation_view(request):
 
 def about_view(request):
     return render(request, 'about page.html')
+
+
+# Admin views
+
+@login_required(login_url='/login/')
+def dashboard(request):
+    total_alumni = Alumni.objects.count()
+    upcoming_events_count = Event.objects.filter(start_date__gt=now()).count()
+    opportunities_count = Opportunity.objects.count()
+    current_user = request.user
+
+    context = {
+        'total_alumni': total_alumni,
+        'upcoming_events_count': upcoming_events_count,
+        'opportunities_count': opportunities_count,
+        'current_user': current_user,
+    }
+
+    return render(request, 'admin/dashboard.html', context)

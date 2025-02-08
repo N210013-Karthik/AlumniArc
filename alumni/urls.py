@@ -14,4 +14,8 @@ urlpatterns = [
     path('donations/', views.donation_view, name='donations'),
     path('about/', views.about_view, name='about'),
     path('logout/', logout_view, name='logout'),
+    
+    # Admin URLs
+    
+    path('dashboard/', views.dashboard, name='dashboard'),
 ]
