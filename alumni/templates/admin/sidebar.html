@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            background-color: #003366;
+            color: white;
+            padding: 1.5rem;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 12px;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li:hover {
+            background: #004080;
+            cursor: pointer;
+        }
+
+        .sidebar ul li a {
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar ul li a i {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2>Alumni Portal</h2>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="dashboard_newsform.html"><i class="fas fa-user-graduate"></i>News</a></li>
+            <li><a href="#"><i class="fas fa-calendar"></i>Events</a></li>
+            <li><a href="#"><i class="fas fa-briefcase"></i>Alumni</a></li>
+            <li><a href="#"><i class="fas fa-comments"></i>Achivements</a></li>
+            <li><a href="#"><i class="fas fa-cog"></i>Opportunities</a></li>
+        </ul>
+    </aside>
+</body>
+</html>
