@@ -104,7 +104,7 @@
 
         /* Events form */
         .form-container {
-            background: linear-gradient(to right, #fde68a, #f59e0b);;
+            background: white;;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 2rem;
@@ -139,13 +139,12 @@
             box-shadow: 0 0 5px rgba(44, 103, 192, 0.5);
         }
         .form-button {
-            background-color: #007bff;
-            color: white;
+            background-color: green;          color: white;
             padding: 0.75rem;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            width: 100%;
+            width: 40%;
             font-size: 1rem;
         }
         .form-button:hover {
@@ -169,6 +168,27 @@
             100% {
                 transform: scaleX(1);
             }
+        }
+        @keyframes rotate-glow {
+            0% {
+                box-shadow: -2px -2px 5px blue;
+            }
+            25% {
+                box-shadow: 2px -2px 5px blue;
+            }
+            50% {
+                box-shadow: 2px 2px 5px blue;
+            }
+            75% {
+                box-shadow: -2px 2px 5px fuchsia;
+            }
+            100% {
+                box-shadow: -2px -2px 5px #00ffff;
+            }
+        }
+
+        .form-field {
+            animation: rotate-glow 3.8s linear infinite;
         }
         
     </style>
@@ -204,25 +224,25 @@
 
         <!-- News Form -->
         <div class="form-container">
-            <h2 class="form-title">Submit Achievement</h2>
+            <h2 class="form-title">Announcing MileStone</h2>
             <form action="/submit-achievement/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
             
                 <!-- Title Input -->
                 <label for="title" class="form-label">Achievement Title</label>
-                <input type="text" id="title" name="title" class="form-input" required>
+                <input type="text" id="title" name="title" class="form-input form-field" required>
             
                 <!-- Description Textarea -->
                 <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="description" rows="5" class="form-textarea" required></textarea>
+                <textarea id="description" name="description" rows="5" class="form-textarea form-field" required></textarea>
             
                 <!-- Date Achieved -->
                 <label for="date_achieved" class="form-label">Date Achieved</label>
-                <input type="date" id="date_achieved" name="date_achieved" class="form-input" required>
+                <input type="date" id="date_achieved" name="date_achieved" class="form-input form-field" required>
             
                 <!-- Category Dropdown -->
                 <label for="category" class="form-label">Category</label>
-                <select id="category" name="category" class="form-input" required>
+                <select id="category" name="category" class="form-select form-field" required>
                     <option value="Cultural">Cultural</option>
                     <option value="Technical">Technical</option>
                     <option value="Sports">Sports</option>
@@ -231,7 +251,7 @@
             
                 <!-- Image Upload -->
                 <label for="image" class="form-label">Upload Achievement Image</label>
-                <input type="file" id="image" name="image" class="form-input">
+                <input type="file" id="image" name="image" class="form-input form-field">
             
                 <!-- Submit Button -->
                 <button type="submit" class="form-button">Submit Achievement</button>
