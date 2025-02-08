@@ -180,85 +180,64 @@
     </style>
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>Alumni Portal</h2>
-        <ul>
-            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="dashboard_newsform.html"><i class="fas fa-user-graduate"></i>News</a></li>
-            <li><a href="#"><i class="fas fa-calendar"></i>Events</a></li>
-            <li><a href="#"><i class="fas fa-briefcase"></i>Alumni</a></li>
-            <li><a href="#"><i class="fas fa-comments"></i>Achivements</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i>Opportunities</a></li>
-        </ul>
-    </aside>
+    {% include 'admin/sidebar.html' %}
 
     <!-- Main Content -->
     <main class="main-content">
-        <header>
-            <div class="logo">
-                <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Alumni Portal Logo">
-                <h1>Alumni Portal Dashboard</h1>
-            </div>
-            <div class="profile">
-                <span>Welcome, User</span>
-                <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Profile">
-            </div>
-        </header>
+        {% include 'admin/header.html' %}
         <br><br>
 
         <div class="form-container">
-            <form action="/submit-alumni/" method="POST" enctype="multipart/form-data">
+            <form action="{% if alumni %}{% url 'edit_alumni' alumni.id %}{% else %}{% url 'add_alumni' %}{% endif %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h2 class="form-title">Alumni Form</h2>
                 <label for="name">Name</label><br>
-                <input type="text" id="name" name="name" class="form-input form-field" maxlength="255" required>
+                <input type="text" id="name" name="name" class="form-input form-field" maxlength="255" value="{{ alumni.name }}" required>
 
                 <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" class="form-input form-field" required>
+                <input type="email" id="email" name="email" class="form-input form-field" value="{{ alumni.email }}" required>
 
                 <label for="mobile">Mobile</label><br>
-                <input type="text" id="mobile" name="mobile" class="form-input form-field" maxlength="15" required>
+                <input type="text" id="mobile" name="mobile" class="form-input form-field" maxlength="15" value="{{ alumni.mobile }}" required>
 
                 <label for="graduation_year">Graduation Year</label><br>
-                <input type="number" id="graduation_year" name="graduation_year" class="form-input form-field" required>
+                <input type="number" id="graduation_year" name="graduation_year" class="form-input form-field" value="{{ alumni.graduation_year }}" required>
 
                 <label for="department">Department</label><br>
                 <select id="department" name="department" class="form-select form-field" required>
-                    <option value="cse">CSE</option>
-                    <option value="eze">ECE</option>
-                    <option value="ee">EEE</option>
-                    <option value="me">ME</option>
-                    <option value="ce">CE</option>
-                    <option value="che">CHE</option>
-                    <option value="mme">MME</option>
-                    <option value="others">Others</option>
+                    <option value="CSE" {% if alumni.department == "CSE" %}selected{% endif %}>CSE</option>
+                    <option value="ECE" {% if alumni.department == "ECE" %}selected{% endif %}>ECE</option>
+                    <option value="EEE" {% if alumni.department == "EEE" %}selected{% endif %}>EEE</option>
+                    <option value="ME" {% if alumni.department == "ME" %}selected{% endif %}>ME</option>
+                    <option value="CE" {% if alumni.department == "CE" %}selected{% endif %}>CE</option>
+                    <option value="CHE" {% if alumni.department == "CHE" %}selected{% endif %}>CHE</option>
+                    <option value="MME" {% if alumni.department == "MME" %}selected{% endif %}>MME</option>
+                    <option value="Others" {% if alumni.department == "Others" %}selected{% endif %}>Others</option>
                 </select>
 
                 <label for="domain">Domain</label><br>
-                <input type="text" id="domain" name="domain" class="form-input form-field" placeholder="e.g: Software Development" >
+                <input type="text" id="domain" name="domain" class="form-input form-field" placeholder="e.g: Software Development" value="{{ alumni.domain }}">
 
                 <label for="current_position">Current Position</label><br>
-                <input type="text" id="current_position" name="current_position" class="form-input form-field">
+                <input type="text" id="current_position" name="current_position" class="form-input form-field" value="{{ alumni.current_position }}">
 
                 <label for="company">Company</label><br>
-                <input type="text" id="company" name="company" class="form-input form-field">
+                <input type="text" id="company" name="company" class="form-input form-field" value="{{ alumni.company }}">
 
                 <label for="location">Location</label><br>
-                <input type="text" id="location" name="location" class="form-input form-field" placeholder="Latitude, Longitude, Address">
+                <textarea id="location" name="location" class="form-textarea form-field" placeholder="Latitude, Longitude, Address">{{ alumni.location }}</textarea>
 
                 <label for="skills">Skills</label><br>
-                <input type="text" id="skills" name="skills" class="form-input form-field" placeholder="Comma-separated list of skills">
+                <textarea id="skills" name="skills" class="form-textarea form-field" placeholder="Comma-separated list of skills">{{ alumni.skills }}</textarea>
 
                 <label for="achievements">Achievements</label><br>
-                <textarea id="achievements" name="achievements" class="form-textarea form-field" placeholder="JSON format (title, description, year)"></textarea>
+                <textarea id="achievements" name="achievements" class="form-textarea form-field" placeholder="JSON format (title, description, year)">{{ alumni.achievements }}</textarea>
 
                 <label for="linkedin">LinkedIn</label><br>
-                <input type="url" id="linkedin" name="linkedin" class="form-input form-field">
+                <input type="url" id="linkedin" name="linkedin" class="form-input form-field" value="{{ alumni.linkedin }}">
 
                 <label for="twitter">Twitter</label><br>
-                <input type="url" id="twitter" name="twitter" class="form-input form-field">
+                <input type="url" id="twitter" name="twitter" class="form-input form-field" value="{{ alumni.twitter }}">
 
                 <label for="profile_picture">Profile Picture</label><br>
                 <input type="file" id="profile_picture" name="profile_picture" class="form-input form-field">
