@@ -102,9 +102,9 @@
             margin-left: 10px;
         }
 
-        /* Events form */
+        /* News form */
         .form-container {
-            background: white;;
+            background-color:white;
             border-radius: 12px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 2rem;
@@ -122,7 +122,7 @@
             display: block;
             font-size: 1rem;
             font-weight: 600;
-            color:navy;
+            color: #555;
             margin-bottom: 0.5rem;
         }
         .form-input, .form-textarea, .form-select {
@@ -133,13 +133,9 @@
             margin-bottom: 1.5rem;
             box-sizing: border-box;
         }
-        .form-input:focus, .form-textarea:focus, .form-select:focus {
-            border-color: #367dc5;
-            outline: none;
-            box-shadow: 0 0 5px rgba(44, 103, 192, 0.5);
-        }
         .form-button {
-            background-color: green;          color: white;
+            background-color: green;
+            color: white;
             padding: 0.75rem;
             border: none;
             border-radius: 6px;
@@ -148,7 +144,7 @@
             font-size: 1rem;
         }
         .form-button:hover {
-            background-color: #0056b3;
+            background-color: blue;
         }
         @media (max-width: 768px) {
             .form-container {
@@ -160,15 +156,6 @@
             }
         }
 
-        /* Animation Styles */
-        @keyframes scale-up-hor-center {
-            0% {
-                transform: scaleX(0.4);
-            }
-            100% {
-                transform: scaleX(1);
-            }
-        }
         @keyframes rotate-glow {
             0% {
                 box-shadow: -2px -2px 5px blue;
@@ -190,7 +177,6 @@
         .form-field {
             animation: rotate-glow 3.8s linear infinite;
         }
-        
     </style>
 </head>
 <body>
@@ -222,43 +208,65 @@
         </header>
         <br><br>
 
-        <!-- News Form -->
         <div class="form-container">
-            <h2 class="form-title">Announcing MileStone</h2>
-            <form action="/submit-achievement/" method="POST" enctype="multipart/form-data">
+            <form action="/submit-alumni/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-            
-                <!-- Title Input -->
-                <label for="title" class="form-label">Achievement Title</label>
-                <input type="text" id="title" name="title" class="form-input form-field" required>
-            
-                <!-- Description Textarea -->
-                <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="description" rows="5" class="form-textarea form-field" required></textarea>
-            
-                <!-- Date Achieved -->
-                <label for="date_achieved" class="form-label">Date Achieved</label>
-                <input type="date" id="date_achieved" name="date_achieved" class="form-input form-field" required>
-            
-            <!-- Category Dropdown -->
-            <label for="category" class="form-label">Category</label>
-            <select id="category" name="category" class="form-select form-field" required>
-                <option value="Academics" {% if achievement and achievement.category == 'Academics' %}selected{% endif %}>Academics</option>
-                <option value="Sports" {% if achievement and achievement.category == 'Sports' %}selected{% endif %}>Sports</option>
-                <option value="Research" {% if achievement and achievement.category == 'Research' %}selected{% endif %}>Research</option>
-                <option value="Entrepreneurship" {% if achievement and achievement.category == 'Entrepreneurship' %}selected{% endif %}>Entrepreneurship</option>
-                <option value="Others" {% if achievement and achievement.category == 'Others' %}selected{% endif %}>Others</option>
-            </select>
-            
-                <!-- Image Upload -->
-                <label for="image" class="form-label">Upload Achievement Image</label>
-                <input type="file" id="image" name="image" class="form-input form-field">
-            
-                <!-- Submit Button -->
-                <button type="submit" class="form-button">Submit Achievement</button>
+                <h2 class="form-title">Alumni Form</h2>
+                <label for="name">Name</label><br>
+                <input type="text" id="name" name="name" class="form-input form-field" maxlength="255" required>
+
+                <label for="email">Email</label><br>
+                <input type="email" id="email" name="email" class="form-input form-field" required>
+
+                <label for="mobile">Mobile</label><br>
+                <input type="text" id="mobile" name="mobile" class="form-input form-field" maxlength="15" required>
+
+                <label for="graduation_year">Graduation Year</label><br>
+                <input type="number" id="graduation_year" name="graduation_year" class="form-input form-field" required>
+
+                <label for="department">Department</label><br>
+                <select id="department" name="department" class="form-select form-field" required>
+                    <option value="cse">CSE</option>
+                    <option value="eze">ECE</option>
+                    <option value="ee">EEE</option>
+                    <option value="me">ME</option>
+                    <option value="ce">CE</option>
+                    <option value="che">CHE</option>
+                    <option value="mme">MME</option>
+                    <option value="others">Others</option>
+                </select>
+
+                <label for="domain">Domain</label><br>
+                <input type="text" id="domain" name="domain" class="form-input form-field" placeholder="e.g: Software Development" >
+
+                <label for="current_position">Current Position</label><br>
+                <input type="text" id="current_position" name="current_position" class="form-input form-field">
+
+                <label for="company">Company</label><br>
+                <input type="text" id="company" name="company" class="form-input form-field">
+
+                <label for="location">Location</label><br>
+                <input type="text" id="location" name="location" class="form-input form-field" placeholder="Latitude, Longitude, Address">
+
+                <label for="skills">Skills</label><br>
+                <input type="text" id="skills" name="skills" class="form-input form-field" placeholder="Comma-separated list of skills">
+
+                <label for="achievements">Achievements</label><br>
+                <textarea id="achievements" name="achievements" class="form-textarea form-field" placeholder="JSON format (title, description, year)"></textarea>
+
+                <label for="linkedin">LinkedIn</label><br>
+                <input type="url" id="linkedin" name="linkedin" class="form-input form-field">
+
+                <label for="twitter">Twitter</label><br>
+                <input type="url" id="twitter" name="twitter" class="form-input form-field">
+
+                <label for="profile_picture">Profile Picture</label><br>
+                <input type="file" id="profile_picture" name="profile_picture" class="form-input form-field">
+                <br>
+                <button type="submit" class="form-button">Submit</button>
             </form>
         </div>
-    </main>
 
+    </main>
 </body>
 </html>
