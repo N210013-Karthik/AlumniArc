@@ -124,6 +124,7 @@
             font-weight: 600;
             color: #555;
             margin-bottom: 0.5rem;
+            margin-left: 10px;
         }
         .form-input, .form-textarea, .form-select {
             width: 98%;
@@ -132,6 +133,19 @@
             border-radius: 6px;
             margin-bottom: 1.5rem;
             box-sizing: border-box;
+            margin-left: 35px; 
+        }
+        .form-input.small {
+            width: 30%;
+            padding: 0.5rem;
+        }
+        .form-select.small {
+            width: 30%;
+            padding: 0.5rem;
+        }
+        .form-input.email {
+            width: 50%;
+            padding: 0.75rem;
         }
         .form-button {
             background-color: green;
@@ -212,20 +226,20 @@
             <form action="/submit-alumni/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h2 class="form-title">Alumni Form</h2>
-                <label for="name">Name</label><br>
-                <input type="text" id="name" name="name" class="form-input form-field" maxlength="255" required>
-
-                <label for="email">Email</label><br>
-                <input type="email" id="email" name="email" class="form-input form-field" required>
-
-                <label for="mobile">Mobile</label><br>
-                <input type="text" id="mobile" name="mobile" class="form-input form-field" maxlength="15" required>
-
-                <label for="graduation_year">Graduation Year</label><br>
-                <input type="number" id="graduation_year" name="graduation_year" class="form-input form-field" required>
-
-                <label for="department">Department</label><br>
-                <select id="department" name="department" class="form-select form-field" required>
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" class="form-input form-field small" maxlength="255" required>
+                <br>
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-input form-field email" required>
+                <br>
+                <label for="mobile" class="form-label">Mobile</label>
+                <input type="text" id="mobile" name="mobile" class="form-input form-field small" maxlength="15" required>
+                <br>
+                <label for="graduation_year" class="form-label">Graduation Year</label>
+                <input type="number" id="graduation_year" name="graduation_year" class="form-input form-field small" required>
+                <br>
+                <label for="department" class="form-label">Department</label>
+                <select id="department" name="department" class="form-select form-field small" required>
                     <option value="cse">CSE</option>
                     <option value="eze">ECE</option>
                     <option value="ee">EEE</option>
@@ -235,33 +249,33 @@
                     <option value="mme">MME</option>
                     <option value="others">Others</option>
                 </select>
-
-                <label for="domain">Domain</label><br>
-                <input type="text" id="domain" name="domain" class="form-input form-field" placeholder="e.g: Software Development" >
-
-                <label for="current_position">Current Position</label><br>
-                <input type="text" id="current_position" name="current_position" class="form-input form-field">
-
-                <label for="company">Company</label><br>
-                <input type="text" id="company" name="company" class="form-input form-field">
-
-                <label for="location">Location</label><br>
-                <input type="text" id="location" name="location" class="form-input form-field" placeholder="Latitude, Longitude, Address">
-
-                <label for="skills">Skills</label><br>
+                <br>
+                <label for="domain" class="form-label">Domain</label>
+                <input type="text" id="domain" name="domain" class="form-input form-field small" placeholder="e.g: Software Development" >
+                <br>
+                <label for="current_position" class="form-label">Current Position</label>
+                <input type="text" id="current_position" name="current_position" class="form-input form-field small">
+                <br>
+                <label for="company" class="form-label">Company</label>
+                <input type="text" id="company" name="company" class="form-input form-field small">
+                <br>
+                <label for="location" class="form-label">Location</label>
+                <input type="text" id="location" name="location" class="form-input form-field small" placeholder="Latitude, Longitude, Address">
+                <br>
+                <label for="skills" class="form-label">Skills</label>
                 <input type="text" id="skills" name="skills" class="form-input form-field" placeholder="Comma-separated list of skills">
-
-                <label for="achievements">Achievements</label><br>
+                <br>
+                <label for="achievements" class="form-label">Achievements</label>
                 <textarea id="achievements" name="achievements" class="form-textarea form-field" placeholder="JSON format (title, description, year)"></textarea>
-
-                <label for="linkedin">LinkedIn</label><br>
+                <br>
+                <label for="linkedin" class="form-label">LinkedIn</label>
                 <input type="url" id="linkedin" name="linkedin" class="form-input form-field">
-
-                <label for="twitter">Twitter</label><br>
+                <br>
+                <label for="twitter" class="form-label">Twitter</label>
                 <input type="url" id="twitter" name="twitter" class="form-input form-field">
-
-                <label for="profile_picture">Profile Picture</label><br>
-                <input type="file" id="profile_picture" name="profile_picture" class="form-input form-field">
+                <br>
+                <label for="profile_picture" class="form-label">Profile Picture</label>
+                <input type="file" id="profile_picture" name="profile_picture" class="form-input form-field small">
                 <br>
                 <button type="submit" class="form-button">Submit</button>
             </form>
