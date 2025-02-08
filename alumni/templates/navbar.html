@@ -76,6 +76,11 @@
             <a href="{% url 'opportunities' %}" class="{% if request.path == '/opportunities/' %}active{% endif %}">Opportunities</a>
             <a href="{% url 'donations' %}" class="{% if request.path == '/donations/' %}active{% endif %}">Donation</a>
             <a href="{% url 'about' %}" class="{% if request.path == '/about/' %}active{% endif %}">About</a>
-        </nav>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="{% if request.path == '/logout/' %} active {% endif %}">LogOut</a>
+        {% else %}
+            <a href="{% url 'login_page' %}" class="{% if request.path == '/login/' %} active {% endif %}">LogIn</a>
+        {% endif %}
+                </nav>
     </body>
 </html>
