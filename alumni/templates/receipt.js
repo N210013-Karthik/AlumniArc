@@ -9,7 +9,6 @@ document.getElementById("donationForm").addEventListener("submit", function (eve
 
     // Display receipt message and download button
     document.getElementById("receiptMessage").style.display = "block";
-
     // Update receipt content
     document.getElementById("receiptName").textContent = name;
     document.getElementById("receiptEmail").textContent = email;
