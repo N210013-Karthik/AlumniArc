@@ -147,9 +147,10 @@
             <!-- Category Dropdown -->
             <label for="category" class="form-label">Category</label>
             <select id="category" name="category" class="form-select form-field" required>
-                <option value="Cultural" {% if achievement and achievement.category == 'Cultural' %}selected{% endif %}>Cultural</option>
-                <option value="Technical" {% if achievement and achievement.category == 'Technical' %}selected{% endif %}>Technical</option>
+                <option value="Academics" {% if achievement and achievement.category == 'Academics' %}selected{% endif %}>Academics</option>
                 <option value="Sports" {% if achievement and achievement.category == 'Sports' %}selected{% endif %}>Sports</option>
+                <option value="Research" {% if achievement and achievement.category == 'Research' %}selected{% endif %}>Research</option>
+                <option value="Entrepreneurship" {% if achievement and achievement.category == 'Entrepreneurship' %}selected{% endif %}>Entrepreneurship</option>
                 <option value="Others" {% if achievement and achievement.category == 'Others' %}selected{% endif %}>Others</option>
             </select>
             
