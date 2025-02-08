@@ -20,86 +20,11 @@
             background:rgb(60, 128, 153);
         }
 
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            height: 100vh;
-            background-color: #003366;
-            color: white;
-            padding: 1.5rem;
-            position: fixed;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .sidebar ul {
-            list-style: none;
-        }
-
-        .sidebar ul li {
-            padding: 12px;
-            transition: 0.3s;
-        }
-
-        .sidebar ul li:hover {
-            background: #004080;
-            cursor: pointer;
-        }
-
-        .sidebar ul li a {
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-
-        .sidebar ul li a i {
-            margin-right: 10px;
-        }
-
         /* Main Content */
         .main-content {
             margin-left: 250px;
             padding: 2rem;
             width: calc(100% - 250px);
-        }
-
-        /* Header */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: linear-gradient(145deg, #e3f2fd, #fce4ec);
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            animation: scale-up-hor-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0s 1 normal both;
-        }
-
-        header .logo {
-            display: flex;
-            align-items: center;
-        }
-
-        header .logo img {
-            width: 50px;
-            height: 50px;
-            margin-right: 10px;
-        }
-
-        header .profile {
-            display: flex;
-            align-items: center;
-        }
-
-        header .profile img {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            margin-left: 10px;
         }
 
         /* Events form */
@@ -109,7 +34,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             max-width: 900px;
-            margin: auto;
+            margin: 20px auto;
         }
         .form-title {
             font-size: 2rem;
@@ -139,7 +64,8 @@
             box-shadow: 0 0 5px rgba(44, 103, 192, 0.5);
         }
         .form-button {
-            background-color: green;          color: white;
+            background-color: green;
+            color: white;
             padding: 0.75rem;
             border: none;
             border-radius: 6px;
@@ -194,69 +120,50 @@
     </style>
 </head>
 <body>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>Alumni Portal</h2>
-        <ul>
-            <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="dashboard_newsform.html"><i class="fas fa-user-graduate"></i>News</a></li>
-            <li><a href="#"><i class="fas fa-calendar"></i>Events</a></li>
-            <li><a href="#"><i class="fas fa-briefcase"></i>Alumni</a></li>
-            <li><a href="#"><i class="fas fa-comments"></i>Achivements</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i>Opportunities</a></li>
-        </ul>
-    </aside>
+    {% include 'admin/sidebar.html' %}
 
     <!-- Main Content -->
     <main class="main-content">
-        <header>
-            <div class="logo">
-                <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Alumni Portal Logo">
-                <h1>Alumni Portal Dashboard</h1>
-            </div>
-            <div class="profile">
-                <span>Welcome, User</span>
-                <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Profile">
-            </div>
-        </header>
-        <br><br>
+        {% include 'admin/header.html' %}
 
         <!-- News Form -->
         <div class="form-container">
-            <h2 class="form-title">Announcing MileStone</h2>
-            <form action="/submit-achievement/" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
+            <h2 class="form-title">{% if achievement %}Edit Achievement{% else %}Announcing MileStone{% endif %}</h2>
+            <form action="{% if achievement %}{% url 'edit_achievement' achievement.id %}{% else %}{% url 'add_achievement' %}{% endif %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             
-                <!-- Title Input -->
-                <label for="title" class="form-label">Achievement Title</label>
-                <input type="text" id="title" name="title" class="form-input form-field" required>
+            <!-- Title Input -->
+            <label for="title" class="form-label">Achievement Title</label>
+            <input type="text" id="title" name="title" class="form-input form-field" value="{% if achievement %}{{ achievement.title }}{% endif %}" required>
             
-                <!-- Description Textarea -->
-                <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="description" rows="5" class="form-textarea form-field" required></textarea>
+            <!-- Description Textarea -->
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" name="description" rows="5" class="form-textarea form-field" required>{% if achievement %}{{ achievement.description }}{% endif %}</textarea>
             
-                <!-- Date Achieved -->
-                <label for="date_achieved" class="form-label">Date Achieved</label>
-                <input type="date" id="date_achieved" name="date_achieved" class="form-input form-field" required>
+            <!-- Date Achieved -->
+            <label for="date_achieved" class="form-label">Date Achieved</label>
+            <input type="date" id="date_achieved" name="date_achieved" class="form-input form-field" value="{% if achievement %}{{ achievement.date_achieved|date:'Y-m-d' }}{% endif %}" required>
             
             <!-- Category Dropdown -->
             <label for="category" class="form-label">Category</label>
             <select id="category" name="category" class="form-select form-field" required>
-                <option value="Academics" {% if achievement and achievement.category == 'Academics' %}selected{% endif %}>Academics</option>
+                <option value="Cultural" {% if achievement and achievement.category == 'Cultural' %}selected{% endif %}>Cultural</option>
+                <option value="Technical" {% if achievement and achievement.category == 'Technical' %}selected{% endif %}>Technical</option>
                 <option value="Sports" {% if achievement and achievement.category == 'Sports' %}selected{% endif %}>Sports</option>
-                <option value="Research" {% if achievement and achievement.category == 'Research' %}selected{% endif %}>Research</option>
-                <option value="Entrepreneurship" {% if achievement and achievement.category == 'Entrepreneurship' %}selected{% endif %}>Entrepreneurship</option>
                 <option value="Others" {% if achievement and achievement.category == 'Others' %}selected{% endif %}>Others</option>
             </select>
             
-                <!-- Image Upload -->
-                <label for="image" class="form-label">Upload Achievement Image</label>
-                <input type="file" id="image" name="image" class="form-input form-field">
+            <!-- Image Upload -->
+            <label for="image" class="form-label">Upload Achievement Image</label>
+            <input type="file" id="image" name="image" class="form-input form-field">
+            {% if achievement and achievement.image %}
+                <img src="{{ achievement.image.url }}" alt="Achievement Image" style="max-width: 100px; margin-top: 10px;">
+            {% endif %}
             
-                <!-- Submit Button -->
-                <button type="submit" class="form-button">Submit Achievement</button>
+            <!-- Submit Button -->
+            <button type="submit" class="form-button">{% if achievement %}Update Achievement{% else %}Submit Achievement{% endif %}</button>
             </form>
+        </div>
         </div>
     </main>
 
