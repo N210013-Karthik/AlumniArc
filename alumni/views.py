@@ -241,3 +241,43 @@ def delete_achievement(request, achievement_id):
     achievement = models.Achievement.objects.get(id=achievement_id)
     achievement.delete()
     return redirect('/dashboard/achievements/')
+
+@login_required(login_url='/login/')
+def opportunity_view(request):
+    opportunity_list = models.Opportunity.objects.all()
+    current_user = request.user
+    return render(request, 'admin/opportunities_view.html', {'opportunities': opportunity_list, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def create_or_edit_opportunity(request, opportunity_id=None):
+    current_user = request.user
+    if opportunity_id:
+        opportunity = models.Opportunity.objects.get(id=opportunity_id)
+        if request.method == 'POST':
+            form = forms.OpportunityForm(request.POST, request.FILES, instance=opportunity)
+            if form.is_valid():
+                print("Form is valid")
+                opportunity = form.save(commit=False)
+                opportunity.save()
+                return redirect('/dashboard/opportunities/')
+        else:
+            form = forms.OpportunityForm(instance=opportunity)
+        return render(request, 'admin/opportunities_dashboard.html', {'form': form, 'opportunity': opportunity, 'current_user': current_user})   
+    else:
+        if request.method == 'POST':
+            form = forms.OpportunityForm(request.POST, request.FILES)
+            if form.is_valid():
+                opportunity = form.save(commit=False)
+                opportunity.posted_by = current_user
+                opportunity.save()
+                return redirect('/dashboard/opportunities/')
+        else:
+            form = forms.OpportunityForm()
+
+    return render(request, 'admin/opportunities_dashboard.html', {'form': form, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def delete_opportunity(request, opportunity_id):
+    opportunity = models.Opportunity.objects.get(id=opportunity_id)
+    opportunity.delete()
+    return redirect('/dashboard/opportunities/')
