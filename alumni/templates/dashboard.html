@@ -16,7 +16,7 @@
 
         body {
             display: flex;
-            background:rgb(60, 128, 153);
+            background:#913440;
         }
 
         /* Sidebar */
@@ -120,6 +120,11 @@
             animation: scale-up-hor-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.1s 1 normal both;
         }
 
+        .card.box {
+            box-shadow: 0 0 20px #00ffff;
+            animation: rotate-glow 3.8s linear infinite;
+        }
+
         .card h3 {
             color: #003366;
             margin-bottom: 0.5rem;
@@ -137,6 +142,11 @@
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             animation: scale-up-hor-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.2s 1 normal both;
+        }
+
+        .recent-updates.box {
+            box-shadow: 0 0 30px #00ffff;
+            animation: rotate-glow 3.8s linear infinite;
         }
 
         .recent-updates h2 {
@@ -193,6 +203,23 @@
             }
         }
 
+        @keyframes rotate-glow {
+            0% {
+                box-shadow: -2px -2px 5px brown;
+            }
+            25% {
+                box-shadow: 2px -2px 5px yellow;
+            }
+            50% {
+                box-shadow: 2px 2px 5px #00ffff;
+            }
+            75% {
+                box-shadow: -5px 5px 10px fuchsia;
+            }
+            100% {
+                box-shadow: -2px -2px 5px #00ffff;
+            }
+        }
     </style>
 </head>
 <body>
@@ -225,26 +252,26 @@
 
         <!-- Dashboard Cards -->
         <section class="dashboard-cards">
-            <div class="card">
+            <div class="card box">
                 <h3>Total Alumni</h3>
                 <p>1,250</p>
             </div>
-            <div class="card">
+            <div class="card box">
                 <h3>Upcoming Events</h3>
                 <p>5</p>
             </div>
-            <div class="card">
+            <div class="card box">
                 <h3>Job Listings</h3>
                 <p>18</p>
             </div>
-            <div class="card">
+            <div class="card box">
                 <h3>Active Users</h3>
                 <p>320</p>
             </div>
         </section>
 
         <!-- Recent Updates -->
-        <section class="recent-updates">
+        <section class="recent-updates box">
             <h2>Recent Updates</h2>
             <ul>
                 <li><i class="fas fa-bell"></i> New alumni joined the network.</li>
