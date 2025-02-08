@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from .models import NewsPage, Achievement, Alumni, Event, Opportunity
+from . import forms, models
 from django.db.models import Q  # For searching
 from django.utils.timezone import now
 from django.views.decorators.csrf import csrf_exempt
@@ -31,8 +31,8 @@ def logout_view(request):
 
 
 def homepage_view(request):
-    news = NewsPage.objects.filter(is_published=True)
-    events = Event.objects.all()
+    news = models.NewsPage.objects.filter(is_published=True)
+    events = models.Event.objects.all()
     
     upcoming_events = [event for event in events if event.is_upcoming()]
     
@@ -43,7 +43,7 @@ def news_list(request):
     query = request.GET.get('q', '')  # Search query
     category_filter = request.GET.get('category', 'All')  # Category filter
 
-    news = NewsPage.objects.filter(is_published=True)
+    news = models.NewsPage.objects.filter(is_published=True)
 
     if query:
         news = news.filter(Q(title__icontains=query) | Q(content__icontains=query))
@@ -59,7 +59,7 @@ def achievements_list(request):
     query = request.GET.get('q')  # Search query
     category_filter = request.GET.get('category')  # Category filter
 
-    achievements = Achievement.objects.filter(is_approved=True)
+    achievements = models.Achievement.objects.filter(is_approved=True)
 
     if query:
         achievements = achievements.filter(Q(title__icontains=query) | Q(description__icontains=query))
@@ -84,7 +84,7 @@ def alumni_list(request):
     department_filter = request.GET.get('department')  # Filter by department
     graduation_year_filter = request.GET.get('graduation_year')  # Filter by graduation year
 
-    alumni = Alumni.objects.all()
+    alumni = models.Alumni.objects.all()
 
     # Search query (matches name, position, company, location, skills, achievements)
     if query:
@@ -107,7 +107,7 @@ def alumni_list(request):
 
     # Unique departments and graduation years
     departments = ['All', 'CSE', 'ECE', 'EEE', 'ME', 'CE', 'CHEM', 'MME', 'Others']
-    graduation_years = sorted(set(Alumni.objects.values_list('graduation_year', flat=True)), reverse=True)
+    graduation_years = sorted(set(models.Alumni.objects.values_list('graduation_year', flat=True)), reverse=True)
 
     return render(request, 'AlumniDirectory.html', {
         'alumni': alumni,
@@ -126,7 +126,7 @@ def event_list(request):
     end_date = request.GET.get('end_date', None)
 
     # Get all events
-    events = Event.objects.all()
+    events = models.Event.objects.all()
 
     # Apply search filter
     if query:
@@ -163,7 +163,7 @@ def opportunity_list(request):
     query = request.GET.get('q', '')
     opportunity_type = request.GET.get('opportunity_type', '')
 
-    opportunities = Opportunity.objects.all()
+    opportunities = models.Opportunity.objects.all()
 
     if query:
         opportunities = opportunities.filter(
@@ -192,9 +192,9 @@ def about_view(request):
 
 @login_required(login_url='/login/')
 def dashboard(request):
-    total_alumni = Alumni.objects.count()
-    upcoming_events_count = Event.objects.filter(start_date__gt=now()).count()
-    opportunities_count = Opportunity.objects.count()
+    total_alumni = models.Alumni.objects.count()
+    upcoming_events_count = models.Event.objects.filter(start_date__gt=now()).count()
+    opportunities_count = models.Opportunity.objects.count()
     current_user = request.user
 
     context = {
@@ -205,3 +205,39 @@ def dashboard(request):
     }
 
     return render(request, 'admin/dashboard.html', context)
+
+@login_required(login_url='/login/')
+def achievement_view(request):
+    achievement_list = models.Achievement.objects.all()
+    current_user = request.user
+    return render(request, 'admin/achievements_view.html', {'achievements': achievement_list, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def create_or_edit_achievement(request, achievement_id=None):
+    current_user = request.user
+    if achievement_id:
+        achievement = models.Achievement.objects.get(id=achievement_id)
+        if request.method == 'POST':
+            form = forms.AchievementForm(request.POST, request.FILES, instance=achievement)
+            if form.is_valid():
+                form.save()
+                return redirect('/dashboard/achievements/')
+        else:
+            form = forms.AchievementForm(instance=achievement)
+        return render(request, 'admin/achievementsform.html', {'form': form, 'achievement': achievement, 'current_user': current_user})   
+    else:
+        if request.method == 'POST':
+            form = forms.AchievementForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
+                return redirect('/dashboard/achievements/')
+        else:
+            form = forms.AchievementForm()
+
+    return render(request, 'admin/achievementsform.html', {'form': form, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def delete_achievement(request, achievement_id):
+    achievement = models.Achievement.objects.get(id=achievement_id)
+    achievement.delete()
+    return redirect('/dashboard/achievements/')

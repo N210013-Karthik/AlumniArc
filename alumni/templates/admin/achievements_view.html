@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alumni Portal Dashboard</title>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      /* General Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Arial", sans-serif;
+      }
+
+      body {
+        display: flex;
+        background: rgb(60, 128, 153);
+      }
+
+      /* Main Content */
+      .main-content {
+        margin-left: 250px;
+        padding: 2rem;
+        width: calc(100% - 250px);
+      }
+
+      /* Achievements List */
+      .achievements-container {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        max-width: 900px;
+        margin: 20px auto;
+      }
+      .achievements-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+      }
+      .achievements-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: blue;
+      }
+      .new-button {
+        background-color: blue;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+      .achievement-item {
+        background: #f9f9f9;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: navy;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      a {
+        text-decoration: none;
+        color: navy;
+      }
+
+      @media (max-width: 768px) {
+        .achievements-container {
+          padding: 1.5rem;
+          width: 90%;
+        }
+        .achievements-title {
+          font-size: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% include 'admin/sidebar.html' %}
+    <main class="main-content">
+      {% include 'admin/header.html' %}
+      <div class="achievements-container">
+        <div class="achievements-header">
+          <h2 class="achievements-title">Alumni Achievements</h2>
+          <a href="{% url 'add_achievement' %}"><button class="new-button">Add</button></a>
+        </div>
+        {% for achievement in achievements %}
+        <div class="achievement-item">
+          <a href="{% url 'edit_achievement' achievement.id %}">{{ achievement.title }}</a>
+          <a href="{% url 'delete_achievement' achievement.id %}"><button class="new-button">Delete</button></a>
+        </div>
+        {% endfor %}
+      </div>
+    </main>
+  </body>
+</html>
