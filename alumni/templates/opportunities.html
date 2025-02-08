@@ -68,7 +68,6 @@
             font-size: 1.3rem;
             line-height: 1.6;
         }
-
         .welcome-section {
             padding: 40px 20px;
             max-width: 1200px;
@@ -87,7 +86,6 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
             margin-top: 2rem;
             backdrop-filter: blur(10px);
-            animation: rotate-glow 3s infinite;
         }
 
         .welcome-heading {
@@ -106,10 +104,10 @@
             padding: 20px;
             max-width: 1200px;
             margin: 0 auto 40px auto;
-            background: rgba(10, 26, 60, 0.7);
+            background: #f1f1f1;
             border-radius: 15px;
         }
-
+        
         .feature-card {
             position: relative;
             border-radius: 15px;
@@ -118,51 +116,99 @@
             background: rgba(10, 26, 60, 0.9);
             color: white;
             border: 2px solid transparent;
+            padding: 20px;
         }
-
+        
         .feature-card:hover {
             transform: translateY(-5px);
             border-color: #ffffff;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
         }
-
+        
         .feature-image-container {
             height: 250px;
             overflow: hidden;
             border-radius: 13px;
             margin-bottom: 20px;
         }
-
+        
         .feature-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: all 0.3s ease;
         }
-
+        
         .feature-card:hover img {
             transform: scale(1.05);
         }
-
+        
         .feature-content {
             padding: 0 10px;
             color: white;
         }
-
+        
         .feature-content h3 {
             font-size: 1.8rem;
             margin-bottom: 15px;
             font-weight: 600;
             color: white;
         }
-
+        
         .feature-content p {
             font-size: 1.1rem;
             line-height: 1.6;
             opacity: 0.9;
             color: #e0e0e0;
             font-family: monospace;
+            margin-bottom: 8px;
         }
+        
+        .feature-buttons {
+            margin-top: 15px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-right: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #007BFF;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #0056b3;
+        }
+        
+        .edit-btn {
+            background: #FFC107;
+        }
+        
+        .edit-btn:hover {
+            background: #d39e00;
+        }
+        
+        .delete-btn {
+            background: #DC3545;
+        }
+        
+        .delete-btn:hover {
+            background: #bd2130;
+        }
+        
+        .no-opportunities {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            margin-top: 20px;
+        }
+        
 
         .feedback-section {
             max-width: 1200px;
@@ -498,36 +544,6 @@
             max-width: 800px;
         }
 
-        .join-section::before {
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            border-radius: 10px;
-            box-shadow: 0 0 20px #00ffff;
-            animation: rotate-glow 3.8s linear infinite;
-        }
-
-        @keyframes rotate-glow {
-            0% {
-                box-shadow: -5px -5px 10px fuchsia;
-            }
-            25% {
-                box-shadow: 5px -5px 10px blue;
-            }
-            50% {
-                box-shadow: 5px 5px 10px #00ffff;
-            }
-            75% {
-                box-shadow: -5px 5px 10px blue;
-            }
-            100% {
-                box-shadow: -5px -10px blue;
-            }
-        }
-
         .join-section h2 {
             color: white;
             font-size: 2.5rem;
@@ -584,33 +600,18 @@
 
         .animate {
             transition: transform 0.5s ease;
-            transform: translateY(100px);
-            /* Start position */
+            transform: translateY(100px); /* Start position */
         }
 
         .animate.scroll {
-            transform: translateY(0);
-            /* End position */
-        }
-
-        @keyframes rotate-glow {
-            0% {
-                transform: rotate(0deg);
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            }
-            50% {
-                transform: rotate(10deg);
-                box-shadow: 0 0 20px rgba(255, 255, 0, 1);
-            }
-            100% {
-                transform: rotate(0deg);
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            }
+            transform: translateY(0); /* End position */
         }
     </style>
 </head>
 
 <body>
+    {% include 'navbar.html' %}
+
     <div class="main-container">
         <div class="carousel-container">
             <div id="imageCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000"
@@ -627,7 +628,7 @@
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="op1.jpg" class="d-block w-100" alt="Image 1">
+                        <img src="/static/images/opportunities/op1.jpg" class="d-block w-100" alt="Image 1">
                         <div class="carousel-caption">
                             <h1>Empower Your Future Through Learning</h1>
                             <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
@@ -635,7 +636,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="op2.jpg" class="d-block w-100" alt="Image 2">
+                        <img src="/static/images/opportunities/op2.jpg" class="d-block w-100" alt="Image 2">
                         <div class="carousel-caption">
                             <h1>Empower Your Future Through Learning</h1>
                             <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
@@ -643,7 +644,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="op3.jpg" class="d-block w-100" alt="Image 3">
+                        <img src="/static/images/opportunities/op3.jpg" class="d-block w-100" alt="Image 3">
                         <div class="carousel-caption">
                             <h1>Empower Your Future Through Learning</h1>
                             <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
@@ -651,7 +652,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="op4.jpg" class="d-block w-100" alt="Image 4">
+                        <img src="/static/images/opportunities/op4.jpg" class="d-block w-100" alt="Image 4">
                         <div class="carousel-caption">
                             <h1>Empower Your Future Through Learning</h1>
                             <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
@@ -659,7 +660,7 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img src="op5.jpg" class="d-block w-100" alt="Image 5">
+                        <img src="/static/images/opportunities/op5.jpg" class="d-block w-100" alt="Image 5">
                         <div class="carousel-caption">
                             <h1>Empower Your Future Through Learning</h1>
                             <p>Join our esteemed alumni network and elevate your career potential with a rich legacy of
@@ -697,54 +698,39 @@
 
 
         <div class="features-section">
+            {% for opp in opportunities %}
             <div class="feature-card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="100">
                 <div class="feature-image-container">
-                    <img src="op8.jpg" alt="Comprehensive Alumni Network">
+                    {% if opp.image %}
+                        <img src="{{ opp.image.url }}" alt="{{ opp.title }}">
+                    {% else %}
+                        <img src="/static/images/default-placeholder.png" alt="Default Image">
+                    {% endif %}
                 </div>
                 <div class="feature-content">
-                    <h3>Comprehensive Alumni Network</h3>
-                    <p>Connect with peers and professionals through our extensive alumni network, fostering lifelong
-                        relationships.</p>
+                    <h3>{{ opp.title }}</h3>
+                    <p><strong>Company:</strong> {{ opp.company }}</p>
+                    <p><strong>Type:</strong> {{ opp.get_opportunity_type_display }}</p>
+                    <p><strong>Location:</strong> {{ opp.location }}</p>
+                    {% if opp.salary %}
+                        <p><strong>Salary:</strong> ${{ opp.salary }}</p>
+                    {% endif %}
+                    <p><strong>Deadline:</strong> {{ opp.deadline }}</p>
+                    <p>{{ opp.description|truncatewords:30 }}</p>
                 </div>
             </div>
-            <div class="feature-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-                <div class="feature-image-container">
-                    <img src="op7.jpg" alt="Career Development Resources">
-                </div>
-                <div class="feature-content">
-                    <h3>Career Development Resources</h3>
-                    <p>Access a wealth of resources to advance your career, including workshops and personal counseling.
-                    </p>
-                </div>
-            </div>
-            <div class="feature-card" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300">
-                <div class="feature-image-container">
-                    <img src="op9.jpg" alt="Exclusive Alumni Events">
-                </div>
-                <div class="feature-content">
-                    <h3>Exclusive Alumni Events</h3>
-                    <p>Participate in special events tailored for alumni, offering networking and learning
-                        opportunities.</p>
-                </div>
-            </div>
-            <div class="feature-card" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
-                <div class="feature-image-container">
-                    <img src="op10.jpg" alt="Continuous Learning Opportunities">
-                </div>
-                <div class="feature-content">
-                    <h3>Continuous Learning Opportunities</h3>
-                    <p>Engage in lifelong education with access to seminars, courses, and expert lectures
-                        post-graduation.</p>
-                </div>
-            </div>
+            {% empty %}
+            <p class="no-opportunities">No opportunities available at the moment.</p>
+            {% endfor %}
         </div>
+        
 
         <div class="hero-section">
             <div class="top-bar">
             </div>
             <div class="hero-content">
                 <div class="hero-image">
-                    <img src="op11.jpg" alt="Alumni Network">
+                    <img src="/static/images/opportunities/op11.jpg" alt="Alumni Network">
                 </div>
                 <div class="hero-text">
                     <h1 class="hero-title">Reconnect,<br>Rediscover,<br>Reignite</h1>
@@ -792,68 +778,10 @@
             <h2>Join Our Vibrant Alumni Network</h2>
             <p>Connect with fellow graduates, access exclusive career resources, and participate in events to enrich
                 your professional journey.</p>
-            <a href="#" class="join-button">Join Now</a>
         </div>
-
-        <div class="faq-section">
-            <h2 class="faq-heading">Common Questions Answered</h2>
-
-            <div class="accordion" id="faqAccordion">
-                <!-- Question 1 -->
-                <div class="faq-item">
-                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq1"
-                        aria-expanded="false" aria-controls="faq1">
-                        Are there scholarship opportunities available at alumni?
-                        <span class="icon">+</span>
-                    </button>
-                    <div id="faq1" class="collapse faq-answer" data-bs-parent="#faqAccordion">
-                        Yes, alumni offers various scholarship opportunities based on merit and need to assist students
-                        in financing their education.
-                    </div>
-                </div>
-
-                <!-- Question 2 -->
-                <div class="faq-item">
-                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq2"
-                        aria-expanded="false" aria-controls="faq2">
-                        What networking opportunities are available?
-                        <span class="icon">+</span>
-                    </button>
-                    <div id="faq2" class="collapse faq-answer" data-bs-parent="#faqAccordion">
-                        Alumni can participate in regular networking events, mentorship programs, industry meetups, and
-                        exclusive online forums to connect with fellow graduates and industry professionals.
-                    </div>
-                </div>
-
-                <!-- Question 3 -->
-                <div class="faq-item">
-                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq3"
-                        aria-expanded="false" aria-controls="faq3">
-                        How can I access career services?
-                        <span class="icon">+</span>
-                    </button>
-                    <div id="faq3" class="collapse faq-answer" data-bs-parent="#faqAccordion">
-                        Alumni have lifetime access to career services including job boards, resume reviews, career
-                        counseling, and professional development workshops through our online portal.
-                    </div>
-                </div>
-
-                <!-- Question 4 -->
-                <div class="faq-item">
-                    <button class="faq-question" type="button" data-bs-toggle="collapse" data-bs-target="#faq4"
-                        aria-expanded="false" aria-controls="faq4">
-                        Are there continuing education opportunities?
-                        <span class="icon">+</span>
-                    </button>
-                    <div id="faq4" class="collapse faq-answer" data-bs-parent="#faqAccordion">
-                        Yes, we offer various continuing education programs, online courses, and professional
-                        certifications at special rates for our alumni members.
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
+
+    {% include 'footer.html' %}
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
@@ -938,7 +866,7 @@
             return (rect.top >= 0 && rect.bottom <= window.innerHeight);
         }
 
-        document.addEventListener('scroll', function () {
+        document.addEventListener('scroll', function() {
             const elements = document.querySelectorAll('.animate');
             elements.forEach(element => {
                 if (isElementInViewport(element)) {
@@ -955,7 +883,7 @@
             return (rect.top >= 0 && rect.bottom <= window.innerHeight);
         }
 
-        document.addEventListener('scroll', function () {
+        document.addEventListener('scroll', function() {
             const elements = document.querySelectorAll('.animate');
             elements.forEach(element => {
                 if (isElementInViewport(element)) {

@@ -197,7 +197,6 @@
 
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
             background-color: rgb(60, 128, 153);
         }
 
@@ -264,7 +263,6 @@
         .form-group textarea {
             width: calc(100% - 20px);
             /* Adjust width to increase size */
-            height: 40px;
             /* Increase height */
             padding: 10px;
             /* Add padding for better appearance */
@@ -294,111 +292,86 @@
                 box-shadow: -2px -2px 5px #00ffff;
             }
         }
+
+        .form-field {
+            animation: rotate-glow 3.8s linear infinite;
+        }
     </style>
 </head>
 
 <body>
-
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <h2>Alumni Portal</h2>
-        <ul>
-            <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-            <li><a href="#"><i class="fas fa-user-graduate"></i> News</a></li>
-            <li><a href="#"><i class="fas fa-calendar"></i> Events</a></li>
-            <li><a href="#"><i class="fas fa-briefcase"></i> Alumni</a></li>
-            <li><a href="opp.html"><i class="fas fa-comments"></i> Achivements</a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> Opportunities</a></li>
-        </ul>
-    </aside>
+    {% include 'admin/sidebar.html' %}
 
     <!-- Main Content -->
     <main class="main-content">
-        <header>
-            <div class="logo">
-                <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg"
-                    alt="Alumni Portal Logo">
-                <h1>Alumni Portal Dashboard</h1>
-            </div>
-            <div class="profile">
-                <span>Welcome, User</span>
-                <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Profile">
-            </div>
-        </header>
+        {% include 'admin/header.html' %}
         <br><br>
         <div class="container">
-            <h1 style="text-align: center;">Posting New Opportunity</h1>
-            <form action="/your-endpoint" method="post" enctype="multipart/form-data"><br>
+            <h1 style="text-align: center;">{% if opportunity %}Edit Opportunity{% else %}Posting New Opportunity{% endif %}</h1>
+            <form action="{% if opportunity %}{% url 'edit_opportunity' opportunity.id %}{% else %}{% url 'add_opportunity' %}{% endif %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
                 <!-- Title -->
                 <div class="form-group">
                     <label for="title">Title</label><br>
-                    <input type="text" id="title" name="title" maxlength="255" required>
+                    <input type="text" id="title" name="title" maxlength="255" value="{% if opportunity %}{{ opportunity.title }}{% endif %}" required>
                 </div>
 
                 <!-- Company -->
                 <div class="form-group">
                     <label for="company">Company</label><br>
-                    <input type="text" id="company" name="company" required>
+                    <input type="text" id="company" name="company" value="{% if opportunity %}{{ opportunity.company }}{% endif %}" required>
                 </div>
 
                 <!-- Location Choices -->
                 <div class="form-group">
                     <label for="location">Location</label><br>
                     <select id="location" name="location" required>
-                        <option value="">-- Select Location --</option>
-                        <option value="remote">Remote</option>
-                        <option value="on-site">On-site</option>
-                        <option value="hybrid">Hybrid</option>
+                        <option value="Remote" {% if opportunity and opportunity.location == 'Remote' %}selected{% endif %}>Remote</option>
+                        <option value="On-Site" {% if opportunity and opportunity.location == 'On-Site' %}selected{% endif %}>On-site</option>
+                        <option value="Hybrid" {% if opportunity and opportunity.location == 'Hybrid' %}selected{% endif %}>Hybrid</option>
                     </select>
                 </div>
+
                 <!-- Opportunities Dropdown (Default: Job) -->
                 <div class="form-group">
                     <label for="opportunities">Opportunity Type</label>
-                    <select id="opportunities" name="opportunities" required>
-                        <option value="job" selected>Job</option>
-                        <option value="internship">Internship</option>
-                        <option value="scholarship">Scholarship</option>
-                        <option value="fellowship">Fellowship</option>
-                        <option value="research">Research</option>
-                        <option value="other">Other</option>
+                    <select id="opportunities" name="opportunity_type" required>
+                        <option value="Job" {% if opportunity and opportunity.opportunity_type == 'Job' %}selected{% endif %}>Job</option>
+                        <option value="Internship" {% if opportunity and opportunity.opportunity_type == 'Internship' %}selected{% endif %}>Internship</option>
+                        <option value="Scholarship" {% if opportunity and opportunity.opportunity_type == 'Scholarship' %}selected{% endif %}>Scholarship</option>
+                        <option value="Fellowship" {% if opportunity and opportunity.opportunity_type == 'Fellowship' %}selected{% endif %}>Fellowship</option>
+                        <option value="Research" {% if opportunity and opportunity.opportunity_type == 'Research' %}selected{% endif %}>Research</option>
+                        <option value="Other" {% if opportunity and opportunity.opportunity_type == 'Other' %}selected{% endif %}>Other</option>
                     </select>
                 </div>
+
                 <!-- Image Upload -->
                 <div class="form-group"><br>
                     <label for="image">Upload Image</label>
                     <input type="file" id="image" name="image" accept="image/*">
-                    <img id="imagePreview" src="" alt="Image Preview"
-                        style="display:none; margin-top:10px; width: 5%;" />
+                    {% if opportunity and opportunity.image %}
+                        <img id="imagePreview" src="{{ opportunity.image.url }}" alt="Image Preview" style="margin-top:10px; width: 5%;" />
+                    {% else %}
+                        <img id="imagePreview" src="" alt="Image Preview" style="display:none; margin-top:10px; width: 5%;" />
+                    {% endif %}
                 </div>
+
                 <!-- Description -->
                 <div class="form-group">
                     <label for="description">Description</label><br>
-                    <textarea id="description" name="description" rows="5" required></textarea>
+                    <textarea id="description" name="description" rows="5" class="form-textarea form-field" required>{% if opportunity %}{{ opportunity.description }}{% endif %}</textarea>
                 </div>
-
 
                 <!-- Application Link -->
                 <div class="form-group">
                     <label for="application_link">Application Link</label><br>
-                    <input type="url" id="application_link" name="application_link" required>
-                </div>
-
-                <!-- Posted By -->
-                <div class="form-group">
-                    <label for="posted_by">Posted By</label><br>
-                    <input type="text" id="posted_by" name="posted_by" required>
-                </div>
-
-                <!-- Created At (Read-only; auto_now_add on server side) -->
-                <div class="form-group">
-                    <label for="created_at">Created At</label><br>
-                    <input type="datetime-local" id="created_at" name="created_at">
+                    <input type="url" id="application_link" name="application_link" value="{% if opportunity %}{{ opportunity.application_link }}{% endif %}" required>
                 </div>
 
                 <!-- Deadline -->
                 <div class="form-group">
                     <label for="deadline">Deadline</label><br>
-                    <input type="datetime-local" id="deadline" name="deadline">
+                    <input type="date" id="deadline" name="deadline" value="{% if opportunity %}{{ opportunity.deadline|date:'Y-m-d' }}{% endif %}">
                 </div>
 
                 <!-- Submit Button -->

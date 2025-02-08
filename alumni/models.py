@@ -147,7 +147,7 @@ class Opportunity(models.Model):
     image = models.ImageField(upload_to='static/images/opportunities/', blank=True, null=True)
     description = models.TextField()
     application_link = models.URLField(blank=True, null=True)
-    posted_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    posted_by = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     deadline = models.DateField(blank=True, null=True)
 

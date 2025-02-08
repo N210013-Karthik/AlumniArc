@@ -240,14 +240,15 @@
                 <label for="date_achieved" class="form-label">Date Achieved</label>
                 <input type="date" id="date_achieved" name="date_achieved" class="form-input form-field" required>
             
-                <!-- Category Dropdown -->
-                <label for="category" class="form-label">Category</label>
-                <select id="category" name="category" class="form-select form-field" required>
-                    <option value="Cultural">Cultural</option>
-                    <option value="Technical">Technical</option>
-                    <option value="Sports">Sports</option>
-                    <option value="Others">Others</option>
-                </select>
+            <!-- Category Dropdown -->
+            <label for="category" class="form-label">Category</label>
+            <select id="category" name="category" class="form-select form-field" required>
+                <option value="Academics" {% if achievement and achievement.category == 'Academics' %}selected{% endif %}>Academics</option>
+                <option value="Sports" {% if achievement and achievement.category == 'Sports' %}selected{% endif %}>Sports</option>
+                <option value="Research" {% if achievement and achievement.category == 'Research' %}selected{% endif %}>Research</option>
+                <option value="Entrepreneurship" {% if achievement and achievement.category == 'Entrepreneurship' %}selected{% endif %}>Entrepreneurship</option>
+                <option value="Others" {% if achievement and achievement.category == 'Others' %}selected{% endif %}>Others</option>
+            </select>
             
                 <!-- Image Upload -->
                 <label for="image" class="form-label">Upload Achievement Image</label>
