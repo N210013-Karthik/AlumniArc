@@ -9,9 +9,10 @@
         /* General Styles */
         * {
             margin: 0;
-            padding: 0;
+            padding: 2 rem;
             box-sizing: border-box;
             font-family: 'Arial', sans-serif;
+
         }
 
         body {
@@ -101,95 +102,62 @@
             margin-left: 10px;
         }
 
-        /* Dashboard Cards */
-        .dashboard-cards {
-            display: flex;
-            gap: 1rem;
-            margin: 2rem 0;
-            flex-wrap: wrap;
+        /* News form */
+        .form-container {
+            background-color:rgb(204, 251, 241);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
         }
-
-        .card {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        .form-title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1.5rem;
             text-align: center;
-            flex: 1;
-            min-width: 200px;
-            animation: scale-up-hor-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.1s 1 normal both;
         }
-
-        .card.box {
-            box-shadow: 0 0 20px #00ffff;
-            animation: rotate-glow 3.8s linear infinite;
-        }
-
-        .card h3 {
-            color: #003366;
+        .form-label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
             margin-bottom: 0.5rem;
         }
-
-        .card p {
-            font-size: 1.5rem;
-            font-weight: bold;
+        .form-input, .form-textarea, .form-select {
+            width: 98%;
+            padding: 0.75rem;
+            border: 1px solid blue;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+            box-sizing: border-box;
         }
-
-        /* Recent Updates */
-        .recent-updates {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            animation: scale-up-hor-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.2s 1 normal both;
+        .form-input:focus, .form-textarea:focus, .form-select:focus {
+            border-color: #367dc5;
+            outline: none;
+            box-shadow: 0 0 5px rgba(44, 103, 192, 0.5);
         }
-
-        .recent-updates.box {
-            box-shadow: 0 0 30px #00ffff;
-            animation: rotate-glow 3.8s linear infinite;
+        .form-button {
+            background-color: #007bff;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
         }
-
-        .recent-updates h2 {
-            margin-bottom: 1rem;
-            color: #003366;
+        .form-button:hover {
+            background-color: #0056b3;
         }
-
-        .recent-updates ul {
-            list-style: none;
-        }
-
-        .recent-updates ul li {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-
-        .recent-updates ul li i {
-            color: #004080;
-            margin-right: 10px;
-        }
-
-        /* Responsive Design */
         @media (max-width: 768px) {
-            .sidebar {
-                width: 100px;
+            .form-container {
+                padding: 1.5rem;
+                width: 90%;
             }
-
-            .sidebar h2 {
-                font-size: 1rem;
-            }
-
-            .sidebar ul li a {
-                font-size: 0.9rem;
-            }
-
-            .main-content {
-                margin-left: 100px;
-                width: calc(100% - 100px);
-            }
-
-            .dashboard-cards {
-                flex-direction: column;
+            .form-title {
+                font-size: 1.5rem;
             }
         }
 
@@ -200,24 +168,6 @@
             }
             100% {
                 transform: scaleX(1);
-            }
-        }
-
-        @keyframes rotate-glow {
-            0% {
-                box-shadow: -2px -2px 5px brown;
-            }
-            25% {
-                box-shadow: 2px -2px 5px yellow;
-            }
-            50% {
-                box-shadow: 2px 2px 5px #00ffff;
-            }
-            75% {
-                box-shadow: -5px 5px 10px fuchsia;
-            }
-            100% {
-                box-shadow: -2px -2px 5px #00ffff;
             }
         }
     </style>
@@ -249,37 +199,48 @@
                 <img src="https://pbs.twimg.com/profile_images/1203658757307170816/1gR_eRFZ_400x400.jpg" alt="Profile">
             </div>
         </header>
+        <br><br>
 
-        <!-- Dashboard Cards -->
-        <section class="dashboard-cards">
-            <div class="card box">
-                <h3>Total Alumni</h3>
-                <p>1,250</p>
-            </div>
-            <div class="card box">
-                <h3>Upcoming Events</h3>
-                <p>5</p>
-            </div>
-            <div class="card box">
-                <h3>Job Listings</h3>
-                <p>18</p>
-            </div>
-            <div class="card box">
-                <h3>Active Users</h3>
-                <p>320</p>
-            </div>
-        </section>
+        <!-- News Form -->
+        <div class="form-container">
+            <h2 class="form-title">Submit News</h2>
+            <form action="/submit-news/" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+    
+                <!-- Title Input -->
+                <label for="title" class="form-label">Title</label>
+                <input type="text" id="title" name="title" class="form-input" required>
+    
+                <!-- Content Textarea -->
+                <label for="content" class="form-label">Content</label>
+                <textarea id="content" name="content" rows="5" class="form-textarea" required></textarea>
+    
+                <!-- Author Dropdown -->
+                <label for="author" class="form-label">Author</label>
+                <select id="author" name="author" class="form-select">
+                    <option value="">Select an Author</option>
+                    {% for user in users %}
+                        <option value="{{ user.id }}">{{ user.username }}</option>
+                    {% endfor %}
+                </select>
+    
+                <!-- Image Upload -->
+                <label for="image" class="form-label">Upload Image</label>
+                <input type="file" id="image" name="image" class="form-input">
+    
+                <!-- Category Dropdown -->
+                <label for="category" class="form-label">Category</label>
+                <select id="category" name="category" class="form-select">
+                    {% for key, value in category_choices %}
+                        <option value="{{ key }}">{{ value }}</option>
+                    {% endfor %}
+                </select>
+    
+                <!-- Submit Button -->
+                <button type="submit" class="form-button">Submit News</button>
+            </form>
+        </div>
 
-        <!-- Recent Updates -->
-        <section class="recent-updates box">
-            <h2>Recent Updates</h2>
-            <ul>
-                <li><i class="fas fa-bell"></i> New alumni joined the network.</li>
-                <li><i class="fas fa-calendar-alt"></i> Alumni meetup scheduled for March 15.</li>
-                <li><i class="fas fa-briefcase"></i> 3 new job postings added.</li>
-                <li><i class="fas fa-comments"></i> Forum discussion on career growth started.</li>
-            </ul>
-        </section>
     </main>
 
 </body>
