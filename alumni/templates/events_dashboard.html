@@ -104,7 +104,6 @@
 
         /* Events form */
         .form-container {
-            background-image: url("https://images.pexels.com/photos/7717493/pexels-photo-7717493.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
             background-repeat:no-repeat;
             background-position:center;
             background-size:cover;
@@ -112,7 +111,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 2rem;
             max-width: 900px;
-            margin: auto;
+            width:100%;
         }
         .form-title {
             font-size: 2rem;
@@ -142,17 +141,17 @@
             box-shadow: 0 0 5px rgba(44, 103, 192, 0.5);
         }
         .form-button {
-            background-color: #007bff;
+            background-color: green;
             color: white;
-            padding: 0.75rem;
+            padding: 8px 12px;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            width: 100%;
-            font-size: 1rem;
+            width: 40%;
+            font-size: 14px;
         }
         .form-button:hover {
-            background-color: #0056b3;
+            background-color: blue;
         }
         @media (max-width: 768px) {
             .form-container {
@@ -172,6 +171,33 @@
             100% {
                 transform: scaleX(1);
             }
+        }
+        @keyframes rotate-glow {
+            0% {
+                box-shadow: -2px -2px 5px blue;
+            }
+            25% {
+                box-shadow: 2px -2px 5px blue;
+            }
+            50% {
+                box-shadow: 2px 2px 5px blue;
+            }
+            75% {
+                box-shadow: -5px 5px 10px fuchsia;
+            }
+            100% {
+                box-shadow: -2px -2px 5px #00ffff;
+            }
+        }
+
+        .form-field {
+            animation: rotate-glow 3.8s linear infinite;
+        }
+        
+        form {
+            background-color: white;
+            padding: 20px; 
+            border-radius: 5px; 
         }
         
     </style>
@@ -207,29 +233,28 @@
 
         <!-- News Form -->
         <div class="form-container">
-            <h2 class="form-title">Showcasing Event</h2>
             <form action="/submit-event/" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-        
+                <h2 class="form-title">Showcasing Event</h2>
                 <!-- Title Input -->
                 <label for="title" class="form-label">Event Title</label>
-                <input type="text" id="title" name="title" class="form-input" required>
+                <input type="text" id="title" name="title" class="form-input form-field" required>
         
                 <!-- Description Textarea -->
                 <label for="description" class="form-label">Description</label>
-                <textarea id="description" name="description" rows="5" class="form-textarea" required></textarea>
+                <textarea id="description" name="description" rows="5" class="form-textarea form-field" required></textarea>
         
                 <!-- Location Input -->
                 <label for="location" class="form-label">Location</label>
-                <input type="text" id="location" name="location" class="form-input" required>
+                <input type="text" id="location" name="location" class="form-input form-field" required>
         
                 <!-- Start Date and Time -->
                 <label for="start_date" class="form-label">Start Date and Time</label>
-                <input type="datetime-local" id="start_date" name="start_date" class="form-input" required>
+                <input type="datetime-local" id="start_date" name="start_date" class="form-input form-field" required>
         
                 <!-- Image Upload -->
                 <label for="image" class="form-label">Upload Event Image</label>
-                <input type="file" id="image" name="image" class="form-input">
+                <input type="file" id="image" name="image" class="form-input form-field">
         
                 <!-- Submit Button -->
                 <button type="submit" class="form-button">Submit Event</button>
