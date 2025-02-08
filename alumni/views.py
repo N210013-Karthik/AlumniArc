@@ -220,7 +220,8 @@ def create_or_edit_achievement(request, achievement_id=None):
         if request.method == 'POST':
             form = forms.AchievementForm(request.POST, request.FILES, instance=achievement)
             if form.is_valid():
-                form.save()
+                achievement = form.save(commit=False)
+                achievement.save()
                 return redirect('/dashboard/achievements/')
         else:
             form = forms.AchievementForm(instance=achievement)
@@ -229,7 +230,8 @@ def create_or_edit_achievement(request, achievement_id=None):
         if request.method == 'POST':
             form = forms.AchievementForm(request.POST, request.FILES)
             if form.is_valid():
-                form.save()
+                achievement = form.save(commit=False)
+                achievement.save()
                 return redirect('/dashboard/achievements/')
         else:
             form = forms.AchievementForm()
@@ -281,3 +283,42 @@ def delete_opportunity(request, opportunity_id):
     opportunity = models.Opportunity.objects.get(id=opportunity_id)
     opportunity.delete()
     return redirect('/dashboard/opportunities/')
+
+@login_required(login_url='/login/')
+def alumni_view(request):
+    alumni_list = models.Alumni.objects.all()
+    current_user = request.user
+    return render(request, 'admin/alumni_view.html', {'alumni_list': alumni_list, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def create_or_edit_alumni(request, alumni_id=None):
+    current_user = request.user
+    if alumni_id:
+        alumni = models.Alumni.objects.get(id=alumni_id)
+        if request.method == 'POST':
+            form = forms.AlumniForm(request.POST, request.FILES, instance=alumni)
+            print(form.errors)
+            if form.is_valid():
+                alumni = form.save(commit=False)
+                alumni.save()
+                return redirect('/dashboard/alumni/')
+        else:
+            form = forms.AlumniForm(instance=alumni)
+        return render(request, 'admin/alumni_dashboard.html', {'form': form, 'alumni': alumni, 'current_user': current_user})   
+    else:
+        if request.method == 'POST':
+            form = forms.AlumniForm(request.POST, request.FILES)
+            if form.is_valid():
+                alumni = form.save(commit=False)
+                alumni.save()
+                return redirect('/dashboard/alumni/')
+        else:
+            form = forms.AlumniForm()
+
+    return render(request, 'admin/alumni_dashboard.html', {'form': form, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def delete_alumni(request, alumni_id):
+    alumni = models.Alumni.objects.get(id=alumni_id)
+    alumni.delete()
+    return redirect('/dashboard/alumni/')

@@ -28,4 +28,9 @@ urlpatterns = [
     path('dashboard/opportunity/add/', views.create_or_edit_opportunity, name='add_opportunity'),
     path('dashboard/opportunity/edit/<int:opportunity_id>/', views.create_or_edit_opportunity, name='edit_opportunity'),
     path('dashboard/opportunity/delete/<int:opportunity_id>/', views.delete_opportunity, name='delete_opportunity'),
+    
+    path('dashboard/alumni/', views.alumni_view, name='alumni'),
+    path('dashboard/alumni/add/', views.create_or_edit_alumni, name='add_alumni'),
+    path('dashboard/alumni/edit/<int:alumni_id>/', views.create_or_edit_alumni, name='edit_alumni'),
+    path('dashboard/alumni/delete/<int:alumni_id>/', views.delete_alumni, name='delete_alumni'),
 ]
