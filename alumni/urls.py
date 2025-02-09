@@ -38,4 +38,9 @@ urlpatterns = [
     path('dashboard/news/add/', views.create_or_edit_news, name='add_news'),
     path('dashboard/news/edit/<int:news_id>/', views.create_or_edit_news, name='edit_news'),
     path('dashboard/news/delete/<int:news_id>/', views.delete_news, name='delete_news'),
+    
+    path('dashboard/events/', views.event_view, name='events'),
+    path('dashboard/event/add/', views.create_or_edit_event, name='add_event'),
+    path('dashboard/event/edit/<int:event_id>/', views.create_or_edit_event, name='edit_event'),
+    path('dashboard/event/delete/<int:event_id>/', views.delete_event, name='delete_event'),
 ]

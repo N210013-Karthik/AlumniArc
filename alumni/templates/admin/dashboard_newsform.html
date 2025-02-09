@@ -108,6 +108,11 @@
         <!-- News Form -->
         <div class="form-container">
             <h2 class="form-title">{% if news_item %}Edit News{% else %}Submit News{% endif %}</h2>
+            {% if errors %}
+                {% for message in errors %}
+                    <div style="color: red; font-weight: bold;">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
             <form action="{% if news_item %}{% url 'edit_news' news_item.id %}{% else %}{% url 'add_news' %}{% endif %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
     

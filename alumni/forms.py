@@ -20,3 +20,8 @@ class NewsForm(forms.ModelForm):
     class Meta:
         model = models.NewsPage
         fields = ['title', 'content', 'image', 'category']
+        
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = models.Event
+        fields = ['title', 'description', 'location', 'start_date', 'image', 'category']
