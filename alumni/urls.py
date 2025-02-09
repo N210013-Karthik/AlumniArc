@@ -33,4 +33,9 @@ urlpatterns = [
     path('dashboard/alumni/add/', views.create_or_edit_alumni, name='add_alumni'),
     path('dashboard/alumni/edit/<int:alumni_id>/', views.create_or_edit_alumni, name='edit_alumni'),
     path('dashboard/alumni/delete/<int:alumni_id>/', views.delete_alumni, name='delete_alumni'),
+    
+    path('dashboard/news/', views.news_view, name='news'),
+    path('dashboard/news/add/', views.create_or_edit_news, name='add_news'),
+    path('dashboard/news/edit/<int:news_id>/', views.create_or_edit_news, name='edit_news'),
+    path('dashboard/news/delete/<int:news_id>/', views.delete_news, name='delete_news'),
 ]
