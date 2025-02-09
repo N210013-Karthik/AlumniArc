@@ -6,156 +6,85 @@
     <title>About RGUKT</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Custom CSS Animations */
-        .swashIn {
-            -webkit-animation-name: swashIn;
-            animation-name: swashIn;
-            animation-duration: 1s;
-            animation-timing-function: ease-out;
+        /* Background Gradient for Body */
+        body {
+            background: linear-gradient(to bottom right, #a1c4fd, #c2e9fb);
+            animation: backgroundScroll 8s infinite alternate;
         }
 
-        @-webkit-keyframes swashIn {
-            0% {
-                opacity: 0;
-                transform-origin: 50% 50%;
-                transform: scale(0, 0);
-            }
-            90% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(0.9, 0.9);
-            }
-            100% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(1, 1);
-            }
+        @keyframes backgroundScroll {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
         }
-        @keyframes swashIn {
-            0% {
+
+        /* Animation for Section Blocks */
+        .fadeInUp {
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
                 opacity: 0;
-                transform-origin: 50% 50%;
-                transform: scale(0, 0);
+                transform: translateY(20px);
             }
-            90% {
+            to {
                 opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(0.9, 0.9);
-            }
-            100% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(1, 1);
+                transform: translateY(0);
             }
         }
 
-        .swashOut {
-            -webkit-animation-name: swashOut;
-            animation-name: swashOut;
-            animation-duration: 1s;
-            animation-timing-function: ease-in;
+        /* Button-like Hover Effects on Sections */
+        section:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
         }
 
-        @-webkit-keyframes swashOut {
-            0% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(1, 1);
-            }
-            80% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(0.9, 0.9);
-            }
-            100% {
-                opacity: 0;
-                transform-origin: 50% 50%;
-                transform: scale(0, 0);
-            }
-        }
-        @keyframes swashOut {
-            0% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(1, 1);
-            }
-            80% {
-                opacity: 1;
-                transform-origin: 50% 50%;
-                transform: scale(0.9, 0.9);
-            }
-            100% {
-                opacity: 0;
-                transform-origin: 50% 50%;
-                transform: scale(0, 0);
-            }
-        }
-
-        .spaceInDown {
-            -webkit-animation-name: spaceInDown;
-            animation-name: spaceInDown;
-            animation-duration: 1s;
-            animation-timing-function: ease-out;
-        }
-
-        @-webkit-keyframes spaceInDown {
-            0% {
-                opacity: 0;
-                transform-origin: 50% 100%;
-                transform: scale(0.2) translate(0%, 200%);
-            }
-            100% {
-                opacity: 1;
-                transform-origin: 50% 100%;
-                transform: scale(1) translate(0%, 0%);
-            }
-        }
-        @keyframes spaceInDown {
-            0% {
-                opacity: 0;
-                transform-origin: 50% 100%;
-                transform: scale(0.2) translate(0%, 200%);
-            }
-            100% {
-                opacity: 1;
-                transform-origin: 50% 100%;
-                transform: scale(1) translate(0%, 0%);
-            }
+        /* Custom Section Backgrounds */
+        .bg-gradient-section {
+            background: linear-gradient(135deg, #ffffff, #f3f4f6);
         }
     </style>
 </head>
-<body class="bg-blue-50 flex flex-col justify-between min-h-screen">
+<body class="flex flex-col justify-between min-h-screen">
+
     {% include 'navbar.html' %}
+
     <div class="container mx-auto p-6 flex flex-col items-center">
-        <section id="mission" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105 swashIn">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Mission</h2>
+        <section id="mission" class="bg-gradient-section shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center fadeInUp">
+            <img src="https://media.giphy.com/media/bQjiVMP2tar6w/giphy.gif" alt="Mission Icon" class="mx-auto mb-4" style="width:300px;height:200px;">
             <p class="text-gray-700">"To provide world-class education and training in the fields of engineering, technology, and sciences to the students of rural India, especially from underserved areas, through innovative teaching methodologies..."</p>
         </section>
-        <section id="vision" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105 swashIn">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Vision</h2>
+        <section id="vision" class="bg-gradient-section shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center fadeInUp">
+            <img src="https://th.bing.com/th/id/R.10c27e72df4482aa6f4646250e13dffd?rik=XeArxbjaximmog&riu=http%3a%2f%2fwww.superwaveinfra.com%2fwp-content%2fuploads%2f2021%2f09%2fvisionedited.gif&ehk=5NMz1PWI20v3isHqduL5OfACk0rqxqExGCA8OIoDAO8%3d&risl=&pid=ImgRaw&r=0" alt="Vision Icon" class="mx-auto mb-4" style="width:300px;height:200px;">
             <p class="text-gray-700">"To be a premier institution of higher education dedicated to the pursuit of excellence in teaching, research, and innovation..."</p>
         </section>
-        <section id="history" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105 swashIn">
-            <h2 class="text-blue-800 text-xl font-semibold mb-2">Our History</h2>
+        <!-- this is history-->
+        <section id="history" class="bg-gradient-section shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center fadeInUp">
+            <img src="https://data.textstudio.com/output/sample/animated/0/5/3/5/history-3-5350.gif" alt="History Icon" class="mx-auto mb-4" style="width:300px;height:200px;">
             <p class="text-gray-700">Rajiv Gandhi University of Knowledge and Technologies (RGUKT), Nuzvidu, was established in 2008 by the Government of Andhra Pradesh with a vision to provide quality education...</p>
         </section>
-        <section id="campus" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105 swashIn">
+
+        <section id="campus" class="bg-gradient-section shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center fadeInUp">
             <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Campus</h2>
+            <img src="https://images.shiksha.com/mediadata/images/1587471913php47MK0A_1280x960.jpg" alt="Campus Icon" class="mx-auto mb-4" style="width:300px;height:200px;">
             <p class="text-gray-700">Located in Nuzvidu, Andhra Pradesh, the RGUKT campus provides state-of-the-art facilities for students...</p>
         </section>
-        <!-- Team Members Section -->
-        <section id="team" class="bg-white shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center transform transition duration-300 hover:scale-105 swashIn">
+
+        <section id="team" class="bg-gradient-section shadow-lg rounded-lg p-6 my-4 w-full max-w-3xl text-center fadeInUp">
             <h2 class="text-blue-800 text-xl font-semibold mb-2">Our Team</h2>
+            <img src="https://img.icons8.com/fluency/96/teamwork.png" alt="Team Icon" class="mx-auto mb-4">
             <p class="text-gray-700">Meet the talented members of the CSE-04 class at RGUKT, Nuzvidu:</p>
             <ul class="list-disc list-inside text-gray-700 mt-4">
                 <li><strong>Ahalya</strong> - Passionate about software development and problem-solving.</li>
                 <li><strong>Honey</strong> - Enthusiast in data structures, algorithms, and artificial intelligence.</li>
                 <li><strong>Varshitha</strong> - Interested in web development, and UI/UX design.</li>
-                <li><strong>Karthik</strong> -  Specializes in machine learning and data science. </li>
+                <li><strong>Karthik</strong> - Specializes in machine learning and data science.</li>
                 <li><strong>Sunil</strong> - Focused on cybersecurity and cloud computing.</li>
             </ul>
         </section>
     </div>
+
     {% include 'footer.html' %}
+
 </body>
 </html>
