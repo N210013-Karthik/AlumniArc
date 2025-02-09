@@ -321,3 +321,79 @@ def delete_alumni(request, alumni_id):
     alumni = models.Alumni.objects.get(id=alumni_id)
     alumni.delete()
     return redirect('/dashboard/alumni/')
+
+@login_required(login_url='/login/')
+def news_view(request):
+    news_list = models.NewsPage.objects.all()
+    current_user = request.user
+    return render(request, 'admin/dashboard_newsview.html', {'news_list': news_list, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def create_or_edit_news(request, news_id=None):
+    current_user = request.user
+    if news_id:
+        news = models.NewsPage.objects.get(id=news_id)
+        if request.method == 'POST':
+            form = forms.NewsForm(request.POST, request.FILES, instance=news)
+            if form.is_valid():
+                news = form.save(commit=False)
+                news.save()
+                return redirect('/dashboard/news/')
+        else:
+            form = forms.NewsForm(instance=news)
+        return render(request, 'admin/dashboard_newsform.html', {'form': form, 'news_item': news, 'current_user': current_user, 'errors': form.errors})   
+    else:
+        if request.method == 'POST':
+            form = forms.NewsForm(request.POST, request.FILES)
+            if form.is_valid():
+                news = form.save(commit=False)
+                news.save()
+                return redirect('/dashboard/news/')
+        else:
+            form = forms.NewsForm()
+
+    return render(request, 'admin/dashboard_newsform.html', {'form': form, 'current_user': current_user, 'errors': form.errors})
+
+@login_required(login_url='/login/')
+def delete_news(request, news_id):
+    news = models.NewsPage.objects.get(id=news_id)
+    news.delete()
+    return redirect('/dashboard/news/')
+
+@login_required(login_url='/login/')
+def event_view(request):
+    event_list = models.Event.objects.all()
+    current_user = request.user
+    return render(request, 'admin/events_view.html', {'events_list': event_list, 'current_user': current_user})
+
+@login_required(login_url='/login/')
+def create_or_edit_event(request, event_id=None):
+    current_user = request.user
+    if event_id:
+        event = models.Event.objects.get(id=event_id)
+        if request.method == 'POST':
+            form = forms.EventForm(request.POST, request.FILES, instance=event)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.save()
+                return redirect('/dashboard/events/')
+        else:
+            form = forms.EventForm(instance=event)
+        return render(request, 'admin/events_form.html', {'form': form, 'event': event, 'current_user': current_user, 'errors': form.errors})   
+    else:
+        if request.method == 'POST':
+            form = forms.EventForm(request.POST, request.FILES)
+            if form.is_valid():
+                event = form.save(commit=False)
+                event.save()
+                return redirect('/dashboard/events/')
+        else:
+            form = forms.EventForm()
+
+    return render(request, 'admin/events_form.html', {'form': form, 'current_user': current_user, 'errors': form.errors})
+
+@login_required(login_url='/login/')
+def delete_event(request, event_id):
+    event = models.Event.objects.get(id=event_id)
+    event.delete()
+    return redirect('/dashboard/events/')

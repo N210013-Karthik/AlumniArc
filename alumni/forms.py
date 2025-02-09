@@ -15,3 +15,13 @@ class AlumniForm(forms.ModelForm):
     class Meta:
         model = models.Alumni
         fields = ['name', 'email', 'mobile', 'graduation_year', 'department', 'domain', 'current_position', 'company', 'location', 'skills', 'achievements', 'linkedin', 'twitter', 'profile_picture']
+        
+class NewsForm(forms.ModelForm):
+    class Meta:
+        model = models.NewsPage
+        fields = ['title', 'content', 'image', 'category']
+        
+class EventForm(forms.ModelForm):
+    class Meta:
+        model = models.Event
+        fields = ['title', 'description', 'location', 'start_date', 'image', 'category']
