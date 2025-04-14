@@ -40,3 +40,10 @@ Alumni Arc is a Django-based web application designed to connect alumni with the
     ```
 
 6. Access the application at `http://127.0.0.1:8000/`.
+
+7. Create a superuser:
+    ```bash
+    python manage.py createsuperuser
+    ```
+
+    Follow the prompts to set up a username, email, and password for the superuser.
